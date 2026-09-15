@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>九年级点读版 · 单词合成音 3 方案综合对比实验室</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      margin: 0;
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #0f172a;
+    }
+    .desc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #475569;
+    }
+    .desc-box strong { color: #0f172a; }
+    .scheme-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 4px;
+    }
+    .badge-v1 { background: #e0f2fe; color: #0284c7; }
+    .badge-v2 { background: #fef3c7; color: #b45309; }
+    .badge-v3 { background: #dcfce7; color: #15803d; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .btn-v1 { background: #f0f9ff; color: #0369a1; border-color: #bae6fd; }
+    .btn-v1:hover { background: #0284c7; color: #fff; }
+    .btn-v2 { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+    .btn-v2:hover { background: #d97706; color: #fff; }
+    .btn-v3 { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+    .btn-v3:hover { background: #16a34a; color: #fff; }
+    .page-links {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .page-links a {
+      color: #2563eb;
+      text-decoration: none;
+      padding: 6px 12px;
+      background: #f1f5f9;
+      border-radius: 6px;
+    }
+    .page-links a:hover { background: #dbeafe; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>九年级教材点读版 · 单词发音 3 方案对比实验室</h1>
+    <div class="desc-box">
+      <strong>方案解析与技术机制：</strong><br>
+      • <span class="scheme-badge badge-v1">方案 1（Edge-TTS 假名锁定）</span>：从原句语境提取确切平假名（消除多音字，如 日→ひ），送入微软云端神经女声（NanamiNeural），末尾附带陈述标点消除漂移。音质饱满现代。<br>
+      • <span class="scheme-badge badge-v2">方案 2（OpenJTalk 声调感知）</span>：基于日本国立国语研究所 UniDic 声调词典与 OpenJTalk HTS 引擎，物理指定东京音调核（Accent 核，头高/中高/平板）。重音最正规。<br>
+      • <span class="scheme-badge badge-v3">方案 3（整句神经TTS抽取）</span>：先用神经 TTS 合成完整句子，再利用 Whisper 毫秒级时间戳无损切片提取单词。既保留了原句上下文的自然语感，又消除了真人录音切片的爆音杂音。
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>单词 / 假名</th>
+          <th>所在例句</th>
+          <th>重点看点</th>
+          <th style="text-align:center;">方案 1（Edge-TTS 假名锁）</th>
+          <th style="text-align:center;">方案 2（OpenJTalk 声调感知）</th>
+          <th style="text-align:center;">方案 3（整句神经TTS抽取）</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+    <tr>
+      <td>1</td>
+      <td><strong style="font-size:16px;color:#1e293b;">周先生</strong><br><span style="color:#64748b;font-size:12px;">【しゅうせんせい】</span></td>
+      <td style="color:#334155;font-size:13px;">周先生へ</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">人名敬称 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/ad5332eeadfe34ce_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/ad5332eeadfe34ce_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/ad5332eeadfe34ce_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td><strong style="font-size:16px;color:#1e293b;">日</strong><br><span style="color:#64748b;font-size:12px;">【ひ】</span></td>
+      <td style="color:#334155;font-size:13px;">教師の日です。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">多音字（非 にち/び）/ ⓪型</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/736e7ea5cb849f0f_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/736e7ea5cb849f0f_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/736e7ea5cb849f0f_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+      <td><strong style="font-size:16px;color:#1e293b;">教師</strong><br><span style="color:#64748b;font-size:12px;">【きょうし】</span></td>
+      <td style="color:#334155;font-size:13px;">あしたはいよいよ教師の日です。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">名词 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/f94ca3fa48d9d097_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/f94ca3fa48d9d097_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/f94ca3fa48d9d097_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>4</td>
+      <td><strong style="font-size:16px;color:#1e293b;">入って</strong><br><span style="color:#64748b;font-size:12px;">【はいって】</span></td>
+      <td style="color:#334155;font-size:13px;">中学校に入って、とても不安でした。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">动词促音便 / ①型</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/06a0ba5177050db6_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/06a0ba5177050db6_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/06a0ba5177050db6_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>5</td>
+      <td><strong style="font-size:16px;color:#1e293b;">秋</strong><br><span style="color:#64748b;font-size:12px;">【あき】</span></td>
+      <td style="color:#334155;font-size:13px;">涼しい秋になり、新学期も始まりました。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">季节 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/28f79b6e95b64030_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/28f79b6e95b64030_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/28f79b6e95b64030_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>6</td>
+      <td><strong style="font-size:16px;color:#1e293b;">優しさ</strong><br><span style="color:#64748b;font-size:12px;">【やさしさ】</span></td>
+      <td style="color:#334155;font-size:13px;">先生の優しさで、早く中国の生活に慣れて...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">派生名词 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/3431a9bea37b2a80_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/3431a9bea37b2a80_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/3431a9bea37b2a80_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>7</td>
+      <td><strong style="font-size:16px;color:#1e293b;">中国</strong><br><span style="color:#64748b;font-size:12px;">【ちゅうごく】</span></td>
+      <td style="color:#334155;font-size:13px;">中国の中学校に入って...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">国名 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/f6d831bb9f6b533b_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/f6d831bb9f6b533b_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/f6d831bb9f6b533b_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>8</td>
+      <td><strong style="font-size:16px;color:#1e293b;">中学校</strong><br><span style="color:#64748b;font-size:12px;">【ちゅうがっこう】</span></td>
+      <td style="color:#334155;font-size:13px;">中国の中学校に入って...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">复合词 / ③型中高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/26d6f6dd880a0cbf_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/26d6f6dd880a0cbf_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/26d6f6dd880a0cbf_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>9</td>
+      <td><strong style="font-size:16px;color:#1e293b;">毎日</strong><br><span style="color:#64748b;font-size:12px;">【まいにち】</span></td>
+      <td style="color:#334155;font-size:13px;">毎日宿題をチェックしたり...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">副词性名词 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/63f4a5ceb2fc6c3e_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/63f4a5ceb2fc6c3e_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/63f4a5ceb2fc6c3e_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>10</td>
+      <td><strong style="font-size:16px;color:#1e293b;">宿題</strong><br><span style="color:#64748b;font-size:12px;">【しゅくだい】</span></td>
+      <td style="color:#334155;font-size:13px;">毎日宿題をチェックしたり...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">名词 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/dc94d0f400325492_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/dc94d0f400325492_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/dc94d0f400325492_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>11</td>
+      <td><strong style="font-size:16px;color:#1e293b;">行っ</strong><br><span style="color:#64748b;font-size:12px;">【おこなっ】</span></td>
+      <td style="color:#334155;font-size:13px;">個別指導も行っています。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">多音动词（非 いって）/ 促音</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/745b05d0b54ab24c_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/745b05d0b54ab24c_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/745b05d0b54ab24c_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>12</td>
+      <td><strong style="font-size:16px;color:#1e293b;">尊敬</strong><br><span style="color:#64748b;font-size:12px;">【そんけい】</span></td>
+      <td style="color:#334155;font-size:13px;">先生をとても尊敬しています。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">名词·サ变 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/09e414a8e58fab86_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/09e414a8e58fab86_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/09e414a8e58fab86_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>13</td>
+      <td><strong style="font-size:16px;color:#1e293b;">感謝</strong><br><span style="color:#64748b;font-size:12px;">【かんしゃ】</span></td>
+      <td style="color:#334155;font-size:13px;">そして、心から感謝しています。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">名词·サ变 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/7f5012672183d4d9_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/7f5012672183d4d9_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/7f5012672183d4d9_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>14</td>
+      <td><strong style="font-size:16px;color:#1e293b;">2年</strong><br><span style="color:#64748b;font-size:12px;">【にねん】</span></td>
+      <td style="color:#334155;font-size:13px;">2年前、外国人のわたしは...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">数词数量 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/7133af78242fe7bf_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/7133af78242fe7bf_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/7133af78242fe7bf_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>15</td>
+      <td><strong style="font-size:16px;color:#1e293b;">前</strong><br><span style="color:#64748b;font-size:12px;">【まえ】</span></td>
+      <td style="color:#334155;font-size:13px;">2年前、外国人のわたしは...</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">位置时间 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/63b10613b839aa9d_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/63b10613b839aa9d_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/63b10613b839aa9d_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>16</td>
+      <td><strong style="font-size:16px;color:#1e293b;">手作り</strong><br><span style="color:#64748b;font-size:12px;">【てづくり】</span></td>
+      <td style="color:#334155;font-size:13px;">手作りのカードを贈りましょう。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">复合词 / ②型中高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/48ab45b88aad236a_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/48ab45b88aad236a_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/48ab45b88aad236a_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>17</td>
+      <td><strong style="font-size:16px;color:#1e293b;">カード</strong><br><span style="color:#64748b;font-size:12px;">【カード】</span></td>
+      <td style="color:#334155;font-size:13px;">手作りのカードを贈りましょう。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">外来语 / ①型头高</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/53272a22491385e1_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/53272a22491385e1_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/53272a22491385e1_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>18</td>
+      <td><strong style="font-size:16px;color:#1e293b;">体</strong><br><span style="color:#64748b;font-size:12px;">【からだ】</span></td>
+      <td style="color:#334155;font-size:13px;">お体を大切にしてください。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">身体 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/6d1127f71a8dc478_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/6d1127f71a8dc478_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/6d1127f71a8dc478_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>19</td>
+      <td><strong style="font-size:16px;color:#1e293b;">大切</strong><br><span style="color:#64748b;font-size:12px;">【たいせつ】</span></td>
+      <td style="color:#334155;font-size:13px;">お体を大切にしてください。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">形动 / ⓪型平板</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/983a99cda2e2df08_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/983a99cda2e2df08_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/983a99cda2e2df08_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>20</td>
+      <td><strong style="font-size:16px;color:#1e293b;">やりましょう</strong><br><span style="color:#64748b;font-size:12px;">【やりましょう】</span></td>
+      <td style="color:#334155;font-size:13px;">やりましょう。</td>
+      <td style="font-size:12px;color:#0369a1;background:#f0f9ff;padding:4px 8px;border-radius:6px;">固定句 / 促成活用</td>
+      <td style="text-align:center;">
+        <button class="btn btn-v1" onclick="playAudio('audio/b201b709ffd14fbb_v1.mp3')">▶ 方案1: Edge-TTS假名锁</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v2" onclick="playAudio('audio/b201b709ffd14fbb_v2.mp3')">▶ 方案2: OpenJTalk声调</button>
+      </td>
+      <td style="text-align:center;">
+        <button class="btn btn-v3" onclick="playAudio('audio/b201b709ffd14fbb_v3.mp3')">▶ 方案3: 整句抽取</button>
+      </td>
+    </tr>
+
+      </tbody>
+    </table>
+
+    <div class="page-links">
+      <strong>进入完整课本页面测试：</strong>
+      <a href="page-010.html">第 10 页（实时三方案切换）</a>
+      <a href="page-011.html">第 11 页（感谢信·多音字密集）</a>
+      <a href="page-012.html">第 12 页（贺卡全文）</a>
+      <a href="page-013.html">第 13 页（生词表练习）</a>
+      <a href="page-014.html">第 14 页</a>
+    </div>
+  </div>
+
+  <script>
+    const player = new Audio();
+    function playAudio(src) {
+      player.src = src;
+      player.play().catch(e => console.error("Playback error:", e));
+    }
+  </script>
+</body>
+</html>
