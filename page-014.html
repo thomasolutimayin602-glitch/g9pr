@@ -17,30 +17,36 @@
       margin: 0;
       padding: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100dvh;
       overflow: hidden;
-      background: #f0ede6;
+      background: #efe8d8;
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
     }
     .app {
-      display: flex;
       width: 100vw;
-      height: 100vh;
+      height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      margin: 0;
       overflow: hidden;
+      position: relative;
     }
     .nav-bar {
       position: fixed;
-      top: 12px;
+      top: 16px;
       left: 16px;
-      z-index: 100;
+      z-index: 90;
       display: flex;
       gap: 8px;
       align-items: center;
       background: rgba(255, 255, 255, 0.94);
       padding: 6px 14px;
       border-radius: 20px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     .nav-bar a {
       text-decoration: none;
@@ -111,19 +117,19 @@
       min-width: 32px;
     }
     .stage {
-      flex: 1;
+      width: 100%;
       height: 100%;
       display: grid;
       place-items: center;
-      padding: 16px;
+      padding: 12px;
       overflow: hidden;
     }
     .page-scale {
       position: relative;
-      width: min(calc(100vw - 380px), calc((100vh - 32px) * var(--page-w) / var(--page-h)));
+      width: min(calc(100vw - 24px), calc((100dvh - 24px) * var(--page-w) / var(--page-h)));
       aspect-ratio: var(--page-w) / var(--page-h);
       background: #fff;
-      box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
       border-radius: 4px;
       overflow: hidden;
     }
@@ -201,36 +207,119 @@
       background: rgba(211, 47, 47, 0.18);
       outline: 1px dashed rgba(211, 47, 47, 0.4);
     }
-    /* Sidebar */
-    .sidebar {
-      width: 360px;
-      height: 100%;
+    /* Point-read panel floating overlay */
+    aside#pointPanel {
+      position: fixed;
+      right: 16px;
+      top: 16px;
+      z-index: 100;
+      width: min(380px, calc(100vw - 32px));
+      max-height: calc(100dvh - 32px);
+      overflow: hidden;
       background: rgba(255, 255, 255, 0.96);
-      border-left: 1px solid rgba(0,0,0,0.08);
-      box-shadow: -4px 0 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
-      z-index: 10;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    aside#pointPanel:not(.open) {
+      width: auto;
+      max-height: none;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .panel-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #1e293b;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .panel-toggle:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+    aside#pointPanel.open #panelToggleBtn {
+      display: none;
+    }
+    aside#pointPanel:not(.open) .panel-toggle-wrapper,
+    aside#pointPanel:not(.open) .panel-content {
+      display: none;
+    }
+    .panel-toggle-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .panel-toggle-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e293b;
+      margin: 0;
+    }
+    .panel-close-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .panel-close-btn:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    .panel-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
     }
     .sidebar-header {
-      padding: 16px 20px;
+      padding: 10px 16px;
       border-bottom: 1px solid #e2e8f0;
       background: #fafafa;
     }
-    .sidebar-header h2 {
-      margin: 0 0 6px;
-      font-size: 18px;
-      color: #1e293b;
-    }
     .sidebar-header p {
       margin: 0;
-      font-size: 13px;
+      font-size: 12px;
       color: #64748b;
     }
     .sidebar-content {
       flex: 1;
       overflow-y: auto;
-      padding: 12px 16px;
+      padding: 10px 14px;
+      max-height: calc(100dvh - 150px);
     }
     .point-list {
       list-style: none;
@@ -241,13 +330,13 @@
       gap: 8px;
     }
     .point-item {
-      padding: 10px 12px;
+      padding: 9px 11px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 13.5px;
+      line-height: 1.45;
       color: #334155;
       display: flex;
       align-items: flex-start;
@@ -298,6 +387,65 @@
       background: #fef3c7;
       color: #b45309;
       border: 1px solid #fde68a;
+    }
+    /* Responsive layout for mobile */
+    @media (max-width: 768px) {
+      .stage {
+        padding: 0;
+      }
+      .page-scale {
+        width: min(100vw, calc(100dvh * var(--page-w) / var(--page-h)));
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .nav-bar {
+        top: 8px;
+        left: 8px;
+        padding: 4px 8px;
+        gap: 4px;
+      }
+      .nav-bar a {
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+      .nav-bar strong {
+        font-size: 12px;
+        margin: 0 2px;
+      }
+      .speed-control {
+        margin-left: 4px;
+        padding-left: 6px;
+        gap: 3px;
+      }
+      .speed-label, #speedSlider {
+        display: none;
+      }
+      .speed-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+      }
+      #speedVal {
+        font-size: 12px;
+        min-width: 26px;
+      }
+      aside#pointPanel {
+        right: 8px;
+        top: 8px;
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+      }
+      aside#pointPanel:not(.open) {
+        right: 8px;
+        top: 8px;
+      }
+      .panel-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .sidebar-content {
+        max-height: calc(100dvh - 130px);
+      }
     }
   </style>
 </head>
@@ -482,19 +630,25 @@
         </div>
       </div>
     </main>
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>点读列表</h2>
-        <p style="margin-bottom:6px;">单击读整句（逐词高亮）；双击单词单独发音。</p>
-        <div style="font-size:12px;display:flex;align-items:center;gap:6px;color:#475569;">
-          <span class="audio-badge source">原声</span>教材原声切片
-          <span class="audio-badge synth" style="margin-left:6px;">合成</span>AI语音合成
-        </div>
+    <aside id="pointPanel">
+      <button class="panel-toggle" id="panelToggleBtn" type="button" aria-expanded="false" aria-controls="pointPanelContent">点读列表</button>
+      <div class="panel-toggle-wrapper">
+        <h2 class="panel-toggle-title">点读列表</h2>
+        <button type="button" class="panel-close-btn" id="panelCloseBtn">✕ 关闭</button>
       </div>
-      <div class="sidebar-content">
-        <ul class="point-list">
-          <li class="point-item vocab" data-id="hotspot_14_0"><span class="badge badge-vocab">词汇</span><span class="audio-badge synth">合成</span><span class="item-text">やりましょう</span></li>
-        </ul>
+      <div id="pointPanelContent" class="panel-content">
+        <div class="sidebar-header">
+          <p style="margin-bottom:6px;">单击读整句（逐词高亮）；双击单词单独发音。</p>
+          <div style="font-size:12px;display:flex;align-items:center;gap:6px;color:#475569;">
+            <span class="audio-badge source">原声</span>教材原声切片
+            <span class="audio-badge synth" style="margin-left:6px;">合成</span>AI语音合成
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <ul class="point-list">
+            <li class="point-item vocab" data-id="hotspot_14_0"><span class="badge badge-vocab">词汇</span><span class="audio-badge synth">合成</span><span class="item-text">やりましょう</span></li>
+          </ul>
+        </div>
       </div>
     </aside>
   </div>
@@ -504,6 +658,39 @@
     const pageScale = document.querySelector('.page-scale');
     const pageNative = document.querySelector('#pageNative');
     
+    // Panel Toggle Logic
+    const pointPanel = document.querySelector('#pointPanel');
+    const panelToggleBtn = document.querySelector('#panelToggleBtn');
+    const panelCloseBtn = document.querySelector('#panelCloseBtn');
+
+    function togglePanel(open) {
+      const shouldOpen = open !== undefined ? open : !pointPanel.classList.contains('open');
+      pointPanel.classList.toggle('open', shouldOpen);
+      panelToggleBtn.setAttribute('aria-expanded', String(shouldOpen));
+    }
+
+    panelToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePanel(true);
+    });
+
+    panelCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePanel(false);
+    });
+
+    document.addEventListener('pointerdown', (e) => {
+      if (pointPanel.classList.contains('open') && !pointPanel.contains(e.target)) {
+        togglePanel(false);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pointPanel.classList.contains('open')) {
+        togglePanel(false);
+      }
+    });
+
     // Audio Player & Speed State
     const audioPlayer = new Audio();
     let currentSpeed = 1.0;
@@ -532,19 +719,13 @@
       const scale = pageScale.clientWidth / 521.575;
       pageNative.style.transform = `scale(${scale})`;
     }
-    window.addEventListener('resize', resizeScale);
-    resizeScale();
-
-    function clearHighlights() {
-      if (activeAnimationTimeout) {
-        cancelAnimationFrame(activeAnimationTimeout);
-        clearTimeout(activeAnimationTimeout);
-        activeAnimationTimeout = null;
-      }
-      document.querySelectorAll('.pdf-char.active').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.pdf-char.word-highlight').forEach(el => el.classList.remove('word-highlight'));
-      document.querySelectorAll('.point-item.active').forEach(el => el.classList.remove('active'));
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(() => resizeScale()).observe(pageScale);
+    } else {
+      window.addEventListener('resize', resizeScale);
     }
+    window.addEventListener('orientationchange', resizeScale);
+    resizeScale();
 
     let wordStopTimer = null;
     let activeSyncSentenceId = null;
