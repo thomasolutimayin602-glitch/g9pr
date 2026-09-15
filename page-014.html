@@ -449,63 +449,7 @@
     }
   
     /* 3 Schemes Switcher */
-    .scheme-picker {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: 10px;
-      padding-left: 10px;
-      border-left: 1px solid #cbd5e1;
-      font-size: 13px;
-    }
-    .scheme-picker-label {
-      font-weight: 600;
-      color: #334155;
-      margin-right: 2px;
-      white-space: nowrap;
-    }
-    .scheme-btn {
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s;
-      white-space: nowrap;
-    }
-    .scheme-btn:hover {
-      background: #e2e8f0;
-    }
-    .scheme-btn.active {
-      background: #dc2626;
-      border-color: #dc2626;
-      color: #ffffff;
-      box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
-    }
-    .scheme-btn .scheme-desc {
-      font-size: 10px;
-      opacity: 0.85;
-      margin-left: 2px;
-    }
     @media (max-width: 768px) {
-      .scheme-picker {
-        margin-left: 4px;
-        padding-left: 4px;
-        gap: 2px;
-      }
-      .scheme-picker-label {
-        display: none;
-      }
-      .scheme-btn {
-        padding: 2px 5px;
-        font-size: 11px;
-      }
-      .scheme-btn .scheme-desc {
-        display: none;
-      }
     }
 
   </style>
@@ -523,12 +467,6 @@
         <input type="range" id="speedSlider" min="0.5" max="2.0" step="0.1" value="1.0">
         <span id="speedVal">1.0x</span>
         <button type="button" class="speed-btn" id="speedInc" title="加速 0.1x">+</button>
-      </div>
-      <div class="scheme-picker">
-        <span class="scheme-picker-label">单词发音:</span>
-        <button type="button" class="scheme-btn active" data-scheme="v1" title="方案1：Edge-TTS 假名锁定（消灭多音字）">方案1<span class="scheme-desc">假名锁</span></button>
-        <button type="button" class="scheme-btn " data-scheme="v2" title="方案2：OpenJTalk 声调感知（东京标准重音）">方案2<span class="scheme-desc">声调感知</span></button>
-        <button type="button" class="scheme-btn " data-scheme="v3" title="方案3：整句神经TTS提取（连贯自然）">方案3<span class="scheme-desc">整句抽取</span></button>
       </div>
     </nav>
     <main class="stage">
@@ -721,7 +659,7 @@
   </div>
 
   <script>
-    const hotspots = [{"id": "hotspot_14_0", "text": "やりましょう", "kind": "vocab", "bbox": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "words": [{"word": "やりましょう", "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "is_punct": false, "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "rect": [102.03, 64.34, 186.03, 78.34], "start": 0.0, "end": 0.76, "reading": "やりましょう", "aid": "b201b709ffd14fbb", "v1_src": "audio/b201b709ffd14fbb_v1.mp3", "v2_src": "audio/b201b709ffd14fbb_v2.mp3", "v3_src": "audio/b201b709ffd14fbb_v3.mp3"}], "audioType": "tts"}];
+    const hotspots = [{"id": "hotspot_14_0", "text": "やりましょう", "kind": "vocab", "bbox": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "words": [{"word": "やりましょう", "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "is_punct": false, "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "rect": [102.03, 64.34, 186.03, 78.34], "start": 0.0, "end": 0.76, "reading": "やりましょう", "aid": "b201b709ffd14fbb" }], "audioType": "tts"}];
     const pageScale = document.querySelector('.page-scale');
     const pageNative = document.querySelector('#pageNative');
     
@@ -763,12 +701,7 @@
     let currentSpeed = 1.0;
 
     let currentWordScheme = 'v1';
-    document.querySelectorAll('.scheme-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.scheme-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentWordScheme = btn.dataset.scheme;
-      });
+    document.querySelectorAll(');
     });
 
     let activeAnimationTimeout = null;
@@ -934,7 +867,7 @@
       }
     }
 
-    // Play word alone (on double-click) - Prioritize authentic native speaker recording
+        // Play word alone (on double-click) - Context-aware phonetic TTS
     function triggerWordOnly(hid, widx) {
       const hotspot = hotspots.find(h => h.id === hid);
       if (!hotspot || !hotspot.words || !hotspot.words[widx]) return;
@@ -943,7 +876,6 @@
       clearHighlights();
       stopAudio();
 
-      // Highlight single word red and yellow
       if (wordObj.char_ids) {
         wordObj.char_ids.forEach(cid => {
           const el = document.getElementById(cid);
@@ -954,60 +886,11 @@
         });
       }
 
-      // Play word audio based on selected scheme
-      let wordSrc = wordObj[currentWordScheme + '_src'] || wordObj.v1_src;
+      const wordSrc = wordObj.audioSrc || wordObj.v1_src;
       if (wordSrc) {
-        audioPlayer.src = wordSrc;
+        audioPlayer.src = wordSrc.replace('_v1.mp3', '.mp3');
         audioPlayer.playbackRate = currentSpeed;
         audioPlayer.play().catch(() => {});
-      }
-    }
-    function old_unused_triggerWordOnly(hid, widx) {
-      const hotspot = hotspots.find(h => h.id === hid);
-      if (!hotspot || !hotspot.words || !hotspot.words[widx]) return;
-      const word = hotspot.words[widx];
-
-      clearHighlights();
-      stopAudio();
-
-      // Highlight in sidebar
-      const listItem = document.querySelector(`.point-item[data-id="${hid}"]`);
-      if (listItem) {
-        listItem.classList.add('active');
-      }
-
-      // Turn ONLY this word red and give it word-highlight
-      if (word.char_ids) {
-        word.char_ids.forEach(cid => {
-          const el = document.getElementById(cid);
-          if (el) {
-            el.classList.add('active');
-            el.classList.add('word-highlight');
-          }
-        });
-      }
-
-      // If parent sentence has authentic original audio and word has exact timestamps:
-      // Play directly from parent authentic recording range [word.start, word.end]
-      if (hotspot.audioType === 'source' && hotspot.audioSrc && word.start !== undefined && word.end !== undefined) {
-        audioPlayer.src = hotspot.audioSrc;
-        audioPlayer.playbackRate = currentSpeed;
-        const st = Math.max(0, word.start - 0.02);
-        const et = word.end + 0.04;
-        const durMs = Math.max(220, ((et - st) / currentSpeed) * 1000);
-
-        audioPlayer.currentTime = st;
-        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
-
-        if (wordStopTimer) clearTimeout(wordStopTimer);
-        wordStopTimer = setTimeout(() => {
-          audioPlayer.pause();
-          wordStopTimer = null;
-        }, durMs);
-      } else if (word.audioSrc) {
-        audioPlayer.src = word.audioSrc;
-        audioPlayer.playbackRate = currentSpeed;
-        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
       }
     }
 
