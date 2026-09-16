@@ -659,7 +659,7 @@
   </div>
 
   <script>
-    const hotspots = [{"id": "hotspot_14_0", "text": "やりましょう", "kind": "vocab", "bbox": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "words": [{"word": "やりましょう", "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "is_punct": false, "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "rect": [102.03, 64.34, 186.03, 78.34], "start": 0.0, "end": 0.76, "reading": "やりましょう", "aid": "b201b709ffd14fbb" }], "audioType": "tts"}];
+    const hotspots = [{"id": "hotspot_14_0", "text": "やりましょう", "kind": "vocab", "bbox": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "words": [{"word": "やりましょう", "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "is_punct": false, "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "rect": [102.03, 64.34, 186.03, 78.34], "start": 0.0, "end": 0.64, "reading": "やりましょう", "aid": "b201b709ffd14fbb"}], "audioType": "tts"}];
     const pageScale = document.querySelector('.page-scale');
     const pageNative = document.querySelector('#pageNative');
     
@@ -843,6 +843,13 @@
                   currentWord = w;
                   break;
                 }
+              }
+            }
+            // 确保播放期间末尾词不因毫秒级舍入提前熄灭
+            if (!currentWord && validWords.length > 0) {
+              const lastW = validWords[validWords.length - 1];
+              if (lastW.start !== undefined && t >= lastW.start && !audioPlayer.paused) {
+                currentWord = lastW;
               }
             }
 
