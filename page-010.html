@@ -847,10 +847,6 @@
     const audioPlayer = new Audio();
     let currentSpeed = 1.0;
 
-    let currentWordScheme = 'v1';
-    document.querySelectorAll(');
-    });
-
     let activeAnimationTimeout = null;
     let wordClickTimer = null;
     let lastClickedKey = null;
@@ -992,7 +988,6 @@
                 }
               }
             }
-            // 确保播放期间末尾词不因毫秒级舍入提前熄灭
             if (!currentWord && validWords.length > 0) {
               const lastW = validWords[validWords.length - 1];
               if (lastW.start !== undefined && t >= lastW.start && !audioPlayer.paused) {
