@@ -447,11 +447,6 @@
         max-height: calc(100dvh - 130px);
       }
     }
-  
-    /* 3 Schemes Switcher */
-    @media (max-width: 768px) {
-    }
-
   </style>
 </head>
 <body>
@@ -659,7 +654,7 @@
   </div>
 
   <script>
-    const hotspots = [{"id": "hotspot_14_0", "text": "やりましょう", "kind": "vocab", "bbox": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "words": [{"word": "やりましょう", "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "is_punct": false, "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "rect": [102.03, 64.34, 186.03, 78.34], "start": 0.0, "end": 0.64, "reading": "やりましょう", "aid": "b201b709ffd14fbb"}], "audioType": "tts"}];
+    const hotspots = [{"id": "hotspot_14_0", "text": "やりましょう", "kind": "vocab", "bbox": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "words": [{"word": "やりましょう", "char_ids": ["p14_c76", "p14_c77", "p14_c78", "p14_c79", "p14_c80", "p14_c81"], "is_punct": false, "audioSrc": "audio/1ec0ae6b8fe58e1c.mp3", "rect": [102.03, 64.34, 186.03, 78.34], "rects": [[102.03, 64.34, 186.03, 78.34]], "start": 0.0, "end": 0.64}], "audioType": "tts"}];
     const pageScale = document.querySelector('.page-scale');
     const pageNative = document.querySelector('#pageNative');
     
@@ -699,7 +694,6 @@
     // Audio Player & Speed State
     const audioPlayer = new Audio();
     let currentSpeed = 1.0;
-
     let activeAnimationTimeout = null;
     let wordClickTimer = null;
     let lastClickedKey = null;
@@ -841,12 +835,6 @@
                 }
               }
             }
-            if (!currentWord && validWords.length > 0) {
-              const lastW = validWords[validWords.length - 1];
-              if (lastW.start !== undefined && t >= lastW.start && !audioPlayer.paused) {
-                currentWord = lastW;
-              }
-            }
 
             if (currentActiveWord !== currentWord) {
               currentActiveWord = currentWord;
@@ -869,17 +857,24 @@
       }
     }
 
-        // Play word alone (on double-click) - Context-aware phonetic TTS
+    // Play word alone (on double-click) - Prioritize authentic native speaker recording
     function triggerWordOnly(hid, widx) {
       const hotspot = hotspots.find(h => h.id === hid);
       if (!hotspot || !hotspot.words || !hotspot.words[widx]) return;
-      const wordObj = hotspot.words[widx];
+      const word = hotspot.words[widx];
 
       clearHighlights();
       stopAudio();
 
-      if (wordObj.char_ids) {
-        wordObj.char_ids.forEach(cid => {
+      // Highlight in sidebar
+      const listItem = document.querySelector(`.point-item[data-id="${hid}"]`);
+      if (listItem) {
+        listItem.classList.add('active');
+      }
+
+      // Turn ONLY this word red and give it word-highlight
+      if (word.char_ids) {
+        word.char_ids.forEach(cid => {
           const el = document.getElementById(cid);
           if (el) {
             el.classList.add('active');
@@ -888,11 +883,27 @@
         });
       }
 
-      const wordSrc = wordObj.audioSrc || wordObj.v1_src;
-      if (wordSrc) {
-        audioPlayer.src = wordSrc.replace('_v1.mp3', '.mp3');
+      // If parent sentence has authentic original audio and word has exact timestamps:
+      // Play directly from parent authentic recording range [word.start, word.end]
+      if (hotspot.audioType === 'source' && hotspot.audioSrc && word.start !== undefined && word.end !== undefined) {
+        audioPlayer.src = hotspot.audioSrc;
         audioPlayer.playbackRate = currentSpeed;
-        audioPlayer.play().catch(() => {});
+        const st = Math.max(0, word.start - 0.02);
+        const et = word.end + 0.04;
+        const durMs = Math.max(220, ((et - st) / currentSpeed) * 1000);
+
+        audioPlayer.currentTime = st;
+        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+
+        if (wordStopTimer) clearTimeout(wordStopTimer);
+        wordStopTimer = setTimeout(() => {
+          audioPlayer.pause();
+          wordStopTimer = null;
+        }, durMs);
+      } else if (word.audioSrc) {
+        audioPlayer.src = word.audioSrc;
+        audioPlayer.playbackRate = currentSpeed;
+        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
       }
     }
 
