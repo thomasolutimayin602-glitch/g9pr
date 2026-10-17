@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>义务教育教科书 日语 九年级 全一册 - 第 69 页</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --page-w: 521.575;
+      --page-h: 737.008;
+      --accent: #d32f2f;
+      --highlight-bg: #ffe082;
+      --highlight-color: #b71c1c;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      background: #efe8d8;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    }
+    .app {
+      width: 100vw;
+      height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .nav-bar {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 90;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-bar a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .nav-bar a:hover:not(.disabled) {
+      background: #e2e8f0;
+    }
+    .nav-bar a.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .nav-bar strong {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0 4px;
+    }
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+      padding-left: 10px;
+      border-left: 1px solid #cbd5e1;
+      font-size: 13px;
+      color: #475569;
+    }
+    .speed-label {
+      font-weight: 600;
+      color: #334155;
+    }
+    .speed-btn {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 1;
+      padding: 0;
+      transition: all 0.15s;
+    }
+    .speed-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    #speedSlider {
+      width: 65px;
+      height: 4px;
+      accent-color: #d32f2f;
+      cursor: pointer;
+    }
+    #speedVal {
+      font-variant-numeric: tabular-nums;
+      font-weight: bold;
+      color: #d32f2f;
+      min-width: 32px;
+    }
+    .stage {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      overflow: hidden;
+    }
+    .page-scale {
+      position: relative;
+      width: min(calc(100vw - 24px), calc((100dvh - 24px) * var(--page-w) / var(--page-h)));
+      aspect-ratio: var(--page-w) / var(--page-h);
+      background: #fff;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .page-native {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(var(--page-w) * 1px);
+      height: calc(var(--page-h) * 1px);
+      transform-origin: 0 0;
+    }
+    .bg-img, .text-layer, .overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .bg-img {
+      z-index: 1;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    .text-layer {
+      z-index: 2;
+      pointer-events: none;
+    }
+    .pdf-char {
+      position: absolute;
+      display: inline-block;
+      white-space: pre;
+      line-height: 1;
+      transform-origin: left top;
+      transition: color 0.15s, background-color 0.15s;
+    }
+    /* When active (sentence/word clicked) -> Turns RED */
+    .pdf-char.active {
+      color: var(--accent) !important;
+      font-weight: bold;
+    }
+    /* Word-by-word animation highlight (Punctuation NEVER gets this class!) */
+    .pdf-char.word-highlight {
+      background: var(--highlight-bg) !important;
+      color: var(--highlight-color) !important;
+      border-radius: 2px;
+      box-shadow: 0 0 4px var(--highlight-bg);
+    }
+    .overlay {
+      z-index: 3;
+    }
+    .point-hotspot {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .sentence-hit {
+      position: absolute;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: all;
+      border-radius: 3px;
+      z-index: 5;
+    }
+    .sentence-hit:hover {
+      background: rgba(211, 47, 47, 0.08);
+    }
+    .word-hit {
+      position: absolute;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: all;
+      border-radius: 2px;
+      z-index: 6;
+    }
+    .word-hit:hover {
+      background: rgba(211, 47, 47, 0.18);
+      outline: 1px dashed rgba(211, 47, 47, 0.4);
+    }
+    /* Point-read panel floating overlay */
+    aside#pointPanel {
+      position: fixed;
+      right: 16px;
+      top: 16px;
+      z-index: 100;
+      width: min(380px, calc(100vw - 32px));
+      max-height: calc(100dvh - 32px);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    aside#pointPanel:not(.open) {
+      width: auto;
+      max-height: none;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .panel-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #1e293b;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .panel-toggle:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+    aside#pointPanel.open #panelToggleBtn {
+      display: none;
+    }
+    aside#pointPanel:not(.open) .panel-toggle-wrapper,
+    aside#pointPanel:not(.open) .panel-content {
+      display: none;
+    }
+    .panel-toggle-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .panel-toggle-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e293b;
+      margin: 0;
+    }
+    .panel-close-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .panel-close-btn:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    .panel-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      background: #fafafa;
+    }
+    .sidebar-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 14px;
+      max-height: calc(100dvh - 150px);
+    }
+    .point-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .point-item {
+      padding: 9px 11px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .point-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .point-item.active {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.12);
+    }
+    .badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .badge-sentence {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .badge-vocab {
+      background: #e0f2fe;
+      color: #0284c7;
+    }
+    .audio-badge {
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+    .audio-badge.source {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .audio-badge.synth {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+    /* Responsive layout for mobile */
+    @media (max-width: 768px) {
+      .stage {
+        padding: 0;
+      }
+      .page-scale {
+        width: min(100vw, calc(100dvh * var(--page-w) / var(--page-h)));
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .nav-bar {
+        top: 8px;
+        left: 8px;
+        padding: 4px 8px;
+        gap: 4px;
+      }
+      .nav-bar a {
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+      .nav-bar strong {
+        font-size: 12px;
+        margin: 0 2px;
+      }
+      .speed-control {
+        margin-left: 4px;
+        padding-left: 6px;
+        gap: 3px;
+      }
+      .speed-label, #speedSlider {
+        display: none;
+      }
+      .speed-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+      }
+      #speedVal {
+        font-size: 12px;
+        min-width: 26px;
+      }
+      aside#pointPanel {
+        right: 8px;
+        top: 8px;
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+      }
+      aside#pointPanel:not(.open) {
+        right: 8px;
+        top: 8px;
+      }
+      .panel-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .sidebar-content {
+        max-height: calc(100dvh - 130px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <nav class="nav-bar">
+      <a href="page-068.html" class="">上一页</a>
+      <a href="index.html">目录</a>
+      <strong>69 / 275</strong>
+      <a href="page-070.html" class="">下一页</a>
+      <div class="speed-control">
+        <span class="speed-label">语速</span>
+        <button type="button" class="speed-btn" id="speedDec" title="减速 0.1x">−</button>
+        <input type="range" id="speedSlider" min="0.5" max="2.0" step="0.1" value="1.0">
+        <span id="speedVal">1.0x</span>
+        <button type="button" class="speed-btn" id="speedInc" title="加速 0.1x">+</button>
+      </div>
+    </nav>
+    <main class="stage">
+      <div class="page-scale">
+        <div class="page-native" id="pageNative">
+          <div class="bg-img" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iNTIxLjU3NSIgaGVpZ2h0PSI3MzcuMDA4MDgiIHZpZXdCb3g9IjAgMCA1MjEuNTc1IDczNy4wMDgwOCI+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNMCAwSDUzOC41ODNWNzU0LjAxNkgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMiI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNMCAwSDUzOC41ODNWNzU0LjAxNkgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMyI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik01NjYuOTI1IDM2Ljg0OTlIMTA4OC41Vjc3My44NThINTY2LjkyNVoiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzQiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwtNTY2LjkyNSw3NzMuODU4MDYpIiBkPSJNMjguMzQ2IDIzNS4yNzVINjM1LjQzMlY3ODIuMzYxOTZIMjguMzQ2WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfNSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0tMzI3NjgtMzI3NjhIMzI3NjhWMzI3NjhILTMyNzY4WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfNiI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0yOC4zNDYgMjguMzQ2SDEwOTcuMDA3Vjc4Mi4zNjJIMjguMzQ2WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfNyI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0tMzI3NjgtMzI3NjhIMzI3NjhWMzI3NjhILTMyNzY4WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfOCI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0yOC4zNDYgMjguMzQ2SDEwOTcuMDA3Vjc4Mi4zNjJIMjguMzQ2WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfOSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0tMzI3NjgtMzI3NjhIMzI3NjhWMzI3NjhILTMyNzY4WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMTAiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwtNTY2LjkyNSw3NzMuODU4MDYpIiBkPSJNMjguMzQ2IDI4LjM0NkgxMDk3LjAwN1Y3ODIuMzYySDI4LjM0NloiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzExIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsLTU2Ni45MjUsNzczLjg1ODA2KSIgZD0iTS0zMjc2OC0zMjc2OEgzMjc2OFYzMjc2OEgtMzI3NjhaIi8+CjwvY2xpcFBhdGg+CjxjbGlwUGF0aCBpZD0iY2xpcF8xMiI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDg5Ljc4NzU0LDcxNC43MzYxKSIgZD0iTTAtMThIMzQyVjEuODAwMTFIMFoiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzEzIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEuMDAwMDAyMywxOTAuMjIzMDcsMjMuMjI3MDUpIiBkPSJNMCAwSDE0MS43M1YxOS4zMDhIMFoiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzE0Ij4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwtMzM0LjUwNDk1LDg1Ni4wNjI5KSIgZD0iTTI2Mi4zNjQgNDE2LjQxN0gzMzMuMjI5VjQyNi4wNzFIMjYyLjM2NFoiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzE1Ij4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwtMzM0LjUwNDk1LDg1Ni4wNjI5KSIgZD0iTTAgODQxLjg5SDU5NS4yOFYwSDBaIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPGc+CgoKCgoKPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMSkiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwyMC41MTQxNiw2ODQuNzAxMSkiIGQ9Ik0wIDAgMi4xNjMgNC4zMDdILTM2Ljc2OUwtMzQuNjA2IDAtMzYuNzY5LTQuNDYxSDIuMTYzWiIgZmlsbD0iI2U4YzJkYyIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwtMjkuNDU5MjQsMjU5LjgzOTY0KSIgZD0iTTAgMFYyMC4yMiA0My41MjIgNjMuNzQyTDI4LjcwMiA2Ni4wMDUgNTcuODkxIDU2Ljk4VjQzLjUyMiAyMC4yMiA2Ljc2MkwyOS4xODktMi4yNjNaIiBmaWxsPSIjZThjMmRjIi8+Cgo8L2c+CgoKCgoKCgoKCgoKCgoKCgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8yKSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIwOC42MDEyNiwyNTEuMzA5MjQpIiBkPSJNMCAwQzAgMCAuODI1IC41NjUgMCAxLjEzMUwtNC44MDUgNC40MjRDLTQuODA1IDQuNDI0LTUuNjI5IDQuOTg5LTUuNjI5IDMuOTg5Vi0yLjg1OUMtNS42MjktMi44NTktNS42MjktMy44NTktNC44MDUtMy4yOTNaIiBmaWxsPSIjYzc0Mjk3Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIwMy4yMzM4NiwyNTEuMzA5MjQpIiBkPSJNMCAwQzAgMCAuODI1IC41NjUgMCAxLjEzMUwtNC44MDQgNC40MjRDLTQuODA0IDQuNDI0LTUuNjI5IDQuOTg5LTUuNjI5IDMuOTg5Vi0yLjg1OUMtNS42MjktMi44NTktNS42MjktMy44NTktNC44MDQtMy4yOTNaIiBmaWxsPSIjZGQ5ZWM2Ii8+CjwvZz4KCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo8ZyBvcGFjaXR5PSIuMzAwMDAzIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMykiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF80KSI+CjxnIG9wYWNpdHk9Ii4zMDAwMDMiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTptdWx0aXBseSI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwXzUpIj4KPC9nPgo8L2c+CjwvZz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfNikiPgo8ZyBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF83KSI+CjwvZz4KPC9nPgo8L2c+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwXzgpIj4KPGcgc3R5bGU9Im1peC1ibGVuZC1tb2RlOm11bHRpcGx5Ij4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfOSkiPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMCkiPgo8ZyBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMSkiPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMikiPgoKPC9nPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMykiPgo8Zz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMTQpIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMTUpIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyMzAuNzE5NjcsOC43NTcyNjMpIiBkPSJNMCAwIC4wMiAuMDkyLS4wMTMgLjIzNC0uMjY2IC40MS0uNDgxIC40MjQtLjY5NiAuMzkxLS45MzEgLjE3M0MtMS4wMDYgLjEyMi0xLjA5IC4wNjItMS4yMDMgLjAwMy0xLjMxNi0uMDU4LTEuNjQ1LS4yNDYtMS42OTQtLjI3NEwtMS44NDEtLjM1NEMtMS44NDEtLjM1NC0yLjEwOC0uNDgxLTIuMzA4LS41NTctMi41ODUtLjY2LTIuNzk4LS42ODctMi43OTQtLjcyOUwtMi43MTMtLjc1My0yLjQzMS0uNzk4LTIuMjY2LS43OTEtMi4wMjgtLjc2NS0xLjk2NC0uNzc3LTEuNjg3LS43LTEuMzk5LS41NDlDLTEuMzk5LS41NDktMS41NzYtLjc5OC0xLjc2LTEuMDgxLTEuODgtMS4yNjYtMi4wMjItMS40ODQtMi4wNDctMS41MTRMLTIuMTc1LTEuNTIxLTIuMjg2LTEuNDc0LTIuMzI4LTEuNDc5LTIuMzQyLTEuNTU4LTIuMjYxLTEuNjY5LTIuMjExLTEuNzQ4LTIuMTcxLTEuOTQxLTEuOTEzLTIuMDQ0LTEuNjAxLTEuOTAxLTEuNTAxLTEuNzY1LTEuMzIyLTEuNzE4LTEuMjEyLTEuNy0uODQ0LTEuNTg1LS44MS0xLjM0My0uOTIyLTEuMjY4Qy0xLjAwNy0xLjI0NS0xLjExNC0xLjI3OC0xLjIyNC0xLjI4TC0xLjIyOS0xLjI0MUMtMS4yMjktMS4yNDEtLjk3Ny0uOTAxLS44NTgtLjczNi0uNzM4LS41Ny0uNTAyLS4yOTQtLjM4Ni0uMjI5TC0uMTg1LS4xMzYtLjA4OS0uMTI4WiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDIyNS4wNzEyMywxMi4xNzM0NjIpIiBkPSJNMCAwLS4xNS0uMjA0LS4zMTctLjU5MS0uNDQ2LS44ODMtLjc3NC0xLjUzLTEuMDE3LTEuOTY3LTEuNDAzLTIuNTc0LTEuNTczLTIuNzc3LTEuNzE0LTIuODQzLTEuNzg4LTIuOTE3Vi0zLjE0OEwtMS44NDItMy4zNDktMS44NTQtMy41NDJWLTMuNzYzTC0xLjcxOC0zLjk0Ny0xLjUzNS00LjAzMUMtMS41MzUtNC4wMzEtMS4zODMtNC4wODMtMS4yNTMtMy45NTdMLS45OTYtMy41NTgtLjU0MS0zLjIzNC0uNDM1LTMuMTQ4LS4zNTQtMy4wNy0uMjItMi45MTctLjA5LTIuNzEtLjAzNy0yLjU0OCAuMDE1LTIuNDMxIC4xMTUtMi4yOTIgLjIwOC0yLjA2IC4xNjMtMS45NjIgLjA2NS0xLjkwMi0uMTIyLTIuMTQtLjM4My0yLjQ1Ny0uNTQxLTIuNTY2LS42MTktMi41NTgtLjQ5OC0yLjMwNEMtLjQ5OC0yLjMwNC0uMzA5LTEuOTI1LS4yMzgtMS43LS4xNjktMS40NzQtLjE1My0xLjM2NS0uMTM2LTEuMjkxTC0uMTA1LTEuMDgtLjA1MS0uODIyIC4wMjktLjQ2NyAwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyMjYuNzYyNjQsMTMuMjE4MjYyKSIgZD0iTTAgMCAuMjQyLS4xMjkgLjM4Ny0uMzIxIC40NDktLjQwNiAuNTgzLS4zMTkgLjczMS0uMjI0IC43ODgtLjEzOSAuNjc1LS4wMDQgLjYwMiAuMDMyIC42MzMgLjA2NSAuODcyIC4xMDcgMS4xNzMgLjAyMSAxLjI2OC0uMDU4IDEuMjc0LS4xMDQgMS4xOC0uMjMxQzEuMTgtLjIzMSAxLjExMS0uMzM2IDEuMDE0LS40MTkgLjkxNy0uNSAuNzY4LS42MzQgLjc0Mi0uNjM0TC42NTEtLjY3MiAuOTUxLTEuMTYzIDEuMTIzLTEuMzk5IDEuMjAyLTEuNDg4IDEuMjkzLTEuNjQ3IDEuODQ2LTIuMzE3QzEuODQ2LTIuMzE3IDEuODYtMS43NSAxLjg1OC0xLjU2MSAxLjg1NC0xLjE1NyAxLjc3Ni0uNjAyIDEuNzk4LS41NTNMMS44NC0uNjEgMS44Ni0uNzE3IDEuODg2LS44MDcgMS45Ni0uODcgMi0uOTY1IDIuMDg5LTEuMjQ4IDIuMTMyLTEuMjk1IDIuMTY3LTEuMzM3Vi0xLjQxNEwyLjE4NC0xLjU1NSAyLjE5OC0xLjczNyAyLjIxNC0xLjkyMiAyLjI4Mi0yLjUzOCAyLjM0Mi0yLjU4MyAyLjM5NC0yLjYyNyAyLjQ4My0yLjcxNyAyLjU0MS0yLjkwOSAyLjU0OC0zLjEyOSAyLjQ0NC0zLjI3OCAyLjI5OS0zLjM1MiAxLjk4NS0zLjM4MSAxLjg1OC0zLjMzMSAxLjY3MS0zLjE3NiAxLjQ5NC0yLjk2N0MxLjQ5NC0yLjk2NyAxLjMyNS0yLjcxNyAxLjI1My0yLjYxOCAxLjE4MS0yLjUxOCAxLjE3NS0yLjQ4MSAxLjEzNi0yLjQxN0wxLjAxNi0yLjE1M0MxLjAxNi0yLjE1MyAuOTY0LTIuMDU1IC45MDMtMS45NDggLjg0MS0xLjg0MiAuODYxLTEuODU4IC44NDUtMS44MjlMLjM5OS0uOTAxIC4zNTQtLjgwM0MuMzU0LS44MDMgLjE4MS0uODgxIC4wNzgtLjkxNi0uMDI0LS45NTEtLjE1OS0uOTkzLS4yMzktMS4wMzlMLS4zOTEtMS4xMjgtLjI2LS45NDMtLjA4LS43NDkgLjE0OS0uNjAyIC4yNTItLjUzIC4xMDQtLjI2NEguMTAzTC4xMTEtLjIyMyAuMDg1LS4xODUgLjA1My0uMTMgLjAyOS0uMDQgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjQ5LjAyOTI0LDExLjMwNjIxMykiIGQ9Ik0wIDAtLjAwNC0uMDExWiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI0OC4zNzY4MywxMi41NjQwMjYpIiBkPSJNMCAwVi0uMDAyWiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI0Ny4yMDYwNiw3LjUyODgwODgpIiBkPSJNMCAwIC4yMDMgLjAwMyAuNDYxIC4wMzMgLjcxOSAuMDYyQy43MzEgLjAyOCAuNjA5LS42MjggLjU1LS44NTIgLjQ5OS0xLjA0MSAuNDI5LTEuMjU0IC4zOTMtMS4zODMgLjM2LTEuNTEzIC4yODQtMS43OTcgLjI2Ni0xLjg3NEwuMjY5LTEuOTM2Qy4yOTYtMS45MTkgLjQ3MS0xLjM5NiAuNjYzLTEuMDgzTC43Ny0uODk2IC44MTgtLjgxOSAuODk1LS43MTIgMS4wNzUtLjQ3OSAxLjE2Mi0uMzU3IDEuMjk2LS4yMTYgMS40MDctLjA1MiAxLjUzMSAuMTg2QzEuNTc0IC4zMDcgMS41OTggLjQyNCAxLjU5OCAuNDI0TDEuNjQ3IC40NyAxLjc3NCAuNTYgMS45MTQgLjY2NCAyLjAyOSAuODAxIDEuOTY0IC45OTMgMS44NTYgMS4wODEgMS43NTcgMS4xMDcgMS42NzQgMS4xMDggMS42ODggMS4wNDEgMS42ODUgLjkwOSAxLjU5NCAuODMyQzEuNTg4IC44MzYgMS42MTcgMS4wODcgMS4zNjggMS4zOTEgMS4yMjEgMS41NjkgMS4wNjMgMS42NTggMS4wNjMgMS42NThMLjk0OCAxLjczNCAuODA3IDEuNzk1IC42ODggMS44MDUgLjY3MSAxLjc1MyAuNjgzIDEuNjUzIC43MiAxLjQ4MyAuNzM1IDEuMzkyIC43NjggMS4xODQgLjgwNCAuOTAyIC44MSAuNjVDLjgwOCAuNjAyIC44MjEgLjUxNSAuNzk2IC4zNzVMLjYwOCAuMjY0Qy42MDggLjI2NCAuNTE0IC4yMjUgLjM3IC4xNzQgLjE1OSAuMDk5LS4wNDkgLjA0MS0uMDgzIC4wMjFMMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjQ5LjAzNDA2LDE5LjUxMjIwNykiIGQ9Ik0wIDBDLS4wMDMtLjA5Ni0uMTQzLS4zMjgtLjE5OS0uNC0uMjk1LS41MTgtLjQyNi0uNTU1LS42NTktLjU3LS44ODktLjU4NC0uODcyLS41NTctLjg5Ny0uNTQ5TC0uOTM2LS40NjctLjc4MS0uMTg5LS42MTctLjAwOC0uMjYyIC4zNTRDLS4yNjIgLjM1NCAuMDA3IC4xNTggMCAwTS0yLjM4My0uMjdDLTIuNTk3LS41NDEtMi45MTgtLjgzMi0yLjk2Ni0uNzQ4LTMuMDM4LS42MTctMS45NDkgLjM5Ni0xLjk0OSAuMzk2LTEuOTQ5IC4zOTYtMi4xODYtLjAyMS0yLjM4My0uMjdNMS4wNTggNC44NDRDMS4yMDYgNS4xMTggMS4zOTYgNS40MjQgMS4zOTYgNS40MjRMMS41NTMgNS42MTJDMS42MjEgNS42MTYgMS43NDUgNS40ODkgMS44ODIgNS4zNiAyLjAyIDUuMjMxIDIuMTM1IDUuMTQ5IDIuMTQzIDUuMDQ4TDEuOTY4IDQuODNDMS45MTEgNC43NzggMS42NTEgNC41NDkgMS4zNzYgNC4zNzUgMS4xMDEgNC4yMDQgLjY4OCAzLjk1MiAuNjYxIDMuOTQyTC4zMDUgMy43MDhDLjMwNSAzLjcwOCAuODIgNC40MDMgMS4wNTggNC44NDRNLTEuNzYyIC43MzYtMS44MDMgLjY1Ni0xLjg0NSAuNTc0Qy0xLjg0NSAuNTc0LTIuMjI3IC4yMjktMi40MjggLjA0MS0zLjAwMy0uNTA2LTMuMzY2LS45My0zLjI4NC0xLjA0My0zLjItMS4xNi0yLjY2My0uODQtMi4xNzEtLjI2OC0xLjgyMyAuMTMzLTEuNDIyIC43ODktMS40MDIgLjc5OS0xLjM2IC44MjQtMS4wNTkgMS4wNzItLjU3MyAxLjM2My0uMDg2IDEuNjUzIC4wOTkgMS43NDkgLjEzNCAxLjcwOCAuMTc0IDEuNjYzLS4wMyAxLjQzOS0uMjMgMS4xMzctLjUxIC43MTktLjM3OCAuNS0uMzc4IC41LS4zNzggLjUtLjc4NCAuMTk5LTEuMTI4LS4xOTktMS4yNjgtLjM1OS0xLjQyOS0uNjExLTEuNDI0LS42NTgtMS40MTktLjcwNS0xLjMxNC0uODg3LS43MzctLjg0Ni0uMjM0LS44MTEtLjEwNC0uNjgyIC4wMDMtLjU2NiAuMTEtLjQ1MSAuMjY5IC4xMjMgLjIxOSAuMjMyIC4xNTUgLjM2OSAuMTE0IC4zODUtLjAzNiAuNTgyLS4wMzYgLjU4MiAuMDc3IC42OTEgLjE4MiAuODI0IC4yODggLjk1NSAuNDUzIDEuMTc2IC40MzMgMS4xODRMLjEyMSAuODk2LS4wOTUgLjczNkMtLjA5NSAuNzM2LS4yMyAuOTE0IC4wMTcgMS4yMTkgLjIwMiAxLjQ0OSAuNTI0IDEuNzUyIC40NTYgMS44OTMgLjM4OSAyLjAzNSAuMDQzIDEuODU2LS4wNzEgMS44MDMtLjE4MyAxLjc1LS40OTkgMS41NjEtLjgxOCAxLjMyNC0xLjEyNCAxLjA5Ni0xLjIzMiAuOTk2LTEuMzMyIC45MTgtMS4zMzIgLjkxOC0xLjAyNyAxLjM2OS0uNzM1IDEuODc1LS40NDQgMi4zNzggLjE1MiAzLjQzNyAuMTUyIDMuNDM3IC4xNTIgMy40MzcgLjk2IDMuOTM3IDEuMzUyIDQuMTggMS43NDUgNC40MjIgMS45ODkgNC41NTggMi40MTggNC44NDQgMi41NSA0LjkzMSAyLjU5NCA1LjAxNSAyLjU5OSA1LjA5NSAyLjYyIDUuMzUyIDIuMjU3IDUuNDY0IDIuMTg1IDUuNDk0IDEuOTI4IDUuNTk5IDEuOCA1LjU5OSAxLjY0MSA1Ljc4MkwxLjcwNiA1Ljg0OCAxLjcwNSA1Ljk2IDEuNjA4IDYuMUMxLjUwOCA2LjE1OCAxLjMwMiA2LjE4NCAxLjI2IDYuMTZMMS4wMzQgNS45NjQgLjc2MiA1LjU0NSAuNjc1IDUuMzkxIC40OTEgNS4wMTUgLjMwNyA0LjY4MiAuMjI0IDQuNTEzIC4xMTMgNC4zMDItLjA2NiAzLjk4Mi0uMTk2IDMuNzUzLS4yNTQgMy42NS0uMzkxIDMuNDExLS40NjggMy4yNjQtLjU3NyAzLjE5N0MtLjU3NyAzLjE5Ny0xLjAzOSAyLjk1OS0xLjIxNyAyLjg3M0wtMS40MTEgMi43NjUtMS43NjQgMi41NzFDLTEuNzY0IDIuNTcxLTMuODIyIDEuMzczLTQuNDQ5IDEuMDcyLTQuNzM4IC45MzQtNS4wNzkgLjgwMy01LjE0OSAuNzkzLTUuMjIgLjc4My01LjMwNyAuNzUtNS40NTQgLjgxNC01LjYwMiAuODc3LTUuNTkzIC44NzktNS42MzcgLjg4OUwtNS43MjcgLjg5My01LjggLjg2OS01Ljc5NSAuODUtNS42NjIgLjY5OS01LjY0MiAuNTM5LTUuNTYgLjQxNC01LjQwMiAuMjgxLTUuMjg3IC4yMTUtNS4wNjggLjE2NkgtNC44OTlMLTQuNjU5IC4yMDUtNC40NDkgLjI1OC00LjIwOCAuMzY3LTQuMDAyIC41MDItMy44NTQgLjYwMi0zLjYwNSAuNzkxLTMuNDczIC44ODctMy4xNjMgMS4xNjgtMi45NjkgMS4zMzgtMi43NTggMS41MTItMi4zNiAxLjgzM0MtMi4zMDMgMS44NjYtMS43MzMgMi4zMTItMS41OTQgMi40MDktMS40NTYgMi41MDMtMS4yNDIgMi42NTQtMS4xODUgMi42ODlMLS42NzIgMi45NzYtLjYxNSAyLjk3My0uNjcyIDIuODU5LS44MDQgMi42MDUtMS4xMDIgMi4wNTMtMS4yMzYgMS43NTItMS40MTYgMS40MjZaIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjU1Ljg2OTA4LDE0LjA1NjIxMykiIGQ9Ik0wIDBDLS40OTUtLjA1OC0xLjI3My0uMjg4LTEuNDA4LS4zMjQtMS41NDItLjM2MS0xLjUxOS0uMzA3LTEuNTE5LS4zMDctMS40NjEgLjA0Ny0xLjAwNCAuNTI3LS44ODYgLjY1NC0uNzcgLjc4Mi0uNjcyIC44OTMtLjY1MiAuOTQ4TC0uNjYgMS4wNzktLjcyOSAxLjE1Ni0uNzc2IDEuMTc2LS44NDggMS4xOTctLjk5MSAxLjE3OS0xLjA2MyAxLjE1LTEuMTcyIDEuMDktMS4xNTggMS4wNzUtMSAxLjA2N0MtLjk2NCAxLjAzOS0xLjAxNyAuOTQtMS4xOTYgLjY5Mi0xLjQzMSAuMzY4LTEuNzIxLS4xNzQtMS43OTctLjQwMS0xLjgzNy0uNTE3LTEuNzgzLS42MDEtMS42NjgtLjYyNC0xLjUyMS0uNjUzLTEuMjg2LS40ODYtLjg4MS0uMzQ1LS40NzYtLjIwMS0uMTQzLS4xNTQgLjA0Mi0uMTQ5IC4yMjgtLjE0NiAuNDItLjE0NCAuNDcxLS4yMjkgLjU2Ny0uMzg2IC4xNTYtLjg2NC0uMTcxLTEuMTczLS41MDktMS40OTItLjgxNy0xLjY2NC0uODE3LTEuNjY0TC0uOTIyLTEuNTE3LTEuMDE3LTEuMzg2LTEuMTItMS4yNTMtMS4yNDQtMS4xNDQtMS4zMTQtMS4xMTMtMS4yODgtMS4xNjlDLTEuMjg4LTEuMTY5LTEuMjUtMS4yNjUtMS4yMS0xLjM2Ny0xLjE3My0xLjQ2OC0xLjA3NS0xLjgxNi0xLjA3NS0xLjgxNi0xLjE1OS0xLjg2MS0xLjg0OS0yLjE2Ny0yLjE0LTEuODE2LTIuMjg5LTEuNjM0LTIuMTItMS4xNzktMi4wOTEtMS4xMzhMLTIuMTAzLTEuMTA1Qy0yLjUzLTEuNTkzLTIuMzU2LTEuOTc4LTIuMTg5LTIuMTExLTIuMDExLTIuMjUzLTEuODEyLTIuMjczLTEuNTgtMi4yNjEtMS4zMTEtMi4yNDgtMS4wMjgtMi4xMjUtMS4wMTctMi4xMjVMLS45NjctMi4zMDRDLS45NjItMi4zMi0uOTU3LTIuMzkyLS45NzgtMi40ODYtLjk5OS0yLjU4LTEuMTEyLTIuNjQ2LTEuMDkyLTIuNjkxTC0uOTYyLTIuNzY3LS43NTItMi44NTMtLjcwOC0yLjkwNC0uNjE3LTIuOTIxLS4zNDYtMi44MDZDLS4yOTgtMi43NzUtLjMxNy0yLjcxNC0uMzE1LTIuNTY2LS4zMS0yLjMyNi0uNTU0LTEuOTc0LS42MzEtMS44OTYtLjM2NC0xLjcxNi0uMTc4LTEuNTUgLjA4LTEuMjg5IC42MjktLjcyOSAuNzQ4LS40NCAuNzc3LS4yMjMgLjgwMS0uMDQgLjUzNSAuMDYyIDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI2OC4yNDUwNyw2LjAwOTE1NTUpIiBkPSJNMCAwLS4wODEtLjAyNyAuMDQ4LS4yMzMgLjI1NC0uNTIzIC4zNjMtLjY0NiAuMzk1LS43NyAuMTY0LTEuMDEzIC4yNDgtMS4wMDYgLjI4Ni0uOTggLjMxMi0xLjAxNCAuNDQ5LS45NTEgLjczMi0uODRDLjc4Mi0uODE5IC45OTQtLjc2MiAuOTg4LS42NjUgLjk4Mi0uNTY4IC45ODItLjQ5MSAuODg1LS40MkwuNzg4LS4yODUgLjY4Ni0uMjEzIC41NDYtLjE1OCAuNDE2LS4xMSAuMjI5LS4wNzIgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjY3Ljg1MDQ3LDguNDk5NDUxKSIgZD0iTTAgMCAuMDM5LS4wMzkgLjEzNy0uMDc4IC4zMzQtLjE4IC40MjMtLjIxNiAuNTU3LS4yNzQgLjY0OC0uMzE2IC42Ny0uMzU5IC4zMTYtLjg2NSAuMDc2LTEuMTI4LS4xNy0xLjM2Ny0uODA1LTEuODU4LS45ODItMS44OC0xLjIzNi0yLjA3NS0xLjMzNS0yLjIwNy0xLjMyNi0yLjM5My0xLjM3My0yLjUzNi0xLjI1Ny0yLjY5OC0uOTQzLTIuNjU0LS44MjctMi42MTEtLjczNi0yLjUzLS41NTctMi4zNjctLjM3MS0yLjI0NkMtLjM3MS0yLjI0NiAuMjA5LTEuODQ2IC40NDctMS41ODkgLjY4Ny0xLjMzMyAuNzI5LTEuMzAxIC43MjktMS4zMDFMLjc3My0xLjIyOSAuODQ0LTEuMTQgLjg5MS0xLjA0MSAuOTAyLS45OSAuODU1LS45NjYgLjgyNC0uOTcgLjc2Mi0xLjAxMyAuNjYxLTEuMTMgLjU4Ny0xLjIzMyAuNTAxLTEuMzEyIC40MTQtMS4zOTMgLjI4My0xLjQ4NSAuMTg0LTEuNTU0IC4xNDYtMS41NzYgLjM0OC0xLjM5MyAuNDY0LTEuMjYxIC41NDctMS4xNzkgLjYyMi0xLjA5MiAuNzk4LS45MzIgMS4wMTYtLjczMiAxLjE5MS0uNTgzIDEuMjU4LS41MjcgMS4zNzItLjQ3NiAxLjQ3OS0uMzYzIDEuNDczLS4yMTEgMS4zOTEtLjExNSAxLjI0OC0uMDQ2IC45OTMgLjAwMyAuODg5LS4wMTQgLjgwOS0uMDU5IC40MzQtLjAzMiAwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyNzAuMTE2MDQsMTAuMDczNjA4KSIgZD0iTTAgMC0uMDA4LS4wMzlDLS4wMDgtLjA3MSAuMDExLS4xNzctLjE3OC0uNDA5LS40MTQtLjY5OC0uNjMzLS44ODItLjcxOS0uOTcxTC0xLjEzNS0xLjM4OS0xLjI1Mi0xLjU1Ny0xLjMyNi0xLjU5Ny0yLjA2NC0xLjk2Ni0yLjI0NC0yLjA1OS0yLjQzNy0yLjE2OS0yLjM3My0yLjE3OS0yLjMwOC0yLjE0Ni0yLjIyMS0yLjEyOC0yLjEwNS0yLjEzNS0yLjA4OC0yLjEyNC0xLjgwOS0yLjA1LTEuMDMxLTEuNzQxLS45My0xLjY1OC0uODk4LTEuNjQzLS40MzktMS40MS0uNjI3LTEuOTk4LS43OC0yLjY2LS44MjYtMi45OEMtLjgyNi0yLjk4LS44NTEtMy4xNTUtLjg1OC0zLjQzNi0uODY3LTMuNzgyLS44NTUtNC4yNjgtLjkzNi00LjMyN0wtMS4xODYtNC4zNjItMS41NTctNC4zNC0xLjY2OC00LjMyN1YtNC4zNzdMLTEuNjA1LTQuNDE4LTEuMzM2LTQuNTE2LTEuMDQ3LTQuNTQ1LS43NjUtNC44NjQtLjU4NC00LjgxOS0uNDk0LTQuNzhDLS4zMDEtNC43Ni0uMjMzLTQuODQ0LS4xNTItNC44MDlMLS4wNjItNC42MTItLjA2OC00LjQ1Mi0uMDg4LTQuMTMxLS4wOTQtMy45NDRDLS4wOTQtMy45NDQtLjEwMy0zLjY0OS0uMDkyLTMuMjMxLS4wODItMi44MzQgLjA3Mi0yLjM4OCAuMDcyLTIuMzg4TC4xOTQtMi4xMDUgLjI2Ni0xLjk2NiAuMzk1LTEuNzc0IC40MzUtMS42M0MuNDA0LTEuNTY3IC4yNzYtMS4zNjIgLjA5LTEuMjI5LS4xMDQtMS4wODktLjIxNy0xLjAxOS0uMjcyLTEuMDQxTC0uMzkzLTEuMTY4LS42MDQtMS4yNDgtLjgyNi0xLjM0NC0uOTQzLTEuNC0xLjA5LTEuNDgyLTEuMTU0LTEuNTA5LTEuMDgyLTEuNDMxLS42OTQtMS4xMjZDLS42OTQtMS4xMjYtLjM2NS0uODc4LS4yNDQtLjgyNC0uMTQ0LS43OCAuMDctLjcyOSAuMTA1LS43MkwuMjc4LS42NDZDLjI5My0uNjMyIC4zNS0uNTg0IC4zNDQtLjQ3OCAuMzI2LS4yMzcgLjIzNS0uMDk1IC4xNDItLjAyMUwwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyNjYuMjk1ODUsMTQuNDg1ODQpIiBkPSJNMCAwSC4wODZMLjEyNSAuMDM3IC4yMTUgLjA3MiAuMjY1IC4wNjZDLjI2NSAuMDY2IC42ODUtLjAyNyAuODAxLS4wODkgLjkyNi0uMTUzIDEuMDQ5LS4yMzQgLjk3OC0uMzUgLjkwNi0uNDY0IC43OTUtLjYyNCAuNjUzLS42MjQgLjUxMy0uNjI0IC40NDktLjQ5MyAuMzU4LS40NzggLjI2MS0uNDY0IC4yMjYtLjQ3OSAuMjAzLS40OTRMLjA2OC0uNjM0IC4xMzMtLjc5NiAuMzEyLS44ODZDLjIwNS0uODYzIC40NjEtLjkyMSAuNTU5LS45NDUgLjY4My0uOTc0IC45MjYtLjk4OCAuOTEtMS4xMTkgLjg5NC0xLjI1IC44NzMtMS4yNCAuODQ4LTEuMjg5TC43MzctMS4zOCAuNjExLTEuMzk0IC40OTItMS4zNjUgLjM3MS0xLjMzNyAuMzM2LTEuMjc5IC4zOTMtMS4yMjJDLjM5My0xLjIyMiAuMjExLTEuMDcgLjA2OC0uOTE2TC0uMDA4LS43MTFDLjAwNi0uNTQxIC4xNzktLjMzOSAuMTgxLS4yMjhMMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjY2LjE0NzQ3LDE0Ljk0ODYwOCkiIGQ9Ik0wIDBDLS4wNjItLjA2Mi0uMzE5LS42ODgtLjQ1MS0xLjA2Ny0uNTU3LTEuMzc5LS44ODUtMi4yOTktLjk0Ni0yLjI5LTEuMDUzLTIuMjY4LTEuMTY2LTEuODU4LTEuMTk3LTEuODctMS4yMzEtMS44NzktMS4xNzYtMi4xMDgtMS4yNC0yLjMyMS0xLjI4My0yLjQ1OC0xLjI4Ny0yLjQ2My0xLjI4Ny0yLjQ5OUwtMS4zMjItMi43NzYtMS4zMTYtMi45MTFDLTEuMzEzLTIuOTI2LTEuMzA0LTIuOTgzLTEuMTk3LTIuOTczLTEuMDk3LTIuOTY1LTEuMDc2LTIuOTczLTEuMDY0LTIuOTY1TC0uODc5LTIuOTAxLS43MjEtMi43NTRDLS43MjEtMi43NTQtLjUwNC0yLjUxOC0uNDA0LTIuMDMyLS4zMDUtMS41NDItLjI5MS0xLjQ0OC0uMjg3LTEuMzgzTC0uMjE3LS44OTFDLS4yMDMtLjgyMS0uMTQ1LS4zNTMgLjAwNi0uMDU4TDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI4My4yNjI2NCwxNC4xMjQ0NTEpIiBkPSJNMCAwLS4zNjItLjI2LS4zNTgtLjA1NSAuMTM4IC4yNTcgLjM3NSAuMzk2Qy4zMDEgLjI5IC4wNDUgLjAzNSAwIDBNMS4xNjQgLjY0NkMxLjEwOCAuNzQ3IDEuMDE1IC43NzcgMS4wMDEgLjc3N0wuODI5IC44NCAuNjc0IC44MjQgLjU2OSAuNzM4IC40OTcgLjY1OC0uMzY3IC4wNDRDLS4zNjcgLjA0NC0uMzY3IC4zNTctLjM5IC40NjktLjQzMSAuNjU4LS43NjcgLjg3MS0uODI0IDEuMDFMLS44NTggMS4wMTlDLS44ODQgLjk3Ni0uNjg4IC42ODUtLjY4NSAuNDEzLS42ODMgLjE3My0uNzM5LS4yMTEtLjczOS0uMjExLS43MzktLjIxMS0xLjc5Mi0uOTg5LTEuOTY0LTEuMDc5TC0xLjg2OS0uNTI1LTEuOTgxLS4yNjctMi4wNjMtLjMzMy0yLjA3NC0uMzk5LTIuMTYtLjYyNEMtMi4xNi0uNjI0LTIuMzUzLTEuMTI0LTIuNDQyLTEuMjQ5LTIuNTMyLTEuMzctMi41NTQtMS4zOTMtMi41NjMtMS40MjZMLTIuNTg3LTEuODI1LTIuMzg4LTEuOTU0LTIuMDA3LTEuNTM2LTEuOTY0LTEuNDExLS43NzgtLjM2Ny0uODEtLjY0Mi0uODUzLS45Mi0uOTQ0LS45MTMtMS4wMjEtLjkzM0MtMS4wMjEtLjkzMy0uODk0LTEuMDQ1LS44OTctMS4xOThMLS45NDQtMS40ODUtLjkzOC0xLjU2My0uOTA1LTEuNjM1LS44MTUtMS42NzYtLjkzNy0xLjc3OEMtLjk4Ny0xLjgxNy0xLjA4MS0xLjkwMy0xLjI1NS0yLjAyMkwtMS41MTEtMi4xNzItMS41NTEtMi4xNTNDLTEuNTUxLTIuMTUzLTEuNTAxLTEuNzcyLTEuNDgxLTEuNjMxLTEuNDU4LTEuNDYzLTEuNDMxLTEuMjY0LTEuNDY0LTEuMjY0LTEuNDk4LTEuMjY0LTEuNTc1LTEuNTItMS42MTgtMS42MzMtMS42NTUtMS43MzEtMS43MjYtMS44ODUtMS43MzMtMS44OTlMLTEuODc0LTIuMTYzLTIuMDI2LTIuMzc3LTIuMDMtMi41MjgtMi4wMTctMi45MzhDLTEuODQ5LTMuMDI0LTEuNTczLTIuODQ4LTEuNTI2LTIuNzExTC0xLjM3NS0yLjYxOC0xLjE0NC0yLjQ2NUMtMS4xNDQtMi40NjUtLjgzLTIuMjIzLS43MzEtMi4xMkwtLjYyNS0yLjAwNC0uNTIxLTEuODc3LS4zMjQtMS42NTMtLjA1Mi0xLjMxNyAuMTE2LTEuMDg4IC4xODUtLjkyMyAuMDkzLS45MjYgLjAxNy0xLjA0Mi0uMjg1LTEuMzAxLS4zNDUtMS4xNDctLjM4MS0uOTU5Qy0uMzgxLS45NTktLjM4Ni0uNTU4LS4zNjItLjM1My0uMzYyLS4zNTMtLjA1LS4xOTcgLjE3Ni0uMDY3IC4zNyAuMDQ1IC43NjMgLjI5MyAuNzc4IC4zTC44ODIgLjM1NiAxLjA3NyAuNDQ5QzEuMDc3IC40NDkgMS4yMiAuNTQyIDEuMTY0IC42NDYiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyODMuNzc0MjQsMTUuOTk3NjIpIiBkPSJNMCAwIC4wMDQtLjA1NSAuMDczLS4xMjEgLjEyNC0uMjczIC4xMzUtLjM4MiAuMTM4LS41MTkgLjEyNC0uNjM2LS4wMTktLjc1LS4wMDItLjg1MyAuMTE0LS45MzMgLjE1NS0xLjA4MiAuMzc2LTEuMjA4IC42NjQtMS4xOTVDLjY2NC0xLjE5NSAuODMxLTEuMTE3IC44NTQtMS4wMjcgLjg5NC0uODg2IC44NDUtLjc1MSAuODM2LS43M0wuNzUtLjU5N0MuNzUtLjU5NyAuMzA2LS4wOTEgLjIxMS0uMDQ5TDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI5Ni4yMzUyNCw5LjIwNjY2NSkiIGQ9Ik0wIDBDLS4wMTktLjAyNiAuMjU4LS4yNiAuMjI2LS41MDkgLjIwMS0uNjg4IC4wMy0xLjM4NS0uODk5LTIuMjY4TC0uOTI2LTIuMzI5Qy0uOTAzLTIuMzM5LS4yNDgtMS43OS0uMDM2LTEuNTcgLjE3Ni0xLjM1IC42NDktMS4wMDUgLjY4My0uNjc2IC42OTgtLjUyOCAuNjgzLS4xOTggLjA2LS4wMDRMMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjk0LjMxNzI3LDEzLjg4NDIxNikiIGQ9Ik0wIDAtLjA4Ny0uMTEtLjI2My0uMjU2LS4yNDgtLjM0NEMtLjI0OC0uMzQ0IC4yNi0uMDUyIC40MzggLjA1NSAuOTg3IC4zODMgMS40ODcgLjgwOCAxLjc1NyAuOTYzIDIuMDE1IDEuMTExIDIuMTUxIDEuMTQ0IDIuMTkyIDEuMTQ5TDIuMzgzIDEuMTM3IDIuMzUxIDEuMDA0IDIuMjk1IC45MjJDMi4yOTUgLjkyMiAyLjIxMiAuNzgzIDEuOTg5IC42ODEgMS45NjYgLjY2OCAxLjI4NCAuMzU4IDEuMDIxIC4yMSAuNzQ4IC4wNTUgLjcyNCAuMDM1IC42NyAuMDA5TDAtLjM4OS0uMTAxLS40NTctLjE0OS0uNDkzLS4yMTYtLjUzOUMtLjIxNi0uNTM5LS4wNTgtMS44ODItLjI5Ny0yLjQxMi0uNDA3LTIuNjU2LS40MjctMi42NjctLjQ4NS0yLjc1OUwtLjY2Ny0yLjk4LS45OTMtMy4xNTgtMS4yOTctMy4yMzQtMS4zNy0zLjIyLTEuNDQ0LTMuMjUtMS42MTctMy4yNzUtMS42OTQtMy4yNDYtMS43NjctMy4xNzMtMS44MjMtMy4xODMtMS45MjQtMy4xMzItMi4wMDItMi45OTQtMi4wMDEtMi45MzUtMS44MTktMy4wMDlDLTEuNzI4LTMuMDIzLTEuMzc0LTMuMTExLTEuMDc0LTIuNTc2LS43MzEtMS45NjQtLjUyNi0xLjAwNS0uNTIxLS41NDlMLS41NjItLjQ3OS0uNTMxLS40MTFDLS41MzEtLjQxMS0uNDk1IC4xODQtLjUzOSAxLjAwNC0uNTQzIDEuMDc2LS41MDMgMS4wOTYtLjQ4NSAxLS40NjcgLjkwMy0uMjk0LS4xNDItLjI3NC0uMjAxTC0uMTA2LS4wODIgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMzAwLjczMTQ2LDEyLjIxNDQxNjkpIiBkPSJNMCAwLS4wOTQtLjAzMy0uMTU1LS4wNjYtLjI3Mi0uMDA2LS41NTYtLjEyN0MtLjgzNi0uMzQ5LTEuMjU3LS43NTYtMS41NzYtLjk1NS0xLjkxOC0xLjE3Mi0yLjAyMi0xLjIzOC0yLjQ2OS0xLjQwMkwtMi40NC0xLjQzNkMtMi4zOTktMS40MjYtMS43NTUtMS4yMjQtMS40NDgtMS4xMTUtMS4xNDQtMS4wMDgtMS4xMDEtLjk4My0xLjEwMS0uOTgzLTEuMTAxLS45ODMtMS4xODctMi0xLjQyNi0yLjIzNS0xLjQ3NC0yLjI4Mi0xLjU4OS0yLjMxOS0xLjY4MS0yLjMxNUwtMS43NzgtMi4zMDUtMS43MzktMi4zNzItMS42OTItMi4zNzUtMS42NjktMi40NTItMS41ODEtMi41MjItMS40NzItMi41NjktMS40MzUtMi42Mi0xLjQyMS0yLjY2Ny0xLjM3OS0yLjcxNS0xLjI3NC0yLjc0Ny0xLjE0Ny0yLjc2Mi0uODk3LTIuNzE1Qy0uODk3LTIuNzE1LTEuODI3LTMuOTMtMS45MTMtMy44MDUtMS45NzgtMy43MDgtMS42MzItMy4wODYtMS42NTUtMy4wNzctMS42ODMtMy4wNjctMS45ODEtMy41MS0yLjEzNC0zLjg0OC0yLjE4MS0zLjk1NC0yLjE5Ni00LjE3OC0xLjk1Ni00LjAwOC0xLjU4OC0zLjc0NS0uNTY1LTIuNjIyLS4xOTQtMi4wNzEgLjAxNy0xLjc2NCAuNzUxLS44MDYgLjc1MS0uODA2IC43NTEtLjgwNiAxLjQ0NC0uNDMzIDEuNzYzLS4yOTEgMi4xNDQtLjEyNiAyLjY0NCAuMDA5IDIuNjktLjEwNCAyLjczOS0uMjE4IDIuNjk0LS41NjQgMi41NDQtLjg3IDIuMzk2LTEuMTY2IDIuMDU2LTEuNjUxIDEuOTcyLTEuNjk0TDEuMjY1LTEuMTUzIDEuMzYyLTEuMjg5QzEuNTU4LTEuNTgxIDEuNzE4LTEuODIxIDEuNzQxLTEuOTM0IDEuNzQxLTEuOTM0IDEuNTU4LTIuMTI0IDEuMTA0LTIuMTg4IC41MjItMi4yNzIgLjM1My0yLjA2MSAuMzMtMi4wNzlMLjM5Ni0yLjE0NyAuNTAzLTIuMjE3IC41NDEtMi4yMzUgLjU2OS0yLjI2OCAuNjc3LTIuMzAxIC43MjktMi4zMzggLjc3OC0yLjM2NEguODgxTC45NzktMi4zODVDLjk3OS0yLjM4NSAxLjI5MS0yLjQxOCAxLjgyMS0yLjE2OEwxLjkyNS0yLjQxMyAxLjk4NS0yLjYwNiAyLjA0My0yLjgxOSAyLjA4OS0yLjk5NyAyLjEyMi0zLjEgMi4xNjgtMy4yMjlDMi4yMS0zLjQ0OCAyLjMyOS0zLjU4MSAyLjM5OS0zLjYxNEwyLjU4My0zLjY3NCAyLjgwNC0zLjYyNCAyLjkyNi0zLjYwOCAzLjE1Ny0zLjU5IDMuMjU1LTMuNDAxQzMuMjU1LTMuNDAxIDMuMzIxLTMuMDkgMi44NzgtMi41NzMgMi42NzUtMi4zMzQgMi4zNDMtMS45NzkgMi4yNC0xLjg3IDIuMjQtMS44NyAzLjEzOC0uNjkyIDMuMDM0LS4wNjYgMi45OTIgLjE5MSAyLjQ1OSAuMTExIDIuMjcyIC4wNjIgMS41NzYtLjEyNyAuOTUxLS41MjcgLjk1MS0uNTI3IC45NTEtLjUyNyAxLjYzOCAuNjY4IDEuOTM4IDEuMTcxIDIuMjQgMS42NzUgMi41OTUgMS45ODQgMi4zNDkgMi4yNTggMi4xMDQgMi41MjggMS4yMTUgMS44NDMgLjk1NSAxLjY5IC43MTIgMS41NDgtLjEwMSAxLjE0My0uMTUzIDEuMTM5TC0uMTUxIDEuMDc2Qy0uMTA4IDEuMDc2IC42MDYgMS4xMDQgLjcyIDEuMTQzTC45NTEgMS4wODIgMS4wMyAxLjA3NiAxLjIxNSAxLjEyOSAxLjMwOCAxLjE3MSAxLjQ0OSAxLjM1MUMxLjQ2MSAxLjM2NyAxLjg3MyAxLjk4NSAxLjk2NyAxLjk2MUwxLjgwMSAxLjYwOEMxLjI4IC43NjIgLjI4NS0uOTQgLjI4NS0uOTRMLS40MzgtMS41MDctLjQxLTEuNTI0IC4xNTctMS4xNDRDLjE1Ny0xLjE0NC0uNTExLTIuMjE5LS43MjgtMi40NjctLjcyOC0yLjQ2Ny0uNjQtMS44NTgtLjY4My0xLjc0Ni0uNzI0LTEuNjMzLTEuMDk3LTEuMjE5LTEuMDM5LS45NzQtMS4wMzktLjk3NC0uMTA4LS42NDEtLjAyNC0uMjczTC0uMDM4LS4yMTQtLjAwNC0uMTEzIDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDMxOC4yMDc5LDguMDI2ODU1KSIgZD0iTTAgMEMwIDAgMS4zNzktLjE3OSAxLjQ5MS0uMjI5IDEuNjE4LS4yOSAxLjkwOS0uNDYxIDEuOTE0LS42NTcgMS45MTgtLjg1NCAxLjg2Ni0xLjAwNSAxLjgxOS0xLjAyMkwxLjYwMS0xLjA3NCAxLjI0Ny0xLjA4NSAxLjE3OC0xLjA1MUMxLjE1OS0xLjA1NiAuODE5LTEuMTE4IC42MTItMS4yNTggLjQ5Ny0xLjMzOCAuMjgyLTEuMzk3IC4yNzItMS4zOEwuNTA3LTEuMTg3Qy42MjItMS4xMDcgLjg1NC0uODU0IC44MjEtLjcxNCAuNzc4LS41MyAuNTM5LS40MSAuMzktLjI4NyAuMjI2LS4xNSAuMDI0LS4wMjMgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMzIyLjY0MTQ5LDEwLjU5MTI0OCkiIGQ9Ik0wIDBDLS4wOCAuMDQ3LS4xODUgLjA3Ny0uMzE5IC4wNzEtLjQwOSAuMDY2LS41MTEgLjAxNC0uNjQyLS4yMDYtLjY0Mi0uMjA2LTEuNjYzLS43NjItMi4xMy0xLjEzNS0yLjUwMi0xLjQzMy0zLjI0Ni0yLjEyLTMuNTIyLTIuMTk5LTMuNzk3LTIuMjc4LTMuOTE3LTIuMjc2LTMuOTM4LTIuMjczLTQuMDM1LTIuMjYyLTQuMDQxLTIuMzIxLTQuMDQxLTIuMzIxTC0zLjk4NS0yLjM4NkMtMy45MjMtMi40MTQtMy44MDgtMi40NjctMy42ODEtMi40NzktMy41NTQtMi40OTMtMy4zMTMtMi41NTktMi44NzMtMi4zNDktMi40OS0yLjE2Ny0yLjMwNC0yLjAzMS0yLjE0OS0xLjg4Mi0xLjk5NC0xLjczMi0xLjYxLTEuMjE0LTEuNTc1LTEuMTc4LTEuNDUtMS4wNTEtMS4yNTYtLjg2NC0xLjI1Ni0uODY0TC0uNzUzLS41MUMtLjcxNi0uNTY5LTEuNjQ0LTIuMDM3LTEuODk5LTIuMzY1LTIuMTU0LTIuNjkzLTMuNTQ1LTQuNjIzLTQuMjkzLTQuOTk2TC00LjQxMi00Ljg1My00LjQ3Ni00LjkzNy00LjQ5Ny01LjE2LTQuMzA4LTUuMjJDLTMuNzY5LTQuODgtMi40MTctMy41MzMtMi4yNDctMy4zNDlWLTMuNDI5TC0yLjI3OC0zLjYzMi0yLjMxNy0zLjY3N0MtMi4zMjUtMy43MjQtMi4zMjUtNC4zNDctMi40NDgtNC4zODgtMi41NzMtNC40MjUtMi42NzQtNC4yNjEtMi43MDYtNC4yNDItMi43MzgtNC4yMjQtMi44MjQtNC43MDUtMi44MDQtNC44MjYtMi43NjUtNS4wNjItMi41NjUtNS4yMTQtMi4zNzEtNS4xOTMtMi4yNTMtNS4xODEtMi4xODgtNS4xMzgtMi4xNi01LjExOUwtMi4wNDktNC45NzYtMi4wMDYtNC44MDhDLTIuMDA2LTQuODA4LTEuOTgzLTQuNjMtMS45ODMtNC4zOTgtMS45ODMtNC4xNjktMi4wNjktMy41OTktMi4wNjMtMy41MjdMLTIuMDg5LTMuNDg4LTIuMDk3LTMuNDQxLTIuMTE2LTMuMzQ5LTIuMTA4LTMuMjkxLTIuMTQ3LTMuMzEtMi4xNTQtMy4zNDktMi4xNjgtMy40MDItMi4xODUtMy4zNjktMi4xODEtMy4zMUMtMi4xODEtMy4zMS0xLjY3Ny0yLjg1Ny0xLjQyNS0yLjU4MS0xLjE3NS0yLjMwNy0uNDQtMS40OTktLjAyMi0uNzQ0IC4wMjQtLjY2MiAuMjM5LS41OCAuMTgzLS4yMjcgLjE3MS0uMTU4IC4xMS0uMDY0IDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDMxOS41ODY4NiwxNi4yMTQ0MTcpIiBkPSJNMCAwIC4wMjEtLjU1NSAuMDUyLS43NDkgLjE3OS0uOTYxQy4yMDctMS4wMyAuMTUzLTEuMjA5IC4zMTMtMS4yNzYgLjQ3NC0xLjM0MiAuNTk1LTEuMzA5IC42NDctMS4zMDNMLjc4OS0xLjI1NiAuOTA4LTEuMTE2IC45NjktLjkyOEMuOTY5LS45MjggMS4wMDMtLjc4OCAuNzg5LS42MTYgLjU3NC0uNDQyIC4wNjUgLjAzMyAwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwzMjguMDc3MDQsMTIuMTgzMDQ0KSIgZD0iTTAgMCAuMTE3IC4zNDQgLjM5OCAuMzU4IDAgME0uOTg4IC41MDJDLjkzIC42MTMgLjY3NCAuNjczIC42MTUgLjY4TC4yMDUgLjU4MUMuMjA1IC41ODEgLjU0NyAxLjI2NCAuNTI4IDEuNDI0IC41MSAxLjYwMiAuNTA0IDEuNjYyIC40ODIgMS43MDFMLjM3NyAxLjgwNyAuMjM5IDEuOTM0IC4xNTggMi4wMDQgLjA2NiAyLjA2OS0uMDUxIDIuMTY2LS4xMzcgMi4yNDgtLjI0NiAyLjMxMi0uMzE5IDIuMzQ4LS40MTQgMi40MjEtLjQ1OSAyLjQ2NS0uNTMxIDIuNTE4LS42MTIgMi41NzctLjY2NCAyLjU5Qy0uNjY0IDIuNTktLjgyOCAyLjYzNy0uOTc0IDIuNTlMLS45NCAyLjQ4NC0uODg5IDIuMzA3LS44NDggMS45NzFWMS43MDFDLS44NDggMS40NTEtMS4wNTMtLjQzNS0xLjE2Ni0uNjA1LTEuMTY2LS42MDUtMS45NzctMS4yMTMtMi4zODUtMS4zOTEtMi43OTMtMS41NjgtMy4wODItMS42NDItMy4wNzYtMS42ODctMy4wNjktMS43MzMtMi41NjgtMS43MTItMi4zOTItMS42NzQtMi4yMTUtMS42MzQtMS4zNjktMS4xOTktMS4yNzEtMS4wOC0xLjI3MS0xLjA4LTEuMzItMS40ODgtMS4zMTEtMS42NTQtMS4yOTctMS44NzEtMS4yMTgtMS45NzEtMS4yMDUtMi4wMjktMS4xOTItMi4wODgtMS4xNDYtMi4yMDItLjk4Ny0yLjA5NC0uODI4LTEuOTktLjc3LTIuMDExLS43Ny0yLjAxMS0uNzctMi4wMTEtLjQ4NS0xLjY4Ny0uNDQ2LTEuNTg4LS40MDYtMS40ODktLjE0My0uNjQtLjExNy0uNDc1LS4xMTctLjQ3NSAuNTI4LS4wNiAuNjgxIC4wNCAuODMyIC4xMzkgMS4wODQgLjMyIC45ODggLjUwMiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDMyMy4yNjA2OSwxNy41MjAwMikiIGQ9Ik0wIDBDLS4wNjYtLjA0MyAuMTI2LS4wNDUgLjI3LS4xNzIgLjM1OS0uMjQ4IC43MTQtLjUwMiAuOTY5LS41OTQgMS4zMDEtLjcxMyAyLjA1MS0uNTc2IDIuNDU5LS41NjYgMi45ODQtLjU1MyAzLjY5Ny0uNTU5IDMuODAyLS41MzMgMy45MDgtLjUwOCA0LS40MDggMy45Ni0uMzAzTDQuMjg0LS4xNDVDNC4zNDMtLjA4NiA0LjQxMyAuMTIxIDQuMjEyIC4yMTEgNC4wNzkgLjI3MSA0LjA1MyAuMjc3IDMuOTc1IC4zMTZMMy43NDkgLjQzNkMzLjY2MyAuNDQxIDMuNTY0IC40MzYgMy40MzkgLjQyMiAzLjMxNCAuNDEgMi4xNzQgLjI2NCAxLjg4NiAuMjMgMS41OTUgLjE5NyAxLjE5MyAuMTE5IC45NjkgLjEwNSAuNzQ0IC4wOTIgLjEyNiAuMDc4IDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDIwNy44NTQ0Myw1LjUyNjc5NDYpIiBkPSJNMCAwLS4xMjgtLjEzLS4xMDYtLjQ0NyAuMDMxLS43NSAuMDI0LS45NjlDLjAxNS0uOTg2LS4yMDMtMS40MjktLjUtMS43OTktMS40OTktMy4wNDYtMS44MDUtMy40NzgtMy4yNzktNC44Ny00LjAwMS01LjU1NS01LjY2Mi03LjA5LTYuOTQxLTcuODctNy45MTEtOC40NjEtOC43NzMtOC44MDUtOC43NzMtOC44MDVMLTguODE2LTguODUtOC41NzEtOC44MzRDLTguMzI1LTguODExLTguMDQ1LTguNzEzLTcuOTExLTguNjY3LTYuOTM4LTguMzMxLTYuMzk1LTcuOTQ0LTUuOTMxLTcuNjQxLTQuNzA4LTYuODQtNC40MzktNi41ODEtMy42LTUuODk5LTIuNzYtNS4yMi0xLjUzOS00LjA5NC0xLjUzOS00LjA5NEwtMS4wNjEtMy41ODUgLjA2OC0yLjIyMkMuMDY4LTIuMjIyIC44NTEtMS4zNTcgLjg4OS0xLjIzMiAuOTI3LTEuMTA3IC45MjQtMS4wMjkgLjg4My0uODQgLjg0Mi0uNjQ5IC42NTYtLjQ2MSAuNjU2LS40NjFMLjI3Mi0uMTEyIDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDIwNy4xMjU4NiwxMi42MTg2NTIpIiBkPSJNMCAwIC4wNC0uMDM0IC4xNTgtLjE2NyAuMjctLjMyNCAuNTkyLS44MiAxLjA4OC0xLjQ4N0MxLjA4OC0xLjQ4NyAxLjUyOS0xLjk5MiAxLjY5Ni0yLjE1NCAyLjEyNi0yLjU3IDIuMzQtMi42NjkgMi41MjktMi43NTUgMi45NjYtMi45NTcgMy4zNy0zLjAwOSAzLjM3LTMuMDA5TDMuNTUyLTIuOTg0IDMuODIyLTMuMTE1IDMuODYyLTMuMjAxQzMuODc5LTMuMyAzLjc2NS0zLjMyMiAzLjc2NS0zLjMyMkwzLjQ5LTMuMzk0QzMuNDktMy4zOTQgMi44NzktMy40IDIuNjkzLTMuNDQ3IDIuNTQzLTMuNDg2IDIuMzEyLTMuNTUyIDIuMzEyLTMuNTUyIDIuMzEyLTMuNTUyIDIuMTU0LTMuNjA3IDEuOTc2LTMuNTk5IDEuNjYzLTMuNTg1IDEuNDg4LTMuNDY0IDEuNDg4LTMuNDY0TDEuMzE3LTMuMjc5QzEuMzE3LTMuMjc5IDEuMDg1LTIuODIgLjkyNi0yLjQ1NSAuNzY4LTIuMDg5IC4zNzQtMS40MDMgLjIwNy0uOTY3IC4xMDMtLjY5NyAuMDM0LS40MDUgLjAzNi0uMzk2TC4wMjQtLjMyMi0uMDA3LS4yMjktLjAwMi0uMjE0IC4wMzEtLjI0MyAuMDYtLjI4NSAuMDgyLS4zMDkgLjA3NS0uMjUzIC4xMTktLjI5NSAuMTM2LS4zMDQgLjE0NC0uMjkgLjA2Ny0uMTcxIC4wNTMtLjEwOSAuMDA3LS4wNDcgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjwvZz4KPC9nPgo8L2c+CjwvZz4KPC9zdmc+Cg==');"></div>
+          <div class="text-layer">
+            <span id="p69_c0" class="pdf-char" style="left:29.96px;top:678.62px;width:6.66px;height:13.64px;font-size:12.00px;color:#231f20;">6</span>
+<span id="p69_c1" class="pdf-char" style="left:36.62px;top:678.62px;width:6.66px;height:13.64px;font-size:12.00px;color:#231f20;">2</span>
+<span id="p69_c2" class="pdf-char" style="left:43.28px;top:678.62px;width:3.32px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p69_c3" class="pdf-char" style="left:46.60px;top:678.62px;width:8.67px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p69_c4" class="pdf-char" style="left:55.27px;top:678.62px;width:3.32px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p69_c5" class="pdf-char" style="left:58.59px;top:678.62px;width:8.67px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p69_c6" class="pdf-char" style="left:67.26px;top:678.62px;width:3.32px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p69_c7" class="pdf-char" style="left:70.59px;top:680.19px;width:2.68px;height:11.54px;font-size:9.00px;color:#231f20;"> </span>
+<span id="p69_c8" class="pdf-char" style="left:73.27px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">日</span>
+<span id="p69_c9" class="pdf-char" style="left:82.27px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">语</span>
+<span id="p69_c10" class="pdf-char" style="left:91.27px;top:680.45px;width:4.50px;height:9.00px;font-size:9.00px;color:#231f20;"> </span>
+<span id="p69_c11" class="pdf-char" style="left:100.27px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">九</span>
+<span id="p69_c12" class="pdf-char" style="left:109.27px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">年</span>
+<span id="p69_c13" class="pdf-char" style="left:118.27px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">级</span>
+<span id="p69_c14" class="pdf-char" style="left:14.86px;top:216.81px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">第</span>
+<span id="p69_c15" class="pdf-char" style="left:14.86px;top:226.80px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">二</span>
+<span id="p69_c16" class="pdf-char" style="left:14.86px;top:236.81px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">单</span>
+<span id="p69_c17" class="pdf-char" style="left:14.86px;top:246.80px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">元</span>
+<span id="p69_c18" class="pdf-char" style="left:77.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">“</span>
+<span id="p69_c19" class="pdf-char" style="left:87.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">刺</span>
+<span id="p69_c20" class="pdf-char" style="left:98.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">身</span>
+<span id="p69_c21" class="pdf-char" style="left:108.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">”</span>
+<span id="p69_c22" class="pdf-char" style="left:119.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">是</span>
+<span id="p69_c23" class="pdf-char" style="left:129.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">将</span>
+<span id="p69_c24" class="pdf-char" style="left:140.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">新</span>
+<span id="p69_c25" class="pdf-char" style="left:150.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">鲜</span>
+<span id="p69_c26" class="pdf-char" style="left:161.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c27" class="pdf-char" style="left:171.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">鱼</span>
+<span id="p69_c28" class="pdf-char" style="left:182.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">切</span>
+<span id="p69_c29" class="pdf-char" style="left:192.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">成</span>
+<span id="p69_c30" class="pdf-char" style="left:203.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">薄</span>
+<span id="p69_c31" class="pdf-char" style="left:213.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">片</span>
+<span id="p69_c32" class="pdf-char" style="left:224.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">蘸</span>
+<span id="p69_c33" class="pdf-char" style="left:234.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">上</span>
+<span id="p69_c34" class="pdf-char" style="left:245.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">酱</span>
+<span id="p69_c35" class="pdf-char" style="left:255.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">油</span>
+<span id="p69_c36" class="pdf-char" style="left:266.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">等</span>
+<span id="p69_c37" class="pdf-char" style="left:276.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">食</span>
+<span id="p69_c38" class="pdf-char" style="left:287.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">用</span>
+<span id="p69_c39" class="pdf-char" style="left:297.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c40" class="pdf-char" style="left:308.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">菜</span>
+<span id="p69_c41" class="pdf-char" style="left:318.60px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">肴</span>
+<span id="p69_c42" class="pdf-char" style="left:329.10px;top:56.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c43" class="pdf-char" style="left:65.35px;top:77.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c44" class="pdf-char" style="left:70.60px;top:77.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">4</span>
+<span id="p69_c45" class="pdf-char" style="left:75.85px;top:77.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c46" class="pdf-char" style="left:78.48px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">「</span>
+<span id="p69_c47" class="pdf-char" style="left:89.14px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">八</span>
+<span id="p69_c48" class="pdf-char" style="left:99.79px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">百</span>
+<span id="p69_c49" class="pdf-char" style="left:110.45px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">屋</span>
+<span id="p69_c50" class="pdf-char" style="left:121.11px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">」</span>
+<span id="p69_c51" class="pdf-char" style="left:131.77px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c52" class="pdf-char" style="left:142.42px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">野</span>
+<span id="p69_c53" class="pdf-char" style="left:153.08px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">菜</span>
+<span id="p69_c54" class="pdf-char" style="left:163.74px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">や</span>
+<span id="p69_c55" class="pdf-char" style="left:174.39px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">果</span>
+<span id="p69_c56" class="pdf-char" style="left:185.05px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">物</span>
+<span id="p69_c57" class="pdf-char" style="left:195.71px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c58" class="pdf-char" style="left:206.36px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ど</span>
+<span id="p69_c59" class="pdf-char" style="left:217.02px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c60" class="pdf-char" style="left:227.68px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">売</span>
+<span id="p69_c61" class="pdf-char" style="left:238.34px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">る</span>
+<span id="p69_c62" class="pdf-char" style="left:248.99px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">店</span>
+<span id="p69_c63" class="pdf-char" style="left:259.65px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c64" class="pdf-char" style="left:270.31px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c65" class="pdf-char" style="left:280.97px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p69_c66" class="pdf-char" style="left:291.62px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">で</span>
+<span id="p69_c67" class="pdf-char" style="left:302.28px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c68" class="pdf-char" style="left:312.78px;top:77.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c69" class="pdf-char" style="left:323.19px;top:77.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c70" class="pdf-char" style="left:325.82px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">“</span>
+<span id="p69_c71" class="pdf-char" style="left:336.48px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">八</span>
+<span id="p69_c72" class="pdf-char" style="left:347.13px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">百</span>
+<span id="p69_c73" class="pdf-char" style="left:357.79px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">屋</span>
+<span id="p69_c74" class="pdf-char" style="left:368.45px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">”</span>
+<span id="p69_c75" class="pdf-char" style="left:379.11px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">就</span>
+<span id="p69_c76" class="pdf-char" style="left:389.76px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">是</span>
+<span id="p69_c77" class="pdf-char" style="left:400.42px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">卖</span>
+<span id="p69_c78" class="pdf-char" style="left:411.07px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">蔬</span>
+<span id="p69_c79" class="pdf-char" style="left:421.73px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">菜</span>
+<span id="p69_c80" class="pdf-char" style="left:432.23px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c81" class="pdf-char" style="left:442.89px;top:77.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">水</span>
+<span id="p69_c82" class="pdf-char" style="left:82.35px;top:98.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">果</span>
+<span id="p69_c83" class="pdf-char" style="left:92.85px;top:98.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">等</span>
+<span id="p69_c84" class="pdf-char" style="left:103.35px;top:98.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c85" class="pdf-char" style="left:113.85px;top:98.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">商</span>
+<span id="p69_c86" class="pdf-char" style="left:124.35px;top:98.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">店</span>
+<span id="p69_c87" class="pdf-char" style="left:134.85px;top:98.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c88" class="pdf-char" style="left:65.35px;top:119.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c89" class="pdf-char" style="left:70.60px;top:119.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">5</span>
+<span id="p69_c90" class="pdf-char" style="left:75.85px;top:119.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c91" class="pdf-char" style="left:82.51px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c92" class="pdf-char" style="left:93.26px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c93" class="pdf-char" style="left:104.01px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c94" class="pdf-char" style="left:114.51px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">「</span>
+<span id="p69_c95" class="pdf-char" style="left:125.27px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ノ</span>
+<span id="p69_c96" class="pdf-char" style="left:136.02px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c97" class="pdf-char" style="left:146.77px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ト</span>
+<span id="p69_c98" class="pdf-char" style="left:157.52px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">」</span>
+<span id="p69_c99" class="pdf-char" style="left:168.27px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c100" class="pdf-char" style="left:179.03px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ノ</span>
+<span id="p69_c101" class="pdf-char" style="left:189.78px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c102" class="pdf-char" style="left:200.53px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ト</span>
+<span id="p69_c103" class="pdf-char" style="left:211.28px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">パ</span>
+<span id="p69_c104" class="pdf-char" style="left:222.03px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ソ</span>
+<span id="p69_c105" class="pdf-char" style="left:232.79px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">コ</span>
+<span id="p69_c106" class="pdf-char" style="left:243.54px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ン</span>
+<span id="p69_c107" class="pdf-char" style="left:254.29px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c108" class="pdf-char" style="left:265.04px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c109" class="pdf-char" style="left:275.79px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p69_c110" class="pdf-char" style="left:286.55px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">で</span>
+<span id="p69_c111" class="pdf-char" style="left:297.30px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c112" class="pdf-char" style="left:307.80px;top:119.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c113" class="pdf-char" style="left:318.22px;top:119.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c114" class="pdf-char" style="left:324.87px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">这</span>
+<span id="p69_c115" class="pdf-char" style="left:335.62px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">里</span>
+<span id="p69_c116" class="pdf-char" style="left:346.38px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c117" class="pdf-char" style="left:356.88px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">“</span>
+<span id="p69_c118" class="pdf-char" style="left:367.63px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">ノ</span>
+<span id="p69_c119" class="pdf-char" style="left:378.38px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c120" class="pdf-char" style="left:389.13px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">ト</span>
+<span id="p69_c121" class="pdf-char" style="left:399.88px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">”</span>
+<span id="p69_c122" class="pdf-char" style="left:410.64px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">是</span>
+<span id="p69_c123" class="pdf-char" style="left:421.39px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">指</span>
+<span id="p69_c124" class="pdf-char" style="left:432.14px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">笔</span>
+<span id="p69_c125" class="pdf-char" style="left:442.89px;top:119.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">记</span>
+<span id="p69_c126" class="pdf-char" style="left:82.35px;top:140.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">本</span>
+<span id="p69_c127" class="pdf-char" style="left:92.85px;top:140.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">电</span>
+<span id="p69_c128" class="pdf-char" style="left:103.35px;top:140.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">脑</span>
+<span id="p69_c129" class="pdf-char" style="left:113.85px;top:140.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c130" class="pdf-char" style="left:45.35px;top:182.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;">3</span>
+<span id="p69_c131" class="pdf-char" style="left:50.60px;top:182.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;">.</span>
+<span id="p69_c132" class="pdf-char" style="left:55.85px;top:182.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;"> </span>
+<span id="p69_c133" class="pdf-char" style="left:61.10px;top:182.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;">N</span>
+<span id="p69_c134" class="pdf-char" style="left:67.66px;top:182.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">を</span>
+<span id="p69_c135" class="pdf-char" style="left:78.16px;top:182.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">通</span>
+<span id="p69_c136" class="pdf-char" style="left:88.66px;top:182.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">し</span>
+<span id="p69_c137" class="pdf-char" style="left:99.16px;top:182.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">て</span>
+<span id="p69_c138" class="pdf-char" style="left:68.35px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">◆</span>
+<span id="p69_c139" class="pdf-char" style="left:78.85px;top:203.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;"> </span>
+<span id="p69_c140" class="pdf-char" style="left:84.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c141" class="pdf-char" style="left:94.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c142" class="pdf-char" style="left:105.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">俳</span>
+<span id="p69_c143" class="pdf-char" style="left:115.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">句</span>
+<span id="p69_c144" class="pdf-char" style="left:126.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c145" class="pdf-char" style="left:136.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c146" class="pdf-char" style="left:147.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c147" class="pdf-char" style="left:157.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c148" class="pdf-char" style="left:168.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c149" class="pdf-char" style="left:178.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">作</span>
+<span id="p69_c150" class="pdf-char" style="left:189.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">者</span>
+<span id="p69_c151" class="pdf-char" style="left:199.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">が</span>
+<span id="p69_c152" class="pdf-char" style="left:210.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">伝</span>
+<span id="p69_c153" class="pdf-char" style="left:220.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">え</span>
+<span id="p69_c154" class="pdf-char" style="left:231.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c155" class="pdf-char" style="left:241.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c156" class="pdf-char" style="left:252.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c157" class="pdf-char" style="left:262.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p69_c158" class="pdf-char" style="left:273.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c159" class="pdf-char" style="left:283.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">何</span>
+<span id="p69_c160" class="pdf-char" style="left:294.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p69_c161" class="pdf-char" style="left:304.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p69_c162" class="pdf-char" style="left:315.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">思</span>
+<span id="p69_c163" class="pdf-char" style="left:325.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c164" class="pdf-char" style="left:336.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c165" class="pdf-char" style="left:346.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c166" class="pdf-char" style="left:357.10px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p69_c167" class="pdf-char" style="left:367.60px;top:203.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c168" class="pdf-char" style="left:61.10px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">“</span>
+<span id="p69_c169" class="pdf-char" style="left:71.71px;top:224.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c170" class="pdf-char" style="left:82.32px;top:224.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c171" class="pdf-char" style="left:92.93px;top:224.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c172" class="pdf-char" style="left:103.54px;top:224.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c173" class="pdf-char" style="left:114.15px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">”</span>
+<span id="p69_c174" class="pdf-char" style="left:124.76px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">前</span>
+<span id="p69_c175" class="pdf-char" style="left:135.37px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">接</span>
+<span id="p69_c176" class="pdf-char" style="left:145.98px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">名</span>
+<span id="p69_c177" class="pdf-char" style="left:156.59px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">词</span>
+<span id="p69_c178" class="pdf-char" style="left:167.09px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c179" class="pdf-char" style="left:177.70px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c180" class="pdf-char" style="left:188.31px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">常</span>
+<span id="p69_c181" class="pdf-char" style="left:198.92px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">后</span>
+<span id="p69_c182" class="pdf-char" style="left:209.53px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">续</span>
+<span id="p69_c183" class="pdf-char" style="left:220.14px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">表</span>
+<span id="p69_c184" class="pdf-char" style="left:230.75px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">示</span>
+<span id="p69_c185" class="pdf-char" style="left:241.36px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">自</span>
+<span id="p69_c186" class="pdf-char" style="left:251.97px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">主</span>
+<span id="p69_c187" class="pdf-char" style="left:262.58px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">行</span>
+<span id="p69_c188" class="pdf-char" style="left:273.19px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">为</span>
+<span id="p69_c189" class="pdf-char" style="left:283.80px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">或</span>
+<span id="p69_c190" class="pdf-char" style="left:294.41px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">意</span>
+<span id="p69_c191" class="pdf-char" style="left:305.02px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">愿</span>
+<span id="p69_c192" class="pdf-char" style="left:315.63px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">等</span>
+<span id="p69_c193" class="pdf-char" style="left:326.24px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">意</span>
+<span id="p69_c194" class="pdf-char" style="left:336.86px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">义</span>
+<span id="p69_c195" class="pdf-char" style="left:347.47px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c196" class="pdf-char" style="left:358.08px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">词</span>
+<span id="p69_c197" class="pdf-char" style="left:368.69px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">语</span>
+<span id="p69_c198" class="pdf-char" style="left:379.19px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c199" class="pdf-char" style="left:389.80px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">表</span>
+<span id="p69_c200" class="pdf-char" style="left:400.41px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">示</span>
+<span id="p69_c201" class="pdf-char" style="left:411.02px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">主</span>
+<span id="p69_c202" class="pdf-char" style="left:421.63px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">动</span>
+<span id="p69_c203" class="pdf-char" style="left:432.24px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">以</span>
+<span id="p69_c204" class="pdf-char" style="left:442.85px;top:224.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">某</span>
+<span id="p69_c205" class="pdf-char" style="left:45.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">人</span>
+<span id="p69_c206" class="pdf-char" style="left:55.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">或</span>
+<span id="p69_c207" class="pdf-char" style="left:66.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">某</span>
+<span id="p69_c208" class="pdf-char" style="left:76.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">事</span>
+<span id="p69_c209" class="pdf-char" style="left:87.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">物</span>
+<span id="p69_c210" class="pdf-char" style="left:97.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">为</span>
+<span id="p69_c211" class="pdf-char" style="left:108.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">媒</span>
+<span id="p69_c212" class="pdf-char" style="left:118.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">介</span>
+<span id="p69_c213" class="pdf-char" style="left:129.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">做</span>
+<span id="p69_c214" class="pdf-char" style="left:139.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">某</span>
+<span id="p69_c215" class="pdf-char" style="left:150.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">件</span>
+<span id="p69_c216" class="pdf-char" style="left:160.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">事</span>
+<span id="p69_c217" class="pdf-char" style="left:171.34px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">情</span>
+<span id="p69_c218" class="pdf-char" style="left:181.84px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c219" class="pdf-char" style="left:187.09px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">（</span>
+<span id="p69_c220" class="pdf-char" style="left:211.59px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">八</span>
+<span id="p69_c221" class="pdf-char" style="left:222.09px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">年</span>
+<span id="p69_c222" class="pdf-char" style="left:232.59px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">级</span>
+<span id="p69_c223" class="pdf-char" style="left:243.09px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">第</span>
+<span id="p69_c224" class="pdf-char" style="left:254.91px;top:245.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">1</span>
+<span id="p69_c225" class="pdf-char" style="left:261.47px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">课</span>
+<span id="p69_c226" class="pdf-char" style="left:271.97px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">“</span>
+<span id="p69_c227" class="pdf-char" style="left:282.47px;top:245.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">N</span>
+<span id="p69_c228" class="pdf-char" style="left:289.03px;top:245.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c229" class="pdf-char" style="left:299.53px;top:245.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c230" class="pdf-char" style="left:310.03px;top:245.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">じ</span>
+<span id="p69_c231" class="pdf-char" style="left:320.53px;top:245.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c232" class="pdf-char" style="left:331.03px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">”</span>
+<span id="p69_c233" class="pdf-char" style="left:336.28px;top:245.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">）</span>
+<span id="p69_c234" class="pdf-char" style="left:65.36px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c235" class="pdf-char" style="left:70.61px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">1</span>
+<span id="p69_c236" class="pdf-char" style="left:75.86px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c237" class="pdf-char" style="left:82.51px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">友</span>
+<span id="p69_c238" class="pdf-char" style="left:93.25px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">人</span>
+<span id="p69_c239" class="pdf-char" style="left:103.99px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c240" class="pdf-char" style="left:114.74px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c241" class="pdf-char" style="left:125.48px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c242" class="pdf-char" style="left:136.22px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c243" class="pdf-char" style="left:146.72px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c244" class="pdf-char" style="left:157.46px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">鈴</span>
+<span id="p69_c245" class="pdf-char" style="left:168.20px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">木</span>
+<span id="p69_c246" class="pdf-char" style="left:178.94px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">さ</span>
+<span id="p69_c247" class="pdf-char" style="left:189.68px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ん</span>
+<span id="p69_c248" class="pdf-char" style="left:200.43px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">が</span>
+<span id="p69_c249" class="pdf-char" style="left:211.17px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">先</span>
+<span id="p69_c250" class="pdf-char" style="left:221.91px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">週</span>
+<span id="p69_c251" class="pdf-char" style="left:232.65px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">退</span>
+<span id="p69_c252" class="pdf-char" style="left:243.39px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">院</span>
+<span id="p69_c253" class="pdf-char" style="left:254.13px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c254" class="pdf-char" style="left:264.87px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c255" class="pdf-char" style="left:275.62px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">こ</span>
+<span id="p69_c256" class="pdf-char" style="left:286.36px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p69_c257" class="pdf-char" style="left:297.10px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c258" class="pdf-char" style="left:307.84px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">知</span>
+<span id="p69_c259" class="pdf-char" style="left:318.58px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">り</span>
+<span id="p69_c260" class="pdf-char" style="left:329.32px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c261" class="pdf-char" style="left:340.06px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c262" class="pdf-char" style="left:350.81px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c263" class="pdf-char" style="left:361.31px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c264" class="pdf-char" style="left:371.77px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c265" class="pdf-char" style="left:378.43px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">我</span>
+<span id="p69_c266" class="pdf-char" style="left:389.17px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c267" class="pdf-char" style="left:399.91px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">过</span>
+<span id="p69_c268" class="pdf-char" style="left:410.65px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">朋</span>
+<span id="p69_c269" class="pdf-char" style="left:421.39px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">友</span>
+<span id="p69_c270" class="pdf-char" style="left:432.13px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">得</span>
+<span id="p69_c271" class="pdf-char" style="left:442.88px;top:266.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">知</span>
+<span id="p69_c272" class="pdf-char" style="left:82.37px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">铃</span>
+<span id="p69_c273" class="pdf-char" style="left:92.87px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">木</span>
+<span id="p69_c274" class="pdf-char" style="left:103.37px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">上</span>
+<span id="p69_c275" class="pdf-char" style="left:113.87px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">周</span>
+<span id="p69_c276" class="pdf-char" style="left:124.37px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">出</span>
+<span id="p69_c277" class="pdf-char" style="left:134.87px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">院</span>
+<span id="p69_c278" class="pdf-char" style="left:145.37px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">了</span>
+<span id="p69_c279" class="pdf-char" style="left:155.87px;top:287.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c280" class="pdf-char" style="left:65.37px;top:308.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c281" class="pdf-char" style="left:70.62px;top:308.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">2</span>
+<span id="p69_c282" class="pdf-char" style="left:75.87px;top:308.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c283" class="pdf-char" style="left:82.53px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">予</span>
+<span id="p69_c284" class="pdf-char" style="left:93.27px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">定</span>
+<span id="p69_c285" class="pdf-char" style="left:104.02px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">が</span>
+<span id="p69_c286" class="pdf-char" style="left:114.78px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">決</span>
+<span id="p69_c287" class="pdf-char" style="left:125.53px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c288" class="pdf-char" style="left:136.28px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">っ</span>
+<span id="p69_c289" class="pdf-char" style="left:147.03px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c290" class="pdf-char" style="left:157.78px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p69_c291" class="pdf-char" style="left:168.54px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ら</span>
+<span id="p69_c292" class="pdf-char" style="left:179.04px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c293" class="pdf-char" style="left:189.79px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">メ</span>
+<span id="p69_c294" class="pdf-char" style="left:200.54px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c295" class="pdf-char" style="left:211.29px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ル</span>
+<span id="p69_c296" class="pdf-char" style="left:222.04px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c297" class="pdf-char" style="left:232.80px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c298" class="pdf-char" style="left:243.55px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c299" class="pdf-char" style="left:254.30px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c300" class="pdf-char" style="left:265.05px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">連</span>
+<span id="p69_c301" class="pdf-char" style="left:275.80px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">絡</span>
+<span id="p69_c302" class="pdf-char" style="left:286.56px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c303" class="pdf-char" style="left:297.31px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c304" class="pdf-char" style="left:308.06px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c305" class="pdf-char" style="left:318.56px;top:308.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c306" class="pdf-char" style="left:328.98px;top:308.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c307" class="pdf-char" style="left:335.64px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">计</span>
+<span id="p69_c308" class="pdf-char" style="left:346.39px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">划</span>
+<span id="p69_c309" class="pdf-char" style="left:357.14px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">定</span>
+<span id="p69_c310" class="pdf-char" style="left:367.90px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">下</span>
+<span id="p69_c311" class="pdf-char" style="left:378.65px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">来</span>
+<span id="p69_c312" class="pdf-char" style="left:389.40px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">后</span>
+<span id="p69_c313" class="pdf-char" style="left:399.90px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c314" class="pdf-char" style="left:410.65px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">我</span>
+<span id="p69_c315" class="pdf-char" style="left:421.40px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c316" class="pdf-char" style="left:432.16px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">过</span>
+<span id="p69_c317" class="pdf-char" style="left:442.91px;top:308.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">电</span>
+<span id="p69_c318" class="pdf-char" style="left:82.37px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">子</span>
+<span id="p69_c319" class="pdf-char" style="left:92.87px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">邮</span>
+<span id="p69_c320" class="pdf-char" style="left:103.37px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">件</span>
+<span id="p69_c321" class="pdf-char" style="left:113.87px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">联</span>
+<span id="p69_c322" class="pdf-char" style="left:124.37px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">系</span>
+<span id="p69_c323" class="pdf-char" style="left:134.87px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">你</span>
+<span id="p69_c324" class="pdf-char" style="left:145.37px;top:329.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c325" class="pdf-char" style="left:65.37px;top:350.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c326" class="pdf-char" style="left:70.62px;top:350.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">3</span>
+<span id="p69_c327" class="pdf-char" style="left:75.87px;top:350.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c328" class="pdf-char" style="left:82.44px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">旅</span>
+<span id="p69_c329" class="pdf-char" style="left:92.97px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">行</span>
+<span id="p69_c330" class="pdf-char" style="left:103.49px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c331" class="pdf-char" style="left:114.02px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c332" class="pdf-char" style="left:124.55px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c333" class="pdf-char" style="left:135.07px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c334" class="pdf-char" style="left:145.57px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c335" class="pdf-char" style="left:156.10px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">さ</span>
+<span id="p69_c336" class="pdf-char" style="left:166.62px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c337" class="pdf-char" style="left:177.15px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ざ</span>
+<span id="p69_c338" class="pdf-char" style="left:187.68px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c339" class="pdf-char" style="left:198.20px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c340" class="pdf-char" style="left:208.73px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">文</span>
+<span id="p69_c341" class="pdf-char" style="left:219.25px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">化</span>
+<span id="p69_c342" class="pdf-char" style="left:229.78px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">や</span>
+<span id="p69_c343" class="pdf-char" style="left:240.30px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">生</span>
+<span id="p69_c344" class="pdf-char" style="left:250.83px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">活</span>
+<span id="p69_c345" class="pdf-char" style="left:261.36px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">習</span>
+<span id="p69_c346" class="pdf-char" style="left:271.88px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">慣</span>
+<span id="p69_c347" class="pdf-char" style="left:282.41px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c348" class="pdf-char" style="left:292.93px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">学</span>
+<span id="p69_c349" class="pdf-char" style="left:303.46px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">び</span>
+<span id="p69_c350" class="pdf-char" style="left:313.99px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c351" class="pdf-char" style="left:324.51px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c352" class="pdf-char" style="left:335.04px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p69_c353" class="pdf-char" style="left:345.57px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">思</span>
+<span id="p69_c354" class="pdf-char" style="left:356.09px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c355" class="pdf-char" style="left:366.62px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c356" class="pdf-char" style="left:377.14px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c357" class="pdf-char" style="left:387.64px;top:350.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c358" class="pdf-char" style="left:398.15px;top:350.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c359" class="pdf-char" style="left:400.77px;top:350.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">（</span>
+<span id="p69_c360" class="pdf-char" style="left:411.30px;top:350.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">我</span>
+<span id="p69_c361" class="pdf-char" style="left:421.82px;top:350.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">）</span>
+<span id="p69_c362" class="pdf-char" style="left:432.35px;top:350.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">打</span>
+<span id="p69_c363" class="pdf-char" style="left:442.87px;top:350.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">算</span>
+<span id="p69_c364" class="pdf-char" style="left:82.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c365" class="pdf-char" style="left:92.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">过</span>
+<span id="p69_c366" class="pdf-char" style="left:103.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">旅</span>
+<span id="p69_c367" class="pdf-char" style="left:113.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">行</span>
+<span id="p69_c368" class="pdf-char" style="left:124.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">了</span>
+<span id="p69_c369" class="pdf-char" style="left:134.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">解</span>
+<span id="p69_c370" class="pdf-char" style="left:145.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">各</span>
+<span id="p69_c371" class="pdf-char" style="left:155.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">种</span>
+<span id="p69_c372" class="pdf-char" style="left:166.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">文</span>
+<span id="p69_c373" class="pdf-char" style="left:176.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">化</span>
+<span id="p69_c374" class="pdf-char" style="left:187.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">和</span>
+<span id="p69_c375" class="pdf-char" style="left:197.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">生</span>
+<span id="p69_c376" class="pdf-char" style="left:208.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">活</span>
+<span id="p69_c377" class="pdf-char" style="left:218.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">习</span>
+<span id="p69_c378" class="pdf-char" style="left:229.38px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">惯</span>
+<span id="p69_c379" class="pdf-char" style="left:239.88px;top:371.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c380" class="pdf-char" style="left:65.38px;top:392.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c381" class="pdf-char" style="left:70.63px;top:392.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">4</span>
+<span id="p69_c382" class="pdf-char" style="left:75.88px;top:392.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c383" class="pdf-char" style="left:82.53px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">僕</span>
+<span id="p69_c384" class="pdf-char" style="left:93.27px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c385" class="pdf-char" style="left:104.02px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c386" class="pdf-char" style="left:114.76px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ろ</span>
+<span id="p69_c387" class="pdf-char" style="left:125.50px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c388" class="pdf-char" style="left:136.24px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ろ</span>
+<span id="p69_c389" class="pdf-char" style="left:146.98px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c390" class="pdf-char" style="left:157.72px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">体</span>
+<span id="p69_c391" class="pdf-char" style="left:168.46px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">験</span>
+<span id="p69_c392" class="pdf-char" style="left:179.21px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c393" class="pdf-char" style="left:189.95px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c394" class="pdf-char" style="left:200.69px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c395" class="pdf-char" style="left:211.43px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c396" class="pdf-char" style="left:221.93px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c397" class="pdf-char" style="left:232.67px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">自</span>
+<span id="p69_c398" class="pdf-char" style="left:243.41px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">分</span>
+<span id="p69_c399" class="pdf-char" style="left:254.15px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c400" class="pdf-char" style="left:264.89px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">人</span>
+<span id="p69_c401" class="pdf-char" style="left:275.64px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">生</span>
+<span id="p69_c402" class="pdf-char" style="left:286.38px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p69_c403" class="pdf-char" style="left:297.12px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">豊</span>
+<span id="p69_c404" class="pdf-char" style="left:307.86px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p69_c405" class="pdf-char" style="left:318.60px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">に</span>
+<span id="p69_c406" class="pdf-char" style="left:329.34px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c407" class="pdf-char" style="left:340.08px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c408" class="pdf-char" style="left:350.83px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c409" class="pdf-char" style="left:361.57px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c410" class="pdf-char" style="left:372.31px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">で</span>
+<span id="p69_c411" class="pdf-char" style="left:383.05px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c412" class="pdf-char" style="left:393.55px;top:392.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c413" class="pdf-char" style="left:404.01px;top:392.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c414" class="pdf-char" style="left:410.66px;top:392.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">我</span>
+<span id="p69_c415" class="pdf-char" style="left:421.40px;top:392.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">是</span>
+<span id="p69_c416" class="pdf-char" style="left:432.15px;top:392.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">希</span>
+<span id="p69_c417" class="pdf-char" style="left:442.89px;top:392.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">望</span>
+<span id="p69_c418" class="pdf-char" style="left:82.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c419" class="pdf-char" style="left:92.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">过</span>
+<span id="p69_c420" class="pdf-char" style="left:103.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">各</span>
+<span id="p69_c421" class="pdf-char" style="left:113.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">种</span>
+<span id="p69_c422" class="pdf-char" style="left:124.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">各</span>
+<span id="p69_c423" class="pdf-char" style="left:134.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">样</span>
+<span id="p69_c424" class="pdf-char" style="left:145.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c425" class="pdf-char" style="left:155.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">体</span>
+<span id="p69_c426" class="pdf-char" style="left:166.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">验</span>
+<span id="p69_c427" class="pdf-char" style="left:176.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">来</span>
+<span id="p69_c428" class="pdf-char" style="left:187.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">丰</span>
+<span id="p69_c429" class="pdf-char" style="left:197.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">富</span>
+<span id="p69_c430" class="pdf-char" style="left:208.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">自</span>
+<span id="p69_c431" class="pdf-char" style="left:218.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">己</span>
+<span id="p69_c432" class="pdf-char" style="left:229.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c433" class="pdf-char" style="left:239.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">人</span>
+<span id="p69_c434" class="pdf-char" style="left:250.38px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">生</span>
+<span id="p69_c435" class="pdf-char" style="left:260.88px;top:413.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c436" class="pdf-char" style="left:45.38px;top:455.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;">4</span>
+<span id="p69_c437" class="pdf-char" style="left:50.63px;top:455.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;">.</span>
+<span id="p69_c438" class="pdf-char" style="left:55.88px;top:455.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;"> </span>
+<span id="p69_c439" class="pdf-char" style="left:61.13px;top:455.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#c63d96;">S</span>
+<span id="p69_c440" class="pdf-char" style="left:67.69px;top:455.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">な</span>
+<span id="p69_c441" class="pdf-char" style="left:78.19px;top:455.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">あ</span>
+<span id="p69_c442" class="pdf-char" style="left:68.37px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#c63d96;">◆</span>
+<span id="p69_c443" class="pdf-char" style="left:78.87px;top:476.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;"> </span>
+<span id="p69_c444" class="pdf-char" style="left:84.12px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">本</span>
+<span id="p69_c445" class="pdf-char" style="left:94.62px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">当</span>
+<span id="p69_c446" class="pdf-char" style="left:105.12px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">に</span>
+<span id="p69_c447" class="pdf-char" style="left:115.62px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">静</span>
+<span id="p69_c448" class="pdf-char" style="left:126.12px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p69_c449" class="pdf-char" style="left:136.62px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p69_c450" class="pdf-char" style="left:147.12px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c451" class="pdf-char" style="left:157.62px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c452" class="pdf-char" style="left:168.12px;top:476.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c453" class="pdf-char" style="left:66.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">助</span>
+<span id="p69_c454" class="pdf-char" style="left:76.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">词</span>
+<span id="p69_c455" class="pdf-char" style="left:87.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">“</span>
+<span id="p69_c456" class="pdf-char" style="left:97.88px;top:497.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c457" class="pdf-char" style="left:108.38px;top:497.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c458" class="pdf-char" style="left:118.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">”</span>
+<span id="p69_c459" class="pdf-char" style="left:129.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">前</span>
+<span id="p69_c460" class="pdf-char" style="left:139.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">接</span>
+<span id="p69_c461" class="pdf-char" style="left:150.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">简</span>
+<span id="p69_c462" class="pdf-char" style="left:160.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">体</span>
+<span id="p69_c463" class="pdf-char" style="left:171.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">句</span>
+<span id="p69_c464" class="pdf-char" style="left:181.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c465" class="pdf-char" style="left:192.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">表</span>
+<span id="p69_c466" class="pdf-char" style="left:202.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">示</span>
+<span id="p69_c467" class="pdf-char" style="left:213.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">说</span>
+<span id="p69_c468" class="pdf-char" style="left:223.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">话</span>
+<span id="p69_c469" class="pdf-char" style="left:234.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">人</span>
+<span id="p69_c470" class="pdf-char" style="left:244.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">强</span>
+<span id="p69_c471" class="pdf-char" style="left:255.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">烈</span>
+<span id="p69_c472" class="pdf-char" style="left:265.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c473" class="pdf-char" style="left:276.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">感</span>
+<span id="p69_c474" class="pdf-char" style="left:286.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">叹</span>
+<span id="p69_c475" class="pdf-char" style="left:297.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c476" class="pdf-char" style="left:307.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">通</span>
+<span id="p69_c477" class="pdf-char" style="left:318.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">常</span>
+<span id="p69_c478" class="pdf-char" style="left:328.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">用</span>
+<span id="p69_c479" class="pdf-char" style="left:339.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">于</span>
+<span id="p69_c480" class="pdf-char" style="left:349.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">口</span>
+<span id="p69_c481" class="pdf-char" style="left:360.38px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">语</span>
+<span id="p69_c482" class="pdf-char" style="left:370.88px;top:497.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c483" class="pdf-char" style="left:65.38px;top:518.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c484" class="pdf-char" style="left:70.63px;top:518.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">1</span>
+<span id="p69_c485" class="pdf-char" style="left:75.88px;top:518.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c486" class="pdf-char" style="left:82.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">お</span>
+<span id="p69_c487" class="pdf-char" style="left:92.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">母</span>
+<span id="p69_c488" class="pdf-char" style="left:103.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">さ</span>
+<span id="p69_c489" class="pdf-char" style="left:113.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ん</span>
+<span id="p69_c490" class="pdf-char" style="left:124.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">が</span>
+<span id="p69_c491" class="pdf-char" style="left:134.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">作</span>
+<span id="p69_c492" class="pdf-char" style="left:145.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">っ</span>
+<span id="p69_c493" class="pdf-char" style="left:155.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c494" class="pdf-char" style="left:166.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">料</span>
+<span id="p69_c495" class="pdf-char" style="left:176.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">理</span>
+<span id="p69_c496" class="pdf-char" style="left:187.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">、</span>
+<span id="p69_c497" class="pdf-char" style="left:197.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">食</span>
+<span id="p69_c498" class="pdf-char" style="left:208.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">べ</span>
+<span id="p69_c499" class="pdf-char" style="left:218.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c500" class="pdf-char" style="left:229.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c501" class="pdf-char" style="left:239.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c502" class="pdf-char" style="left:250.44px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c503" class="pdf-char" style="left:260.94px;top:518.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c504" class="pdf-char" style="left:271.44px;top:518.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c505" class="pdf-char" style="left:278.01px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">我</span>
+<span id="p69_c506" class="pdf-char" style="left:288.51px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">好</span>
+<span id="p69_c507" class="pdf-char" style="left:299.01px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">想</span>
+<span id="p69_c508" class="pdf-char" style="left:309.51px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">吃</span>
+<span id="p69_c509" class="pdf-char" style="left:320.01px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">妈</span>
+<span id="p69_c510" class="pdf-char" style="left:330.51px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">妈</span>
+<span id="p69_c511" class="pdf-char" style="left:341.01px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">做</span>
+<span id="p69_c512" class="pdf-char" style="left:351.51px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c513" class="pdf-char" style="left:362.01px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">饭</span>
+<span id="p69_c514" class="pdf-char" style="left:372.51px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">菜</span>
+<span id="p69_c515" class="pdf-char" style="left:383.01px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">啊</span>
+<span id="p69_c516" class="pdf-char" style="left:393.51px;top:518.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c517" class="pdf-char" style="left:65.38px;top:539.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c518" class="pdf-char" style="left:70.63px;top:539.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">2</span>
+<span id="p69_c519" class="pdf-char" style="left:75.88px;top:539.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c520" class="pdf-char" style="left:82.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">李</span>
+<span id="p69_c521" class="pdf-char" style="left:92.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">さ</span>
+<span id="p69_c522" class="pdf-char" style="left:103.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ん</span>
+<span id="p69_c523" class="pdf-char" style="left:113.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c524" class="pdf-char" style="left:124.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">誕</span>
+<span id="p69_c525" class="pdf-char" style="left:134.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">生</span>
+<span id="p69_c526" class="pdf-char" style="left:145.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">日</span>
+<span id="p69_c527" class="pdf-char" style="left:155.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">パ</span>
+<span id="p69_c528" class="pdf-char" style="left:166.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c529" class="pdf-char" style="left:176.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">テ</span>
+<span id="p69_c530" class="pdf-char" style="left:187.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ィ</span>
+<span id="p69_c531" class="pdf-char" style="left:197.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c532" class="pdf-char" style="left:208.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c533" class="pdf-char" style="left:218.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">本</span>
+<span id="p69_c534" class="pdf-char" style="left:229.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">当</span>
+<span id="p69_c535" class="pdf-char" style="left:239.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">に</span>
+<span id="p69_c536" class="pdf-char" style="left:250.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">楽</span>
+<span id="p69_c537" class="pdf-char" style="left:260.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c538" class="pdf-char" style="left:271.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p69_c539" class="pdf-char" style="left:281.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">っ</span>
+<span id="p69_c540" class="pdf-char" style="left:292.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c541" class="pdf-char" style="left:302.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c542" class="pdf-char" style="left:313.44px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c543" class="pdf-char" style="left:323.94px;top:539.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c544" class="pdf-char" style="left:334.44px;top:539.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c545" class="pdf-char" style="left:341.01px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">小</span>
+<span id="p69_c546" class="pdf-char" style="left:351.51px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">李</span>
+<span id="p69_c547" class="pdf-char" style="left:362.01px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c548" class="pdf-char" style="left:372.51px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">庆</span>
+<span id="p69_c549" class="pdf-char" style="left:383.01px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">生</span>
+<span id="p69_c550" class="pdf-char" style="left:393.51px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">会</span>
+<span id="p69_c551" class="pdf-char" style="left:404.01px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">真</span>
+<span id="p69_c552" class="pdf-char" style="left:414.51px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">开</span>
+<span id="p69_c553" class="pdf-char" style="left:425.01px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">心</span>
+<span id="p69_c554" class="pdf-char" style="left:435.51px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">啊</span>
+<span id="p69_c555" class="pdf-char" style="left:446.01px;top:539.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c556" class="pdf-char" style="left:65.38px;top:560.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c557" class="pdf-char" style="left:70.63px;top:560.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">3</span>
+<span id="p69_c558" class="pdf-char" style="left:75.88px;top:560.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c559" class="pdf-char" style="left:82.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c560" class="pdf-char" style="left:92.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p69_c561" class="pdf-char" style="left:103.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c562" class="pdf-char" style="left:113.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c563" class="pdf-char" style="left:124.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">日</span>
+<span id="p69_c564" class="pdf-char" style="left:134.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">本</span>
+<span id="p69_c565" class="pdf-char" style="left:145.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">語</span>
+<span id="p69_c566" class="pdf-char" style="left:155.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c567" class="pdf-char" style="left:166.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">テ</span>
+<span id="p69_c568" class="pdf-char" style="left:176.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ス</span>
+<span id="p69_c569" class="pdf-char" style="left:187.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ト</span>
+<span id="p69_c570" class="pdf-char" style="left:197.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">が</span>
+<span id="p69_c571" class="pdf-char" style="left:208.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c572" class="pdf-char" style="left:218.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">る</span>
+<span id="p69_c573" class="pdf-char" style="left:229.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c574" class="pdf-char" style="left:239.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">緊</span>
+<span id="p69_c575" class="pdf-char" style="left:250.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">張</span>
+<span id="p69_c576" class="pdf-char" style="left:260.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p69_c577" class="pdf-char" style="left:271.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">る</span>
+<span id="p69_c578" class="pdf-char" style="left:281.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c579" class="pdf-char" style="left:292.44px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c580" class="pdf-char" style="left:302.94px;top:560.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c581" class="pdf-char" style="left:313.44px;top:560.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c582" class="pdf-char" style="left:320.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">明</span>
+<span id="p69_c583" class="pdf-char" style="left:330.51px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">天</span>
+<span id="p69_c584" class="pdf-char" style="left:341.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">有</span>
+<span id="p69_c585" class="pdf-char" style="left:351.51px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">日</span>
+<span id="p69_c586" class="pdf-char" style="left:362.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">语</span>
+<span id="p69_c587" class="pdf-char" style="left:372.51px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">测</span>
+<span id="p69_c588" class="pdf-char" style="left:383.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">验</span>
+<span id="p69_c589" class="pdf-char" style="left:393.51px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c590" class="pdf-char" style="left:404.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">好</span>
+<span id="p69_c591" class="pdf-char" style="left:414.51px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">紧</span>
+<span id="p69_c592" class="pdf-char" style="left:425.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">张</span>
+<span id="p69_c593" class="pdf-char" style="left:435.51px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">啊</span>
+<span id="p69_c594" class="pdf-char" style="left:446.01px;top:560.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c595" class="pdf-char" style="left:65.38px;top:581.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c596" class="pdf-char" style="left:70.63px;top:581.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">4</span>
+<span id="p69_c597" class="pdf-char" style="left:75.88px;top:581.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c598" class="pdf-char" style="left:82.54px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">お</span>
+<span id="p69_c599" class="pdf-char" style="left:93.28px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">腹</span>
+<span id="p69_c600" class="pdf-char" style="left:104.04px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">が</span>
+<span id="p69_c601" class="pdf-char" style="left:114.79px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">空</span>
+<span id="p69_c602" class="pdf-char" style="left:125.54px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c603" class="pdf-char" style="left:136.29px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c604" class="pdf-char" style="left:147.04px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c605" class="pdf-char" style="left:157.80px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c606" class="pdf-char" style="left:168.30px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c607" class="pdf-char" style="left:179.05px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">朝</span>
+<span id="p69_c608" class="pdf-char" style="left:189.80px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p69_c609" class="pdf-char" style="left:200.55px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ら</span>
+<span id="p69_c610" class="pdf-char" style="left:211.30px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">何</span>
+<span id="p69_c611" class="pdf-char" style="left:222.06px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">も</span>
+<span id="p69_c612" class="pdf-char" style="left:232.81px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">食</span>
+<span id="p69_c613" class="pdf-char" style="left:243.56px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">べ</span>
+<span id="p69_c614" class="pdf-char" style="left:254.31px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p69_c615" class="pdf-char" style="left:265.06px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c616" class="pdf-char" style="left:275.82px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c617" class="pdf-char" style="left:286.57px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c618" class="pdf-char" style="left:297.32px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ん</span>
+<span id="p69_c619" class="pdf-char" style="left:308.07px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p69_c620" class="pdf-char" style="left:318.57px;top:581.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c621" class="pdf-char" style="left:328.99px;top:581.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c622" class="pdf-char" style="left:335.65px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">肚</span>
+<span id="p69_c623" class="pdf-char" style="left:346.40px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">子</span>
+<span id="p69_c624" class="pdf-char" style="left:357.15px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">好</span>
+<span id="p69_c625" class="pdf-char" style="left:367.91px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">饿</span>
+<span id="p69_c626" class="pdf-char" style="left:378.66px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">啊</span>
+<span id="p69_c627" class="pdf-char" style="left:389.16px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c628" class="pdf-char" style="left:399.91px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">我</span>
+<span id="p69_c629" class="pdf-char" style="left:410.66px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">从</span>
+<span id="p69_c630" class="pdf-char" style="left:421.41px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">早</span>
+<span id="p69_c631" class="pdf-char" style="left:432.17px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">上</span>
+<span id="p69_c632" class="pdf-char" style="left:442.92px;top:581.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">到</span>
+<span id="p69_c633" class="pdf-char" style="left:82.38px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">现</span>
+<span id="p69_c634" class="pdf-char" style="left:92.88px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">在</span>
+<span id="p69_c635" class="pdf-char" style="left:103.38px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">什</span>
+<span id="p69_c636" class="pdf-char" style="left:113.88px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">么</span>
+<span id="p69_c637" class="pdf-char" style="left:124.38px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">都</span>
+<span id="p69_c638" class="pdf-char" style="left:134.88px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">没</span>
+<span id="p69_c639" class="pdf-char" style="left:145.38px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">吃</span>
+<span id="p69_c640" class="pdf-char" style="left:155.88px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">呢</span>
+<span id="p69_c641" class="pdf-char" style="left:166.38px;top:602.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c642" class="pdf-char" style="left:65.38px;top:623.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c643" class="pdf-char" style="left:70.63px;top:623.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">5</span>
+<span id="p69_c644" class="pdf-char" style="left:75.88px;top:623.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c645" class="pdf-char" style="left:82.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">今</span>
+<span id="p69_c646" class="pdf-char" style="left:92.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">日</span>
+<span id="p69_c647" class="pdf-char" style="left:103.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p69_c648" class="pdf-char" style="left:113.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">昼</span>
+<span id="p69_c649" class="pdf-char" style="left:124.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ご</span>
+<span id="p69_c650" class="pdf-char" style="left:134.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">飯</span>
+<span id="p69_c651" class="pdf-char" style="left:145.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p69_c652" class="pdf-char" style="left:155.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p69_c653" class="pdf-char" style="left:166.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">た</span>
+<span id="p69_c654" class="pdf-char" style="left:176.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ラ</span>
+<span id="p69_c655" class="pdf-char" style="left:187.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ー</span>
+<span id="p69_c656" class="pdf-char" style="left:197.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">メ</span>
+<span id="p69_c657" class="pdf-char" style="left:208.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ン</span>
+<span id="p69_c658" class="pdf-char" style="left:218.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p69_c659" class="pdf-char" style="left:229.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c660" class="pdf-char" style="left:239.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">嫌</span>
+<span id="p69_c661" class="pdf-char" style="left:250.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p69_c662" class="pdf-char" style="left:260.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c663" class="pdf-char" style="left:271.44px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c664" class="pdf-char" style="left:281.94px;top:623.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c665" class="pdf-char" style="left:292.44px;top:623.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c666" class="pdf-char" style="left:299.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">今</span>
+<span id="p69_c667" class="pdf-char" style="left:309.51px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">天</span>
+<span id="p69_c668" class="pdf-char" style="left:320.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">午</span>
+<span id="p69_c669" class="pdf-char" style="left:330.51px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">饭</span>
+<span id="p69_c670" class="pdf-char" style="left:341.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">又</span>
+<span id="p69_c671" class="pdf-char" style="left:351.51px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">是</span>
+<span id="p69_c672" class="pdf-char" style="left:362.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">拉</span>
+<span id="p69_c673" class="pdf-char" style="left:372.51px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">面</span>
+<span id="p69_c674" class="pdf-char" style="left:383.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">，</span>
+<span id="p69_c675" class="pdf-char" style="left:393.51px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">好</span>
+<span id="p69_c676" class="pdf-char" style="left:404.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">烦</span>
+<span id="p69_c677" class="pdf-char" style="left:414.51px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">啊</span>
+<span id="p69_c678" class="pdf-char" style="left:425.01px;top:623.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c679" class="pdf-char" style="left:65.38px;top:644.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">(</span>
+<span id="p69_c680" class="pdf-char" style="left:70.63px;top:644.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">6</span>
+<span id="p69_c681" class="pdf-char" style="left:75.88px;top:644.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">)</span>
+<span id="p69_c682" class="pdf-char" style="left:82.44px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">高</span>
+<span id="p69_c683" class="pdf-char" style="left:92.94px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p69_c684" class="pdf-char" style="left:103.44px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">山</span>
+<span id="p69_c685" class="pdf-char" style="left:113.94px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p69_c686" class="pdf-char" style="left:124.44px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p69_c687" class="pdf-char" style="left:134.94px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">あ</span>
+<span id="p69_c688" class="pdf-char" style="left:145.44px;top:644.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c689" class="pdf-char" style="left:155.94px;top:644.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">/</span>
+<span id="p69_c690" class="pdf-char" style="left:162.51px;top:644.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">好</span>
+<span id="p69_c691" class="pdf-char" style="left:173.01px;top:644.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">高</span>
+<span id="p69_c692" class="pdf-char" style="left:183.51px;top:644.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">的</span>
+<span id="p69_c693" class="pdf-char" style="left:194.01px;top:644.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">山</span>
+<span id="p69_c694" class="pdf-char" style="left:204.51px;top:644.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">啊</span>
+<span id="p69_c695" class="pdf-char" style="left:215.01px;top:644.36px;width:10.50px;height:12.35px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p69_c696" class="pdf-char" style="left:89.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">仅</span>
+<span id="p69_c697" class="pdf-char" style="left:107.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">供</span>
+<span id="p69_c698" class="pdf-char" style="left:125.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">个</span>
+<span id="p69_c699" class="pdf-char" style="left:143.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">人</span>
+<span id="p69_c700" class="pdf-char" style="left:161.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">学</span>
+<span id="p69_c701" class="pdf-char" style="left:179.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">习</span>
+<span id="p69_c702" class="pdf-char" style="left:197.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">使</span>
+<span id="p69_c703" class="pdf-char" style="left:215.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">用</span>
+<span id="p69_c704" class="pdf-char" style="left:233.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">，</span>
+<span id="p69_c705" class="pdf-char" style="left:251.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">未</span>
+<span id="p69_c706" class="pdf-char" style="left:269.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">经</span>
+<span id="p69_c707" class="pdf-char" style="left:287.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">授</span>
+<span id="p69_c708" class="pdf-char" style="left:305.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">权</span>
+<span id="p69_c709" class="pdf-char" style="left:323.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">不</span>
+<span id="p69_c710" class="pdf-char" style="left:341.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">得</span>
+<span id="p69_c711" class="pdf-char" style="left:359.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">另</span>
+<span id="p69_c712" class="pdf-char" style="left:377.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">做</span>
+<span id="p69_c713" class="pdf-char" style="left:395.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">他</span>
+<span id="p69_c714" class="pdf-char" style="left:413.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">用</span>
+          </div>
+          <div class="overlay">
+            <div class="point-hotspot sentence" data-id="hotspot_69_0"><div class="sentence-hit" style="left:78.48px;top:77.66px;width:244.80px;height:10.50px;" title="「八百屋」は野菜や果物などを売る店のことです。"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="0" style="left:89.14px;top:77.66px;width:31.81px;height:10.50px;" title="单击读整句，双击单独读词：八百屋"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="1" style="left:131.77px;top:77.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：は"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="2" style="left:142.42px;top:77.66px;width:21.16px;height:10.50px;" title="单击读整句，双击单独读词：野菜"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="3" style="left:163.74px;top:77.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：や"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="4" style="left:174.39px;top:77.66px;width:21.16px;height:10.50px;" title="单击读整句，双击单独读词：果物"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="5" style="left:195.71px;top:77.66px;width:31.81px;height:10.50px;" title="单击读整句，双击单独读词：などを"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="6" style="left:227.68px;top:77.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：売"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="7" style="left:238.34px;top:77.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：る"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="8" style="left:248.99px;top:77.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：店"></div><div class="word-hit" data-hid="hotspot_69_0" data-widx="9" style="left:259.65px;top:77.66px;width:53.13px;height:10.50px;" title="单击读整句，双击单独读词：のことです"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_2"><div class="sentence-hit" style="left:318.22px;top:119.36px;width:135.17px;height:12.35px;" title="/这里的“ノート”是指笔记本电脑。"></div><div class="sentence-hit" style="left:82.35px;top:140.36px;width:42.00px;height:12.35px;" title="/这里的“ノート”是指笔记本电脑。"></div><div class="word-hit" data-hid="hotspot_69_2" data-widx="0" style="left:324.87px;top:119.36px;width:32.01px;height:12.35px;" title="单击读整句，双击单独读词：这里的"></div><div class="word-hit" data-hid="hotspot_69_2" data-widx="1" style="left:367.63px;top:119.36px;width:32.00px;height:12.35px;" title="单击读整句，双击单独读词：ノート"></div><div class="word-hit" data-hid="hotspot_69_2" data-widx="2" style="left:410.64px;top:119.36px;width:42.75px;height:12.35px;" title="单击读整句，双击单独读词：是指笔记本电脑"></div><div class="word-hit" data-hid="hotspot_69_2" data-widx="2" style="left:82.35px;top:140.36px;width:31.50px;height:12.35px;" title="单击读整句，双击单独读词：是指笔记本电脑"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_3"><div class="sentence-hit" style="left:61.10px;top:182.66px;width:48.56px;height:10.50px;" title="Nを通して◆ この俳句を通して、作者が伝えたいことは何だと思いますか。"></div><div class="sentence-hit" style="left:68.35px;top:203.66px;width:309.75px;height:10.50px;" title="Nを通して◆ この俳句を通して、作者が伝えたいことは何だと思いますか。"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="0" style="left:61.10px;top:182.66px;width:5.25px;height:10.50px;" title="单击读整句，双击单独读词：N"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="1" style="left:67.66px;top:182.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：を"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="2" style="left:78.16px;top:182.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：通"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="3" style="left:88.66px;top:182.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：して"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="4" style="left:84.10px;top:203.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：この"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="5" style="left:105.10px;top:203.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：俳句"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="6" style="left:126.10px;top:203.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：を"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="7" style="left:136.60px;top:203.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：通"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="8" style="left:147.10px;top:203.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：して"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="10" style="left:178.60px;top:203.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：作者"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="11" style="left:199.60px;top:203.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：が"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="12" style="left:210.10px;top:203.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：伝"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="13" style="left:220.60px;top:203.66px;width:63.00px;height:10.50px;" title="单击读整句，双击单独读词：えたいことは"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="14" style="left:283.60px;top:203.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：何"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="15" style="left:294.10px;top:203.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：だと"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="16" style="left:315.10px;top:203.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：思"></div><div class="word-hit" data-hid="hotspot_69_3" data-widx="17" style="left:325.60px;top:203.66px;width:42.00px;height:10.50px;" title="单击读整句，双击单独读词：いますか"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_9"><div class="sentence-hit" style="left:82.44px;top:518.66px;width:189.00px;height:10.50px;" title="お母さんが作った料理、食べたいなあ。"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="0" style="left:82.44px;top:518.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：お"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="1" style="left:92.94px;top:518.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：母"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="2" style="left:103.44px;top:518.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：さんが"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="3" style="left:134.94px;top:518.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：作"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="4" style="left:145.44px;top:518.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：った"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="5" style="left:166.44px;top:518.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：料理"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="7" style="left:197.94px;top:518.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：食"></div><div class="word-hit" data-hid="hotspot_69_9" data-widx="8" style="left:208.44px;top:518.66px;width:52.50px;height:10.50px;" title="单击读整句，双击单独读词：べたいなあ"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_10"><div class="sentence-hit" style="left:82.44px;top:539.66px;width:252.00px;height:10.50px;" title="李さんの誕生日パーティーは本当に楽しかったなあ。"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="0" style="left:82.44px;top:539.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：李"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="1" style="left:92.94px;top:539.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：さんの"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="2" style="left:124.44px;top:539.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：誕生日"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="3" style="left:155.94px;top:539.66px;width:52.50px;height:10.50px;" title="单击读整句，双击单独读词：パーティー"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="4" style="left:208.44px;top:539.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：は"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="5" style="left:218.94px;top:539.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：本当"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="6" style="left:239.94px;top:539.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：に"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="7" style="left:250.44px;top:539.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：楽"></div><div class="word-hit" data-hid="hotspot_69_10" data-widx="8" style="left:260.94px;top:539.66px;width:63.00px;height:10.50px;" title="单击读整句，双击单独读词：しかったなあ"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_11"><div class="sentence-hit" style="left:82.44px;top:560.66px;width:157.50px;height:10.50px;" title="あしたは日本語のテストがある。"></div><div class="word-hit" data-hid="hotspot_69_11" data-widx="0" style="left:82.44px;top:560.66px;width:42.00px;height:10.50px;" title="单击读整句，双击单独读词：あしたは"></div><div class="word-hit" data-hid="hotspot_69_11" data-widx="1" style="left:124.44px;top:560.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：日本語"></div><div class="word-hit" data-hid="hotspot_69_11" data-widx="2" style="left:155.94px;top:560.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：の"></div><div class="word-hit" data-hid="hotspot_69_11" data-widx="3" style="left:166.44px;top:560.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：テスト"></div><div class="word-hit" data-hid="hotspot_69_11" data-widx="4" style="left:197.94px;top:560.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：が"></div><div class="word-hit" data-hid="hotspot_69_11" data-widx="5" style="left:208.44px;top:560.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：ある"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_12"><div class="sentence-hit" style="left:239.94px;top:560.66px;width:73.50px;height:10.50px;" title="緊張するなあ。"></div><div class="word-hit" data-hid="hotspot_69_12" data-widx="0" style="left:239.94px;top:560.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：緊張"></div><div class="word-hit" data-hid="hotspot_69_12" data-widx="1" style="left:260.94px;top:560.66px;width:42.00px;height:10.50px;" title="单击读整句，双击单独读词：するなあ"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_13"><div class="sentence-hit" style="left:82.54px;top:581.66px;width:96.26px;height:10.50px;" title="お腹が空いたなあ。"></div><div class="word-hit" data-hid="hotspot_69_13" data-widx="0" style="left:82.54px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：お"></div><div class="word-hit" data-hid="hotspot_69_13" data-widx="1" style="left:93.28px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：腹"></div><div class="word-hit" data-hid="hotspot_69_13" data-widx="2" style="left:104.04px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：が"></div><div class="word-hit" data-hid="hotspot_69_13" data-widx="3" style="left:114.79px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：空"></div><div class="word-hit" data-hid="hotspot_69_13" data-widx="4" style="left:125.54px;top:581.66px;width:42.76px;height:10.50px;" title="单击读整句，双击单独读词：いたなあ"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_14"><div class="sentence-hit" style="left:179.05px;top:581.66px;width:150.02px;height:10.50px;" title="朝から何も食べていないんだ。"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="0" style="left:179.05px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：朝"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="1" style="left:189.80px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：か"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="2" style="left:200.55px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：ら"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="3" style="left:211.30px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：何"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="4" style="left:222.06px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：も"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="5" style="left:232.81px;top:581.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：食"></div><div class="word-hit" data-hid="hotspot_69_14" data-widx="6" style="left:243.56px;top:581.66px;width:75.01px;height:10.50px;" title="单击读整句，双击单独读词：べていないんだ"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_16"><div class="sentence-hit" style="left:239.94px;top:623.66px;width:52.50px;height:10.50px;" title="嫌だなあ。"></div><div class="word-hit" data-hid="hotspot_69_16" data-widx="0" style="left:239.94px;top:623.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：嫌"></div><div class="word-hit" data-hid="hotspot_69_16" data-widx="1" style="left:250.44px;top:623.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：だなあ"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_69_17"><div class="sentence-hit" style="left:82.44px;top:644.66px;width:73.50px;height:10.50px;" title="高い山だなあ。"></div><div class="word-hit" data-hid="hotspot_69_17" data-widx="0" style="left:82.44px;top:644.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：高"></div><div class="word-hit" data-hid="hotspot_69_17" data-widx="1" style="left:92.94px;top:644.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：い"></div><div class="word-hit" data-hid="hotspot_69_17" data-widx="2" style="left:103.44px;top:644.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：山"></div><div class="word-hit" data-hid="hotspot_69_17" data-widx="3" style="left:113.94px;top:644.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：だなあ"></div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside id="pointPanel">
+      <button class="panel-toggle" id="panelToggleBtn" type="button" aria-expanded="false" aria-controls="pointPanelContent">点读列表</button>
+      <div class="panel-toggle-wrapper">
+        <h2 class="panel-toggle-title">点读列表</h2>
+        <button type="button" class="panel-close-btn" id="panelCloseBtn">✕ 关闭</button>
+      </div>
+      <div id="pointPanelContent" class="panel-content">
+        <div class="sidebar-header">
+          <p style="margin-bottom:6px;">单击读整句（逐词高亮）；双击单词单独发音。</p>
+          <div style="font-size:12px;display:flex;align-items:center;gap:6px;color:#475569;">
+            <span class="audio-badge source">原声</span>教材原声切片
+            <span class="audio-badge synth" style="margin-left:6px;">合成</span>AI语音合成
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <ul class="point-list">
+            <li class="point-item sentence" data-id="hotspot_69_0"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">「八百屋」は野菜や果物などを売る店のことです。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_2"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">/这里的“ノート”是指笔记本电脑。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_3"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">Nを通して◆ この俳句を通して、作者が伝えたいことは何だと思いますか。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_9"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">お母さんが作った料理、食べたいなあ。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_10"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">李さんの誕生日パーティーは本当に楽しかったなあ。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_11"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">あしたは日本語のテストがある。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_12"><span class="badge badge-sentence">整句</span><span class="audio-badge tts">合成</span><span class="item-text">緊張するなあ。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_13"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">お腹が空いたなあ。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_14"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">朝から何も食べていないんだ。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_16"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">嫌だなあ。</span></li>
+<li class="point-item sentence" data-id="hotspot_69_17"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">高い山だなあ。</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const hotspots = [{"id": "hotspot_69_0", "text": "「八百屋」は野菜や果物などを売る店のことです。", "kind": "sentence", "bbox": [78.48, 77.66, 323.28, 88.16], "rects": [[78.48, 77.66, 323.28, 88.16]], "char_ids": ["p69_c46", "p69_c47", "p69_c48", "p69_c49", "p69_c50", "p69_c51", "p69_c52", "p69_c53", "p69_c54", "p69_c55", "p69_c56", "p69_c57", "p69_c58", "p69_c59", "p69_c60", "p69_c61", "p69_c62", "p69_c63", "p69_c64", "p69_c65", "p69_c66", "p69_c67", "p69_c68"], "audioSrc": "audio/7daf463c41d58d5c.mp3", "words": [{"word": "八百屋", "char_ids": ["p69_c47", "p69_c48", "p69_c49"], "is_punct": false, "audioSrc": "audio/60e46f6d6a747995.mp3", "rect": [89.14, 77.66, 120.95, 88.16], "rects": [[89.14, 77.66, 120.95, 88.16]], "start": 0.0, "end": 0.64}, {"word": "は", "char_ids": ["p69_c51"], "is_punct": false, "audioSrc": "audio/1fa0519cfd095c24.mp3", "rect": [131.77, 77.66, 142.27, 88.16], "rects": [[131.77, 77.66, 142.27, 88.16]], "start": 0.64, "end": 0.88}, {"word": "野菜", "char_ids": ["p69_c52", "p69_c53"], "is_punct": false, "audioSrc": "audio/dac5927ab5177f69.mp3", "rect": [142.42, 77.66, 163.58, 88.16], "rects": [[142.42, 77.66, 163.58, 88.16]], "start": 0.88, "end": 1.26}, {"word": "や", "char_ids": ["p69_c54"], "is_punct": false, "audioSrc": "audio/bdab1b17397deeba.mp3", "rect": [163.74, 77.66, 174.24, 88.16], "rects": [[163.74, 77.66, 174.24, 88.16]], "start": 1.26, "end": 1.46}, {"word": "果物", "char_ids": ["p69_c55", "p69_c56"], "is_punct": false, "audioSrc": "audio/c5d04a4971561881.mp3", "rect": [174.39, 77.66, 195.55, 88.16], "rects": [[174.39, 77.66, 195.55, 88.16]], "start": 1.46, "end": 1.98}, {"word": "などを", "char_ids": ["p69_c57", "p69_c58", "p69_c59"], "is_punct": false, "audioSrc": "audio/7f4113b7a0272dcd.mp3", "rect": [195.71, 77.66, 227.52, 88.16], "rects": [[195.71, 77.66, 227.52, 88.16]], "start": 1.98, "end": 2.5}, {"word": "売", "char_ids": ["p69_c60"], "is_punct": false, "audioSrc": "audio/dc81f782a7d39963.mp3", "rect": [227.68, 77.66, 238.18, 88.16], "rects": [[227.68, 77.66, 238.18, 88.16]], "start": 2.5, "end": 2.64}, {"word": "る", "char_ids": ["p69_c61"], "is_punct": false, "audioSrc": "audio/ffab9d02a311a737.mp3", "rect": [238.34, 77.66, 248.84, 88.16], "rects": [[238.34, 77.66, 248.84, 88.16]], "start": 2.64, "end": 2.74}, {"word": "店", "char_ids": ["p69_c62"], "is_punct": false, "audioSrc": "audio/22df192e24c152ea.mp3", "rect": [248.99, 77.66, 259.49, 88.16], "rects": [[248.99, 77.66, 259.49, 88.16]], "start": 2.74, "end": 2.9}, {"word": "のことです", "char_ids": ["p69_c63", "p69_c64", "p69_c65", "p69_c66", "p69_c67"], "is_punct": false, "audioSrc": "audio/b877d06521f9c01f.mp3", "rect": [259.65, 77.66, 312.78, 88.16], "rects": [[259.65, 77.66, 312.78, 88.16]], "start": 2.9, "end": 3.54}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_2", "text": "/这里的“ノート”是指笔记本电脑。", "kind": "sentence", "bbox": [82.35, 119.36, 453.39, 152.71], "rects": [[318.22, 119.36, 453.39, 131.71], [82.35, 140.36, 124.35, 152.71]], "char_ids": ["p69_c113", "p69_c114", "p69_c115", "p69_c116", "p69_c117", "p69_c118", "p69_c119", "p69_c120", "p69_c121", "p69_c122", "p69_c123", "p69_c124", "p69_c125", "p69_c126", "p69_c127", "p69_c128", "p69_c129"], "audioSrc": "audio/137a4bbe97fb3c29.mp3", "words": [{"word": "这里的", "char_ids": ["p69_c114", "p69_c115", "p69_c116"], "is_punct": false, "audioSrc": "audio/98c3e8f6c64863ce.mp3", "rect": [324.87, 119.36, 356.88, 131.71], "rects": [[324.87, 119.36, 356.88, 131.71]], "start": 0.0, "end": 0.37}, {"word": "ノート", "char_ids": ["p69_c118", "p69_c119", "p69_c120"], "is_punct": false, "audioSrc": "audio/ac3e6d2e7121b291.mp3", "rect": [367.63, 119.36, 399.63, 131.71], "rects": [[367.63, 119.36, 399.63, 131.71]], "start": 0.5, "end": 0.87}, {"word": "是指笔记本电脑", "char_ids": ["p69_c122", "p69_c123", "p69_c124", "p69_c125", "p69_c126", "p69_c127", "p69_c128"], "is_punct": false, "audioSrc": "audio/1e3274652478264a.mp3", "rect": [410.64, 119.36, 453.39, 131.71], "rects": [[410.64, 119.36, 453.39, 131.71], [82.35, 140.36, 113.85, 152.71]], "start": 0.99, "end": 1.86}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_3", "text": "Nを通して◆ この俳句を通して、作者が伝えたいことは何だと思いますか。", "kind": "sentence", "bbox": [61.1, 182.66, 378.1, 214.16], "rects": [[61.1, 182.66, 109.66, 193.16], [68.35, 203.66, 378.1, 214.16]], "char_ids": ["p69_c133", "p69_c134", "p69_c135", "p69_c136", "p69_c137", "p69_c138", "p69_c139", "p69_c140", "p69_c141", "p69_c142", "p69_c143", "p69_c144", "p69_c145", "p69_c146", "p69_c147", "p69_c148", "p69_c149", "p69_c150", "p69_c151", "p69_c152", "p69_c153", "p69_c154", "p69_c155", "p69_c156", "p69_c157", "p69_c158", "p69_c159", "p69_c160", "p69_c161", "p69_c162", "p69_c163", "p69_c164", "p69_c165", "p69_c166", "p69_c167"], "audioSrc": "audio/87242b4a6d762775.mp3", "words": [{"word": "N", "char_ids": ["p69_c133"], "is_punct": false, "audioSrc": "audio/b51a60734da64be0.mp3", "rect": [61.1, 182.66, 66.35, 193.16], "rects": [[61.1, 182.66, 66.35, 193.16]], "start": 0.0, "end": 0.48}, {"word": "を", "char_ids": ["p69_c134"], "is_punct": false, "audioSrc": "audio/eba95ba0c66639b9.mp3", "rect": [67.66, 182.66, 78.16, 193.16], "rects": [[67.66, 182.66, 78.16, 193.16]], "start": 0.48, "end": 0.66}, {"word": "通", "char_ids": ["p69_c135"], "is_punct": false, "audioSrc": "audio/bef21932fe01c8ac.mp3", "rect": [78.16, 182.66, 88.66, 193.16], "rects": [[78.16, 182.66, 88.66, 193.16]], "start": 0.66, "end": 0.78}, {"word": "して", "char_ids": ["p69_c136", "p69_c137"], "is_punct": false, "audioSrc": "audio/3b4c1132d597ff17.mp3", "rect": [88.66, 182.66, 109.66, 193.16], "rects": [[88.66, 182.66, 109.66, 193.16]], "start": 0.78, "end": 1.08}, {"word": "この", "char_ids": ["p69_c140", "p69_c141"], "is_punct": false, "audioSrc": "audio/dc3e61880d43f3e3.mp3", "rect": [84.1, 203.66, 105.1, 214.16], "rects": [[84.1, 203.66, 105.1, 214.16]], "start": 1.08, "end": 1.36}, {"word": "俳句", "char_ids": ["p69_c142", "p69_c143"], "is_punct": false, "audioSrc": "audio/318ede5e42fcd50d.mp3", "rect": [105.1, 203.66, 126.1, 214.16], "rects": [[105.1, 203.66, 126.1, 214.16]], "start": 1.36, "end": 1.78}, {"word": "を", "char_ids": ["p69_c144"], "is_punct": false, "audioSrc": "audio/eba95ba0c66639b9.mp3", "rect": [126.1, 203.66, 136.6, 214.16], "rects": [[126.1, 203.66, 136.6, 214.16]], "start": 1.78, "end": 1.94}, {"word": "通", "char_ids": ["p69_c145"], "is_punct": false, "audioSrc": "audio/bef21932fe01c8ac.mp3", "rect": [136.6, 203.66, 147.1, 214.16], "rects": [[136.6, 203.66, 147.1, 214.16]], "start": 1.94, "end": 2.08}, {"word": "して", "char_ids": ["p69_c146", "p69_c147"], "is_punct": false, "audioSrc": "audio/3b4c1132d597ff17.mp3", "rect": [147.1, 203.66, 168.1, 214.16], "rects": [[147.1, 203.66, 168.1, 214.16]], "start": 2.08, "end": 2.44}, {"word": "、", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}, {"word": "作者", "char_ids": ["p69_c149", "p69_c150"], "is_punct": false, "audioSrc": "audio/698bea51247b5db4.mp3", "rect": [178.6, 203.66, 199.6, 214.16], "rects": [[178.6, 203.66, 199.6, 214.16]], "start": 2.44, "end": 3.22}, {"word": "が", "char_ids": ["p69_c151"], "is_punct": false, "audioSrc": "audio/a142816563b38903.mp3", "rect": [199.6, 203.66, 210.1, 214.16], "rects": [[199.6, 203.66, 210.1, 214.16]], "start": 3.22, "end": 3.38}, {"word": "伝", "char_ids": ["p69_c152"], "is_punct": false, "audioSrc": "audio/17b40d6d30ecf476.mp3", "rect": [210.1, 203.66, 220.6, 214.16], "rects": [[210.1, 203.66, 220.6, 214.16]], "start": 3.38, "end": 3.56}, {"word": "えたいことは", "char_ids": ["p69_c153", "p69_c154", "p69_c155", "p69_c156", "p69_c157", "p69_c158"], "is_punct": false, "audioSrc": "audio/210932ab09961ce4.mp3", "rect": [220.6, 203.66, 283.6, 214.16], "rects": [[220.6, 203.66, 283.6, 214.16]], "start": 3.56, "end": 4.38}, {"word": "何", "char_ids": ["p69_c159"], "is_punct": false, "audioSrc": "audio/4a9efaa77fc2059e.mp3", "rect": [283.6, 203.66, 294.1, 214.16], "rects": [[283.6, 203.66, 294.1, 214.16]], "start": 4.38, "end": 4.55}, {"word": "だと", "char_ids": ["p69_c160", "p69_c161"], "is_punct": false, "audioSrc": "audio/ec0664bad577309e.mp3", "rect": [294.1, 203.66, 315.1, 214.16], "rects": [[294.1, 203.66, 315.1, 214.16]], "start": 4.55, "end": 4.72}, {"word": "思", "char_ids": ["p69_c162"], "is_punct": false, "audioSrc": "audio/faf279e73f14bd60.mp3", "rect": [315.1, 203.66, 325.6, 214.16], "rects": [[315.1, 203.66, 325.6, 214.16]], "start": 4.72, "end": 4.8}, {"word": "いますか", "char_ids": ["p69_c163", "p69_c164", "p69_c165", "p69_c166"], "is_punct": false, "audioSrc": "audio/398d710d3e36ce66.mp3", "rect": [325.6, 203.66, 367.6, 214.16], "rects": [[325.6, 203.66, 367.6, 214.16]], "start": 4.8, "end": 5.56}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_9", "text": "お母さんが作った料理、食べたいなあ。", "kind": "sentence", "bbox": [82.44, 518.66, 271.44, 529.16], "rects": [[82.44, 518.66, 271.44, 529.16]], "char_ids": ["p69_c486", "p69_c487", "p69_c488", "p69_c489", "p69_c490", "p69_c491", "p69_c492", "p69_c493", "p69_c494", "p69_c495", "p69_c496", "p69_c497", "p69_c498", "p69_c499", "p69_c500", "p69_c501", "p69_c502", "p69_c503"], "audioSrc": "audio/2f92c5a56971d9c0.mp3", "words": [{"word": "お", "char_ids": ["p69_c486"], "is_punct": false, "audioSrc": "audio/ac6bc7de7112c02d.mp3", "rect": [82.44, 518.66, 92.94, 529.16], "rects": [[82.44, 518.66, 92.94, 529.16]], "start": 0.0, "end": 0.36}, {"word": "母", "char_ids": ["p69_c487"], "is_punct": false, "audioSrc": "audio/78ce0b021c44c8ba.mp3", "rect": [92.94, 518.66, 103.44, 529.16], "rects": [[92.94, 518.66, 103.44, 529.16]], "start": 0.36, "end": 0.5}, {"word": "さんが", "char_ids": ["p69_c488", "p69_c489", "p69_c490"], "is_punct": false, "audioSrc": "audio/c318c6ace863c617.mp3", "rect": [103.44, 518.66, 134.94, 529.16], "rects": [[103.44, 518.66, 134.94, 529.16]], "start": 0.5, "end": 0.9}, {"word": "作", "char_ids": ["p69_c491"], "is_punct": false, "audioSrc": "audio/e8555020c4b330e7.mp3", "rect": [134.94, 518.66, 145.44, 529.16], "rects": [[134.94, 518.66, 145.44, 529.16]], "start": 0.9, "end": 1.06}, {"word": "った", "char_ids": ["p69_c492", "p69_c493"], "is_punct": false, "audioSrc": "audio/ef3ea58a3c501d5d.mp3", "rect": [145.44, 518.66, 166.44, 529.16], "rects": [[145.44, 518.66, 166.44, 529.16]], "start": 1.06, "end": 1.38}, {"word": "料理", "char_ids": ["p69_c494", "p69_c495"], "is_punct": false, "audioSrc": "audio/df2144b4987db662.mp3", "rect": [166.44, 518.66, 187.44, 529.16], "rects": [[166.44, 518.66, 187.44, 529.16]], "start": 1.38, "end": 1.76}, {"word": "、", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}, {"word": "食", "char_ids": ["p69_c497"], "is_punct": false, "audioSrc": "audio/d46696735b6a09ff.mp3", "rect": [197.94, 518.66, 208.44, 529.16], "rects": [[197.94, 518.66, 208.44, 529.16]], "start": 1.76, "end": 1.94}, {"word": "べたいなあ", "char_ids": ["p69_c498", "p69_c499", "p69_c500", "p69_c501", "p69_c502"], "is_punct": false, "audioSrc": "audio/a46db6da770dec3a.mp3", "rect": [208.44, 518.66, 260.94, 529.16], "rects": [[208.44, 518.66, 260.94, 529.16]], "start": 1.94, "end": 2.71}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_10", "text": "李さんの誕生日パーティーは本当に楽しかったなあ。", "kind": "sentence", "bbox": [82.44, 539.66, 334.44, 550.16], "rects": [[82.44, 539.66, 334.44, 550.16]], "char_ids": ["p69_c520", "p69_c521", "p69_c522", "p69_c523", "p69_c524", "p69_c525", "p69_c526", "p69_c527", "p69_c528", "p69_c529", "p69_c530", "p69_c531", "p69_c532", "p69_c533", "p69_c534", "p69_c535", "p69_c536", "p69_c537", "p69_c538", "p69_c539", "p69_c540", "p69_c541", "p69_c542", "p69_c543"], "audioSrc": "audio/a2c810c237760c2e.mp3", "words": [{"word": "李", "char_ids": ["p69_c520"], "is_punct": false, "audioSrc": "audio/cdd2c6d477a0d6e7.mp3", "rect": [82.44, 539.66, 92.94, 550.16], "rects": [[82.44, 539.66, 92.94, 550.16]], "start": 0.0, "end": 0.21}, {"word": "さんの", "char_ids": ["p69_c521", "p69_c522", "p69_c523"], "is_punct": false, "audioSrc": "audio/d1e780a689bb40da.mp3", "rect": [92.94, 539.66, 124.44, 550.16], "rects": [[92.94, 539.66, 124.44, 550.16]], "start": 0.21, "end": 0.74}, {"word": "誕生日", "char_ids": ["p69_c524", "p69_c525", "p69_c526"], "is_punct": false, "audioSrc": "audio/b981696f046b9861.mp3", "rect": [124.44, 539.66, 155.94, 550.16], "rects": [[124.44, 539.66, 155.94, 550.16]], "start": 0.74, "end": 1.32}, {"word": "パーティー", "char_ids": ["p69_c527", "p69_c528", "p69_c529", "p69_c530", "p69_c531"], "is_punct": false, "audioSrc": "audio/8d91280aeecd5fc4.mp3", "rect": [155.94, 539.66, 208.44, 550.16], "rects": [[155.94, 539.66, 208.44, 550.16]], "start": 1.32, "end": 1.82}, {"word": "は", "char_ids": ["p69_c532"], "is_punct": false, "audioSrc": "audio/1fa0519cfd095c24.mp3", "rect": [208.44, 539.66, 218.94, 550.16], "rects": [[208.44, 539.66, 218.94, 550.16]], "start": 1.82, "end": 1.94}, {"word": "本当", "char_ids": ["p69_c533", "p69_c534"], "is_punct": false, "audioSrc": "audio/b5c29eb379c0cd61.mp3", "rect": [218.94, 539.66, 239.94, 550.16], "rects": [[218.94, 539.66, 239.94, 550.16]], "start": 1.94, "end": 2.38}, {"word": "に", "char_ids": ["p69_c535"], "is_punct": false, "audioSrc": "audio/de3d1ecc94b26d28.mp3", "rect": [239.94, 539.66, 250.44, 550.16], "rects": [[239.94, 539.66, 250.44, 550.16]], "start": 2.38, "end": 2.72}, {"word": "楽", "char_ids": ["p69_c536"], "is_punct": false, "audioSrc": "audio/ea9fad1aad624b1a.mp3", "rect": [250.44, 539.66, 260.94, 550.16], "rects": [[250.44, 539.66, 260.94, 550.16]], "start": 2.72, "end": 2.92}, {"word": "しかったなあ", "char_ids": ["p69_c537", "p69_c538", "p69_c539", "p69_c540", "p69_c541", "p69_c542"], "is_punct": false, "audioSrc": "audio/66a790f859d3796a.mp3", "rect": [260.94, 539.66, 323.94, 550.16], "rects": [[260.94, 539.66, 323.94, 550.16]], "start": 2.92, "end": 3.67}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_11", "text": "あしたは日本語のテストがある。", "kind": "sentence", "bbox": [82.44, 560.66, 239.94, 571.16], "rects": [[82.44, 560.66, 239.94, 571.16]], "char_ids": ["p69_c559", "p69_c560", "p69_c561", "p69_c562", "p69_c563", "p69_c564", "p69_c565", "p69_c566", "p69_c567", "p69_c568", "p69_c569", "p69_c570", "p69_c571", "p69_c572", "p69_c573"], "audioSrc": "audio/91ff1235a69baca1.mp3", "words": [{"word": "あしたは", "char_ids": ["p69_c559", "p69_c560", "p69_c561", "p69_c562"], "is_punct": false, "audioSrc": "audio/fdf99b427c831d43.mp3", "rect": [82.44, 560.66, 124.44, 571.16], "rects": [[82.44, 560.66, 124.44, 571.16]], "start": 0.0, "end": 0.74}, {"word": "日本語", "char_ids": ["p69_c563", "p69_c564", "p69_c565"], "is_punct": false, "audioSrc": "audio/c12140a0ffb4e564.mp3", "rect": [124.44, 560.66, 155.94, 571.16], "rects": [[124.44, 560.66, 155.94, 571.16]], "start": 0.74, "end": 1.28}, {"word": "の", "char_ids": ["p69_c566"], "is_punct": false, "audioSrc": "audio/56377d14d4ef532a.mp3", "rect": [155.94, 560.66, 166.44, 571.16], "rects": [[155.94, 560.66, 166.44, 571.16]], "start": 1.28, "end": 1.38}, {"word": "テスト", "char_ids": ["p69_c567", "p69_c568", "p69_c569"], "is_punct": false, "audioSrc": "audio/63b560db8849e087.mp3", "rect": [166.44, 560.66, 197.94, 571.16], "rects": [[166.44, 560.66, 197.94, 571.16]], "start": 1.38, "end": 1.74}, {"word": "が", "char_ids": ["p69_c570"], "is_punct": false, "audioSrc": "audio/a142816563b38903.mp3", "rect": [197.94, 560.66, 208.44, 571.16], "rects": [[197.94, 560.66, 208.44, 571.16]], "start": 1.74, "end": 1.92}, {"word": "ある", "char_ids": ["p69_c571", "p69_c572"], "is_punct": false, "audioSrc": "audio/0ddba9c153c61869.mp3", "rect": [208.44, 560.66, 229.44, 571.16], "rects": [[208.44, 560.66, 229.44, 571.16]], "start": 1.92, "end": 2.03}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_12", "text": "緊張するなあ。", "kind": "sentence", "bbox": [239.94, 560.66, 313.44, 571.16], "rects": [[239.94, 560.66, 313.44, 571.16]], "char_ids": ["p69_c574", "p69_c575", "p69_c576", "p69_c577", "p69_c578", "p69_c579", "p69_c580"], "audioSrc": "audio/af67d28290cfada4.mp3", "words": [{"word": "緊張", "char_ids": ["p69_c574", "p69_c575"], "is_punct": false, "audioSrc": "audio/7ce5658c889db275.mp3", "rect": [239.94, 560.66, 260.94, 571.16], "rects": [[239.94, 560.66, 260.94, 571.16]], "start": 0.0, "end": 0.66, "audioType": "source"}, {"word": "するなあ", "char_ids": ["p69_c576", "p69_c577", "p69_c578", "p69_c579"], "is_punct": false, "audioSrc": "audio/c94320b9d35a5302.mp3", "rect": [260.94, 560.66, 302.94, 571.16], "rects": [[260.94, 560.66, 302.94, 571.16]], "start": 0.66, "end": 1.2, "audioType": "source"}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_13", "text": "お腹が空いたなあ。", "kind": "sentence", "bbox": [82.54, 581.66, 178.8, 592.16], "rects": [[82.54, 581.66, 178.8, 592.16]], "char_ids": ["p69_c598", "p69_c599", "p69_c600", "p69_c601", "p69_c602", "p69_c603", "p69_c604", "p69_c605", "p69_c606"], "audioSrc": "audio/8ca3d76d2936bca9.mp3", "words": [{"word": "お", "char_ids": ["p69_c598"], "is_punct": false, "audioSrc": "audio/ac6bc7de7112c02d.mp3", "rect": [82.54, 581.66, 93.04, 592.16], "rects": [[82.54, 581.66, 93.04, 592.16]], "start": 0.0, "end": 0.36}, {"word": "腹", "char_ids": ["p69_c599"], "is_punct": false, "audioSrc": "audio/4b7774b789941341.mp3", "rect": [93.28, 581.66, 103.78, 592.16], "rects": [[93.28, 581.66, 103.78, 592.16]], "start": 0.36, "end": 0.58}, {"word": "が", "char_ids": ["p69_c600"], "is_punct": false, "audioSrc": "audio/a142816563b38903.mp3", "rect": [104.04, 581.66, 114.54, 592.16], "rects": [[104.04, 581.66, 114.54, 592.16]], "start": 0.58, "end": 0.72}, {"word": "空", "char_ids": ["p69_c601"], "is_punct": false, "audioSrc": "audio/82ca4a6ba6356d50.mp3", "rect": [114.79, 581.66, 125.29, 592.16], "rects": [[114.79, 581.66, 125.29, 592.16]], "start": 0.72, "end": 0.86}, {"word": "いたなあ", "char_ids": ["p69_c602", "p69_c603", "p69_c604", "p69_c605"], "is_punct": false, "audioSrc": "audio/9ce9677d318d767a.mp3", "rect": [125.54, 581.66, 168.3, 592.16], "rects": [[125.54, 581.66, 168.3, 592.16]], "start": 0.86, "end": 1.29}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_14", "text": "朝から何も食べていないんだ。", "kind": "sentence", "bbox": [179.05, 581.66, 329.07, 592.16], "rects": [[179.05, 581.66, 329.07, 592.16]], "char_ids": ["p69_c607", "p69_c608", "p69_c609", "p69_c610", "p69_c611", "p69_c612", "p69_c613", "p69_c614", "p69_c615", "p69_c616", "p69_c617", "p69_c618", "p69_c619", "p69_c620"], "audioSrc": "audio/2755321ee5697aea.mp3", "words": [{"word": "朝", "char_ids": ["p69_c607"], "is_punct": false, "audioSrc": "audio/695aad811ab971ff.mp3", "rect": [179.05, 581.66, 189.55, 592.16], "rects": [[179.05, 581.66, 189.55, 592.16]], "start": 0.0, "end": 0.42}, {"word": "か", "char_ids": ["p69_c608"], "is_punct": false, "audioSrc": "audio/288c9e077190b860.mp3", "rect": [189.8, 581.66, 200.3, 592.16], "rects": [[189.8, 581.66, 200.3, 592.16]], "start": 0.42, "end": 0.55}, {"word": "ら", "char_ids": ["p69_c609"], "is_punct": false, "audioSrc": "audio/ba7526a5c03fda30.mp3", "rect": [200.55, 581.66, 211.05, 592.16], "rects": [[200.55, 581.66, 211.05, 592.16]], "start": 0.55, "end": 0.68}, {"word": "何", "char_ids": ["p69_c610"], "is_punct": false, "audioSrc": "audio/4a9efaa77fc2059e.mp3", "rect": [211.3, 581.66, 221.8, 592.16], "rects": [[211.3, 581.66, 221.8, 592.16]], "start": 0.68, "end": 0.88}, {"word": "も", "char_ids": ["p69_c611"], "is_punct": false, "audioSrc": "audio/3c6945772d72d388.mp3", "rect": [222.06, 581.66, 232.56, 592.16], "rects": [[222.06, 581.66, 232.56, 592.16]], "start": 0.88, "end": 1.12}, {"word": "食", "char_ids": ["p69_c612"], "is_punct": false, "audioSrc": "audio/d46696735b6a09ff.mp3", "rect": [232.81, 581.66, 243.31, 592.16], "rects": [[232.81, 581.66, 243.31, 592.16]], "start": 1.12, "end": 1.22}, {"word": "べていないんだ", "char_ids": ["p69_c613", "p69_c614", "p69_c615", "p69_c616", "p69_c617", "p69_c618", "p69_c619"], "is_punct": false, "audioSrc": "audio/0da85f17d71ec3fd.mp3", "rect": [243.56, 581.66, 318.57, 592.16], "rects": [[243.56, 581.66, 318.57, 592.16]], "start": 1.22, "end": 2.1}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_16", "text": "嫌だなあ。", "kind": "sentence", "bbox": [239.94, 623.66, 292.44, 634.16], "rects": [[239.94, 623.66, 292.44, 634.16]], "char_ids": ["p69_c660", "p69_c661", "p69_c662", "p69_c663", "p69_c664"], "audioSrc": "audio/0abb023380152167.mp3", "words": [{"word": "嫌", "char_ids": ["p69_c660"], "is_punct": false, "audioSrc": "audio/7b59b16db1db258c.mp3", "rect": [239.94, 623.66, 250.44, 634.16], "rects": [[239.94, 623.66, 250.44, 634.16]], "start": 0.0, "end": 0.44}, {"word": "だなあ", "char_ids": ["p69_c661", "p69_c662", "p69_c663"], "is_punct": false, "audioSrc": "audio/4f033ab7b6169b36.mp3", "rect": [250.44, 623.66, 281.94, 634.16], "rects": [[250.44, 623.66, 281.94, 634.16]], "start": 0.44, "end": 0.96}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_69_17", "text": "高い山だなあ。", "kind": "sentence", "bbox": [82.44, 644.66, 155.94, 655.16], "rects": [[82.44, 644.66, 155.94, 655.16]], "char_ids": ["p69_c682", "p69_c683", "p69_c684", "p69_c685", "p69_c686", "p69_c687", "p69_c688"], "audioSrc": "audio/7fef32c6a15b6e33.mp3", "words": [{"word": "高", "char_ids": ["p69_c682"], "is_punct": false, "audioSrc": "audio/b096b3f5acd628b9.mp3", "rect": [82.44, 644.66, 92.94, 655.16], "rects": [[82.44, 644.66, 92.94, 655.16]], "start": 0.0, "end": 0.4}, {"word": "い", "char_ids": ["p69_c683"], "is_punct": false, "audioSrc": "audio/3c01c77f19cdeb6c.mp3", "rect": [92.94, 644.66, 103.44, 655.16], "rects": [[92.94, 644.66, 103.44, 655.16]], "start": 0.4, "end": 0.64}, {"word": "山", "char_ids": ["p69_c684"], "is_punct": false, "audioSrc": "audio/0e248e5603d3e908.mp3", "rect": [103.44, 644.66, 113.94, 655.16], "rects": [[103.44, 644.66, 113.94, 655.16]], "start": 0.64, "end": 0.82}, {"word": "だなあ", "char_ids": ["p69_c685", "p69_c686", "p69_c687"], "is_punct": false, "audioSrc": "audio/4f033ab7b6169b36.mp3", "rect": [113.94, 644.66, 145.44, 655.16], "rects": [[113.94, 644.66, 145.44, 655.16]], "start": 0.82, "end": 1.23}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}];
+  </script>
+</body>
+</html>

@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>义务教育教科书 日语 九年级 全一册 - 第 171 页</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --page-w: 521.575;
+      --page-h: 737.008;
+      --accent: #d32f2f;
+      --highlight-bg: #ffe082;
+      --highlight-color: #b71c1c;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      background: #efe8d8;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    }
+    .app {
+      width: 100vw;
+      height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .nav-bar {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 90;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-bar a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .nav-bar a:hover:not(.disabled) {
+      background: #e2e8f0;
+    }
+    .nav-bar a.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .nav-bar strong {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0 4px;
+    }
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+      padding-left: 10px;
+      border-left: 1px solid #cbd5e1;
+      font-size: 13px;
+      color: #475569;
+    }
+    .speed-label {
+      font-weight: 600;
+      color: #334155;
+    }
+    .speed-btn {
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 1;
+      padding: 0;
+      transition: all 0.15s;
+    }
+    .speed-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    #speedSlider {
+      width: 65px;
+      height: 4px;
+      accent-color: #d32f2f;
+      cursor: pointer;
+    }
+    #speedVal {
+      font-variant-numeric: tabular-nums;
+      font-weight: bold;
+      color: #d32f2f;
+      min-width: 32px;
+    }
+    .stage {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      overflow: hidden;
+    }
+    .page-scale {
+      position: relative;
+      width: min(calc(100vw - 24px), calc((100dvh - 24px) * var(--page-w) / var(--page-h)));
+      aspect-ratio: var(--page-w) / var(--page-h);
+      background: #fff;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .page-native {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(var(--page-w) * 1px);
+      height: calc(var(--page-h) * 1px);
+      transform-origin: 0 0;
+    }
+    .bg-img, .text-layer, .overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .bg-img {
+      z-index: 1;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    .text-layer {
+      z-index: 2;
+      pointer-events: none;
+    }
+    .pdf-char {
+      position: absolute;
+      display: inline-block;
+      white-space: pre;
+      line-height: 1;
+      transform-origin: left top;
+      transition: color 0.15s, background-color 0.15s;
+    }
+    /* When active (sentence/word clicked) -> Turns RED */
+    .pdf-char.active {
+      color: var(--accent) !important;
+      font-weight: bold;
+    }
+    /* Word-by-word animation highlight (Punctuation NEVER gets this class!) */
+    .pdf-char.word-highlight {
+      background: var(--highlight-bg) !important;
+      color: var(--highlight-color) !important;
+      border-radius: 2px;
+      box-shadow: 0 0 4px var(--highlight-bg);
+    }
+    .overlay {
+      z-index: 3;
+    }
+    .point-hotspot {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .sentence-hit {
+      position: absolute;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: all;
+      border-radius: 3px;
+      z-index: 5;
+    }
+    .sentence-hit:hover {
+      background: rgba(211, 47, 47, 0.08);
+    }
+    .word-hit {
+      position: absolute;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: all;
+      border-radius: 2px;
+      z-index: 6;
+    }
+    .word-hit:hover {
+      background: rgba(211, 47, 47, 0.18);
+      outline: 1px dashed rgba(211, 47, 47, 0.4);
+    }
+    /* Point-read panel floating overlay */
+    aside#pointPanel {
+      position: fixed;
+      right: 16px;
+      top: 16px;
+      z-index: 100;
+      width: min(380px, calc(100vw - 32px));
+      max-height: calc(100dvh - 32px);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    aside#pointPanel:not(.open) {
+      width: auto;
+      max-height: none;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .panel-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #1e293b;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .panel-toggle:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+    aside#pointPanel.open #panelToggleBtn {
+      display: none;
+    }
+    aside#pointPanel:not(.open) .panel-toggle-wrapper,
+    aside#pointPanel:not(.open) .panel-content {
+      display: none;
+    }
+    .panel-toggle-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .panel-toggle-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e293b;
+      margin: 0;
+    }
+    .panel-close-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+    .panel-close-btn:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    .panel-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      background: #fafafa;
+    }
+    .sidebar-header p {
+      margin: 0;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 14px;
+      max-height: calc(100dvh - 150px);
+    }
+    .point-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .point-item {
+      padding: 9px 11px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .point-item:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .point-item.active {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #b91c1c;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.12);
+    }
+    .badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .badge-sentence {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .badge-vocab {
+      background: #e0f2fe;
+      color: #0284c7;
+    }
+    .audio-badge {
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+    .audio-badge.source {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .audio-badge.synth {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+    /* Responsive layout for mobile */
+    @media (max-width: 768px) {
+      .stage {
+        padding: 0;
+      }
+      .page-scale {
+        width: min(100vw, calc(100dvh * var(--page-w) / var(--page-h)));
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .nav-bar {
+        top: 8px;
+        left: 8px;
+        padding: 4px 8px;
+        gap: 4px;
+      }
+      .nav-bar a {
+        padding: 3px 6px;
+        font-size: 12px;
+      }
+      .nav-bar strong {
+        font-size: 12px;
+        margin: 0 2px;
+      }
+      .speed-control {
+        margin-left: 4px;
+        padding-left: 6px;
+        gap: 3px;
+      }
+      .speed-label, #speedSlider {
+        display: none;
+      }
+      .speed-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+      }
+      #speedVal {
+        font-size: 12px;
+        min-width: 26px;
+      }
+      aside#pointPanel {
+        right: 8px;
+        top: 8px;
+        width: calc(100vw - 16px);
+        max-height: calc(100dvh - 16px);
+      }
+      aside#pointPanel:not(.open) {
+        right: 8px;
+        top: 8px;
+      }
+      .panel-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+      .sidebar-content {
+        max-height: calc(100dvh - 130px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <nav class="nav-bar">
+      <a href="page-170.html" class="">上一页</a>
+      <a href="index.html">目录</a>
+      <strong>171 / 275</strong>
+      <a href="page-172.html" class="">下一页</a>
+      <div class="speed-control">
+        <span class="speed-label">语速</span>
+        <button type="button" class="speed-btn" id="speedDec" title="减速 0.1x">−</button>
+        <input type="range" id="speedSlider" min="0.5" max="2.0" step="0.1" value="1.0">
+        <span id="speedVal">1.0x</span>
+        <button type="button" class="speed-btn" id="speedInc" title="加速 0.1x">+</button>
+      </div>
+    </nav>
+    <main class="stage">
+      <div class="page-scale">
+        <div class="page-native" id="pageNative">
+          <div class="bg-img" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iNTIxLjU3NSIgaGVpZ2h0PSI3MzcuMDA4MDgiIHZpZXdCb3g9IjAgMCA1MjEuNTc1IDczNy4wMDgwOCI+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNMCAwSDUzOC41ODNWNzU0LjAxNkgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMiI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNMCAwSDUzOC41ODNWNzU0LjAxNkgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMyI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNMCAwSDUzOC41ODNWNzU0LjAxNkgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfNCI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNMCAwSDUzOC41ODNWNzU0LjAxNkgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfNSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik01NjYuOTI1IDM2Ljg0OTlIMTA4OC41Vjc3My44NThINTY2LjkyNVoiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzYiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwtNTY2LjkyNSw3NzMuODU4MDYpIiBkPSJNMjguMzQ2IDIzNS4yNzVINjM1LjQzMlY3ODIuMzYxOTZIMjguMzQ2WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfNyI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0tMzI3NjgtMzI3NjhIMzI3NjhWMzI3NjhILTMyNzY4WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfOCI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0yOC4zNDYgMjguMzQ2SDEwOTcuMDA3Vjc4Mi4zNjJIMjguMzQ2WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfOSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0tMzI3NjgtMzI3NjhIMzI3NjhWMzI3NjhILTMyNzY4WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMTAiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwtNTY2LjkyNSw3NzMuODU4MDYpIiBkPSJNMjguMzQ2IDI4LjM0NkgxMDk3LjAwN1Y3ODIuMzYySDI4LjM0NloiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzExIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsLTU2Ni45MjUsNzczLjg1ODA2KSIgZD0iTS0zMjc2OC0zMjc2OEgzMjc2OFYzMjc2OEgtMzI3NjhaIi8+CjwvY2xpcFBhdGg+CjxjbGlwUGF0aCBpZD0iY2xpcF8xMiI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC01NjYuOTI1LDc3My44NTgwNikiIGQ9Ik0yOC4zNDYgMjguMzQ2SDEwOTcuMDA3Vjc4Mi4zNjJIMjguMzQ2WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMTMiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwtNTY2LjkyNSw3NzMuODU4MDYpIiBkPSJNLTMyNzY4LTMyNzY4SDMyNzY4VjMyNzY4SC0zMjc2OFoiLz4KPC9jbGlwUGF0aD4KPGNsaXBQYXRoIGlkPSJjbGlwXzE0Ij4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODkuNzg3NTQsNzE0LjczNjEpIiBkPSJNMC0xOEgzNDJWMS44MDAxMUgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMTUiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMS4wMDAwMDIzLDE5MC4yMjMwNywyMy4yMjcwNSkiIGQ9Ik0wIDBIMTQxLjczVjE5LjMwOEgwWiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMTYiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LC0zMzQuNTA0OTUsODU2LjA2MjkpIiBkPSJNMjYyLjM2NCA0MTYuNDE3SDMzMy4yMjlWNDI2LjA3MUgyNjIuMzY0WiIvPgo8L2NsaXBQYXRoPgo8Y2xpcFBhdGggaWQ9ImNsaXBfMTciPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LC0zMzQuNTA0OTUsODU2LjA2MjkpIiBkPSJNMCA4NDEuODlINTk1LjI4VjBIMFoiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8Zz4KCgoKCgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xKSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDIwLjUxNDE2LDY4NC43MDExKSIgZD0iTTAgMCAyLjE2MyA0LjMwN0gtMzYuNzY5TC0zNC42MDYgMC0zNi43NjktNC40NjFIMi4xNjNaIiBmaWxsPSIjY2FlNmNjIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC0yOS40NTkyNCwzOTUuNzY4NzUpIiBkPSJNMCAwVjIwLjIyIDQzLjUyMiA2My43NDJMMjguNzAyIDY2LjAwNSA1Ny44OTEgNTYuOThWNDMuNTIyIDIwLjIyIDYuNzYyTDI5LjE4OS0yLjI2M1oiIGZpbGw9IiNjYWU2Y2MiLz4KCjwvZz4KCgoKCgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw2Ni4wNzQ3Niw4Mi43MDY4NSkiIGQ9Ik0wIDAtNi02Vi0xNjEuNjJMMC0xNjcuNjJIMzg0LjMzOEwzOTAuMzM4LTE2MS42MlYtNkwzODQuMzM4IDBaIiBmaWxsPSIjZWJmNWViIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNNzguMzgzIDU4MC41MDNIMjU0Ljc0NVY2MjguNTM0SDc4LjM4M1oiIGZpbGw9IiNlYmY1ZWIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjQ0LjAyMjY2LDEyNy4yNjEwNSkiIGQ9Ik0wIDAtNiA2SC0xNjEuNzY2TC0xNjcuNzY2IDBWLTEwMy4xOTlMLTE2MS43NjYtMTA5LjE5OUgtNkwwLTEwMy4xOTlaIiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDgyLjI1NjU2LDEyMS4yNjEyMykiIGQ9Ik0wIDAtNi01Ljk5OVYtMzQuNjQ4SDE2MS43NjZWLTUuOTk5TDE1NS43NjYgMFoiIGZpbGw9IiNmNWZhZjUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODYuMTAzNTYsMjM2LjY4NzMyKSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIwLDQuMjIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRkYjk2YiIgZD0iTTAgMEgxNDkuODA5Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI0MS4wMjI2NiwyMzMuNjg3MzIpIiBzdHJva2Utd2lkdGg9IjEuNDE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjAsNC4yNDMiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRkYjk2YiIgZD0iTTAgMCAxLjUgMS41Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI0NC4wMjI2NiwyMjYuMzgyNjMpIiBzdHJva2Utd2lkdGg9IjEuNDE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjAsNC4zMDUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRkYjk2YiIgZD0iTTAgMFY5Ni44NTMiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODEuODgzNTYsMjM2LjY4NzMyKSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBWME0xNTYuMTM5IDBWME0xNjIuMTM5IDZWNk0xNjIuMTM5IDEwOS4zMVYxMDkuMzEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjc4LjU1NTc3LDEyMS4yNjEwNSkiIGQ9Ik0wIDAtNi02Vi0xMDkuMTk5TDAtMTE1LjE5OUgxNTUuNzY2TDE2MS43NjYtMTA5LjE5OVYtNkwxNTUuNzY2IDBaIiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI3OC41NTU1OCwxMjEuMjYxMjMpIiBkPSJNMCAwLTUuOTk5LTUuOTk5Vi0zNC4xMDZIMTYxLjc2NlYtNS45OTlMMTU1Ljc2NyAwWiIgZmlsbD0iI2Y1ZmFmNSIvPgoKPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMjgxLjkwNjY5LDIzNi42ODczMikiIHN0cm9rZS13aWR0aD0iMS40MTciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iMCw0LjIyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBIMTQ5LjgwOSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0MzYuODI1NzksMjMzLjY4NzMyKSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIwLDQuMjQzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDAgMS41IDEuNSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0MzkuODI1NzksMjI2LjM4MjYzKSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIwLDQuMzA1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBWOTYuODUzIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDI3Ny42ODY3OCwyMzYuNjg3MzIpIiBzdHJva2Utd2lkdGg9IjEuNDE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRkYjk2YiIgZD0iTTAgMFYwTTE1Ni4xMzkgMFYwTTE2Mi4xMzkgNlY2TTE2Mi4xMzkgMTA5LjMxVjEwOS4zMSIvPgoKPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMikiPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw0NDguMTc1NzYsMzA1LjI2ODA1KSIgZD0iTTAgMEMwIDAtLjA0LTEzNS43NS0uMDctMTM1LjU3LS40MS0xMzMuNi0xLjg5LTEzMC4yMS04LjAyLTEyOS4zOFY3LjYzQy40OSA1LjIgMCAwIDAgMCIgZmlsbD0iI2JhZGZiZCIvPgo8L2c+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDcyLjc2NTE2LDQzNi40NzI2NCkiIGQ9Ik0wIDBWLTEwLjA2TC0xMC4wNiAwWiIgZmlsbD0iI2JhZGZiZCIvPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8zKSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDQ0OC4xNzEyNyw0NDAuNzIyNjQpIiBkPSJNMCAwQy0uMzYtMy4xMy0yLjkyLTUuNi02LjA5LTUuODFILTM3NS40MDZWNC4yNUgtMzg1LjQ2NlYxMzUuODNILTcuOTVWNi4xOUMtMS44MiA1LjM2LS4zNCAxLjk3IDAgMCIgZmlsbD0iI2ViZjVlYiIvPgo8L2c+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDkzLjM0Njk2LDMzNC4xOTgwNCkiIHN0cm9rZS13aWR0aD0iMS40MTciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iMCw0LjI3MiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGRiOTZiIiBkPSJNMCAwSDMzMS4wOTIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODkuMDc0NzYsMzM0LjE5ODA0KSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBWME0zMzcuNSAwVjAiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsOTMuMzQ2OTYsMzYzLjE5ODA0KSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIwLDQuMjcyIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBIMzMxLjA5MiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw4OS4wNzQ3NiwzNjMuMTk4MDQpIiBzdHJva2Utd2lkdGg9IjEuNDE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRkYjk2YiIgZD0iTTAgMFYwTTMzNy41IDBWMCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw5My4zNDY5NiwzOTIuMTk4MDQpIiBzdHJva2Utd2lkdGg9IjEuNDE3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjAsNC4yNzIiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRkYjk2YiIgZD0iTTAgMEgzMzEuMDkyIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDg5LjA3NDc2LDM5Mi4xOTgwNCkiIHN0cm9rZS13aWR0aD0iMS40MTciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGRiOTZiIiBkPSJNMCAwVjBNMzM3LjUgMFYwIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDkzLjM0Njk2LDQyMS4xOTgwNCkiIHN0cm9rZS13aWR0aD0iMS40MTciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iMCw0LjI3MiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGRiOTZiIiBkPSJNMCAwSDMzMS4wOTIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsODkuMDc0NzYsNDIxLjE5ODA0KSIgc3Ryb2tlLXdpZHRoPSIxLjQxNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBWME0zMzcuNSAwVjAiLz4KCgoKPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNzMuMTAxNzYsNDk4LjQ4MDcpIiBkPSJNMCAwVi0zLjMwOEgzLjMwNFoiIGZpbGw9IiM5OWQxYTEiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsLTguNTAzOTQsNzQ1LjUxMikiIGQ9Ik0xODIuMzA5IDI0My43MjNINTQuMTM3MDFWMjIyLjA2N0gxODIuMzA5WiIgZmlsbD0iI2UzZjFlMyIvPgoKPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTcxLjUwNjU2LDUwMi4xNDI5NSkiIHN0cm9rZS13aWR0aD0iLjcwOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIwLDIuMTE3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBILTExOS42MTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsMTczLjYyMzY2LDUwMi4xNDI5NSkiIHN0cm9rZS13aWR0aD0iLjcwOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZGI5NmIiIGQ9Ik0wIDBWME0tMTIyLjc5IDBWMCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSwxNzEuNjg1MjYsNTIzLjA5MDY2KSIgc3Ryb2tlLXdpZHRoPSIuNzA5IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjAsMi4xMiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGRiOTZiIiBkPSJNMCAwSC0xMTkuNzkyIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDE3My44MDU0Nyw1MjMuMDkwNjYpIiBzdHJva2Utd2lkdGg9Ii43MDkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGRiOTZiIiBkPSJNMCAwVjBNLTEyMi45NzIgMFYwIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDczLjEwMTc2LDQ5OC4zNTkyMykiIGQ9Ik0wIDBILTI3LjI5OFYtMjUuNzI4TC0yMi4yOTgtMzAuNzI4SC01TDAtMjUuNzI4WiIgZmlsbD0iIzRkYjk2YiIvPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF80KSI+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDY5Ljk0NjA2LDUxMC41MTg3NSkiIGQ9Ik0wIDBDLS40NzYtMi42NjMtLjk1Mi01LjMyNi0xLjQyOS03Ljk4OS01LjgwMS03LjEyMy05LjU2LTkuMDkyLTEwLjE5LTkuNDQ3SC0xMC4yNDhDLTEwLjg3OC05LjA5Mi0xNC42MzctNy4xMjMtMTkuMDA5LTcuOTg5LTE5LjQ4Ni01LjMyNi0xOS45NjItMi42NjMtMjAuNDM4IDAtMjAuNDcxIC4xODUtMjAuNjQzIC4zMTItMjAuODI5IC4yODktMjEuNTI4IC4yMDUtMjEuOTU3IC4xMjUtMjEuOTU3IC4xMjUtMjIuMTQgLjA5LTIyLjI2NS0uMDgtMjIuMjQ0LS4yNjVMLTIxLjEyNS05LjkwN0MtMjEuMTEzLTEwLjAwNy0yMS4wNi0xMC4wOTctMjAuOTc5LTEwLjE1NS0yMC44OTctMTAuMjEzLTIwLjc5NS0xMC4yMzQtMjAuNjk3LTEwLjIxMy0xNS43NTQtOS4xMzItMTAuNDgzLTEwLjMxLTEwLjQzLTEwLjMyMkwtMTAuMDg3LTEwLjMzMUMtOS45NTUtMTAuMzEtNC42NzgtOS4xMzMgLjI1OS0xMC4yMTMgLjM1Ny0xMC4yMzQgLjQ2LTEwLjIxMyAuNTQxLTEwLjE1NSAuNjIyLTEwLjA5NyAuNjc2LTEwLjAwNyAuNjg3LTkuOTA3TDEuODA2LS4yNjVDMS44MjctLjA4IDEuNzAyIC4wOSAxLjUxOSAuMTI1IDEuNTE5IC4xMjUgMS4wOSAuMjA1IC4zOTEgLjI4OSAuMjA1IC4zMTIgLjAzMyAuMTg1IDAgMCIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw2OS45NDYwNiw1MTAuNTE4NzUpIiBzdHJva2Utd2lkdGg9Ii43MDkiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIiBzdHJva2U9IiNiYWRmYmQiIGQ9Ik0wIDBDLS40NzYtMi42NjMtLjk1Mi01LjMyNi0xLjQyOS03Ljk4OS01LjgwMS03LjEyMy05LjU2LTkuMDkyLTEwLjE5LTkuNDQ3SC0xMC4yNDhDLTEwLjg3OC05LjA5Mi0xNC42MzctNy4xMjMtMTkuMDA5LTcuOTg5LTE5LjQ4Ni01LjMyNi0xOS45NjItMi42NjMtMjAuNDM4IDAtMjAuNDcxIC4xODUtMjAuNjQzIC4zMTItMjAuODI5IC4yODktMjEuNTI4IC4yMDUtMjEuOTU3IC4xMjUtMjEuOTU3IC4xMjUtMjIuMTQgLjA5LTIyLjI2NS0uMDgtMjIuMjQ0LS4yNjVMLTIxLjEyNS05LjkwN0MtMjEuMTEzLTEwLjAwNy0yMS4wNi0xMC4wOTctMjAuOTc5LTEwLjE1NS0yMC44OTctMTAuMjEzLTIwLjc5NS0xMC4yMzQtMjAuNjk3LTEwLjIxMy0xNS43NTQtOS4xMzItMTAuNDgzLTEwLjMxLTEwLjQzLTEwLjMyMkwtMTAuMDg3LTEwLjMzMUMtOS45NTUtMTAuMzEtNC42NzgtOS4xMzMgLjI1OS0xMC4yMTMgLjM1Ny0xMC4yMzQgLjQ2LTEwLjIxMyAuNTQxLTEwLjE1NSAuNjIyLTEwLjA5NyAuNjc2LTEwLjAwNyAuNjg3LTkuOTA3TDEuODA2LS4yNjVDMS44MjctLjA4IDEuNzAyIC4wOSAxLjUxOSAuMTI1IDEuNTE5IC4xMjUgMS4wOSAuMjA1IC4zOTEgLjI4OSAuMjA1IC4zMTIgLjAzMyAuMTg1IDAgMFoiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNTkuODM5MzYsNTA5Ljg2NDYzKSIgZD0iTTAgMEgtLjIzM0MtMy4wNzcgMy4yODktMTAuMzkyIDEuNzc5LTEwLjM5MiAxLjc3OUwtMTAuMDMyLS4zMDMtOC42MzEtOC40MTFDLTQuMTYxLTcuMzMzLS4yMzMtOS43NTktLjIzMy05Ljc1OUgwQzAtOS43NTkgMy45MjgtNy4zMzMgOC4zOTgtOC40MTFMOS43OTktLjMwMyAxMC4xNTkgMS43NzlDMTAuMTU5IDEuNzc5IDIuODQ1IDMuMjg5IDAgMCIgZmlsbD0iI2ZmZmZmZiIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw1OS44Mzk0Niw1MTkuODY2NSkiIGQ9Ik0wIDBILS4zMDJMLS4zNjEgLjAzNkMtLjM5OSAuMDYtNC4yNTkgMi4zOTUtOC41NzQgMS4zNTVMLTguODI2IDEuMjk0LTEwLjY3MiAxMS45NzItMTAuNDQxIDEyLjAxOUMtMTAuMTM5IDEyLjA4MS0zLjA3MyAxMy40OTUtLjEyMyAxMC4yNDVILS4xMDlDMi44NDIgMTMuNDk1IDkuOTA3IDEyLjA4MSAxMC4yMDggMTIuMDE5TDEwLjQzOSAxMS45NzIgOC41OTQgMS4yOTQgOC4zNDEgMS4zNTVDNC4wMjYgMi4zOTQgLjE2NiAuMDYgLjEyOCAuMDM2TC4wNjkgMFpNLS4xNjUgLjQ4NkgtLjA2N0MuNDU2IC43OTUgNC4wNCAyLjc3NSA4LjIwMiAxLjg4NUw5Ljg3OCAxMS41ODVDOC42MjUgMTEuODAyIDIuNjIzIDEyLjY2NCAuMTg0IDkuODQzTC4xMTEgOS43NTlILS4zNDRMLS40MTcgOS44NDNDLTIuODU3IDEyLjY2NC04Ljg1OCAxMS44MDItMTAuMTExIDExLjU4NUwtOC40MzUgMS44ODVDLTQuMjcyIDIuNzc2LS42ODkgLjc5NS0uMTY1IC40ODYiIGZpbGw9IiM0ZGI5NmIiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMSwwLDAsLTEsNTkuODE1NjY0LDUwOC4yMTAwMykiIGQ9Ik0wIDBDMi4yNjQgMy4yODkgOC4wODcgMS43NzkgOC4wODcgMS43NzlMNi42ODYtOC40MTFDMy4xMjctNy4zMzMgMC05Ljc1OSAwLTkuNzU5SC0uMTg1Qy0uMTg1LTkuNzU5LTMuMzEyLTcuMzMzLTYuODcxLTguNDExTC04LjI3MyAxLjc3OUMtOC4yNzMgMS43NzktMi40NSAzLjI4OS0uMTg1IDBaIiBmaWxsPSIjZmZmZmZmIi8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLDU5LjgxNTc2LDUxOC4yMTIwNikiIGQ9Ik0wIDBILS4yNjhMLS4zMzQgLjA1MUMtLjM2NSAuMDc0LTMuNDA4IDIuMzg2LTYuOCAxLjM1OUwtNy4wNzMgMS4yNzYtOC41NDMgMTEuOTYyLTguMzM0IDEyLjAxN0MtOC4wOTMgMTIuMDc5LTIuNDkxIDEzLjQ4Ny0uMDkzIDEwLjI5IDIuMzA2IDEzLjQ4NiA3LjkwOCAxMi4wNzkgOC4xNDggMTIuMDE3TDguMzU4IDExLjk2MiA2Ljg4OCAxLjI3NiA2LjYxNSAxLjM1OUMzLjIyNCAyLjM4NiAuMTc5IC4wNzUgLjE0OSAuMDUxTC4wODMgMFpNLS4xMDQgLjQ4NkgtLjA4MUMuNCAuODM4IDMuMjExIDIuNzQ0IDYuNDgzIDEuOTAxTDcuODE2IDExLjU5NEM2Ljc2OSAxMS44MTcgMi4xMDUgMTIuNjMgLjIgOS44NjRMLjEyOCA5Ljc1OUgtLjMxM0wtLjM4NSA5Ljg2NEMtMi4yOSAxMi42My02Ljk1NSAxMS44MTctOC4wMDEgMTEuNTk0TC02LjY2OCAxLjkwMUMtMy4zOTUgMi43NDItLjU4NSAuODM3LS4xMDQgLjQ4NiIgZmlsbD0iI2JhZGZiZCIvPgo8L2c+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEsMCwwLC0xLC04LjUwMzk0LDc0NS41MTIpIiBkPSJNNjcuOTg0IDIyNi42Nkg2OC40N1YyMzYuNjQ4MDFINjcuOTg0WiIgZmlsbD0iI2JhZGZiZCIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwtMSw3My4xMDE3Niw0OTguNTk0NDMpIiBkPSJNMCAwVi0zLjMwOEgzLjMwNFoiIGZpbGw9IiM5OWQxYTEiLz4KPGcgb3BhY2l0eT0iLjMwMDAwMyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwXzUpIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfNikiPgo8ZyBvcGFjaXR5PSIuMzAwMDAzIiBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF83KSI+CjwvZz4KPC9nPgo8L2c+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwXzgpIj4KPGcgc3R5bGU9Im1peC1ibGVuZC1tb2RlOm11bHRpcGx5Ij4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfOSkiPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMCkiPgo8ZyBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMSkiPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMikiPgo8ZyBzdHlsZT0ibWl4LWJsZW5kLW1vZGU6bXVsdGlwbHkiPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xMykiPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xNCkiPgoKPC9nPgo8L2c+CjwvZz4KPC9nPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcF8xNSkiPgo8Zz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMTYpIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBfMTcpIj4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyMzAuNzE5NjcsOC43NTcyNjMpIiBkPSJNMCAwIC4wMiAuMDkyLS4wMTMgLjIzNC0uMjY2IC40MS0uNDgxIC40MjQtLjY5NiAuMzkxLS45MzEgLjE3M0MtMS4wMDYgLjEyMi0xLjA5IC4wNjItMS4yMDMgLjAwMy0xLjMxNi0uMDU4LTEuNjQ1LS4yNDYtMS42OTQtLjI3NEwtMS44NDEtLjM1NEMtMS44NDEtLjM1NC0yLjEwOC0uNDgxLTIuMzA4LS41NTctMi41ODUtLjY2LTIuNzk4LS42ODctMi43OTQtLjcyOUwtMi43MTMtLjc1My0yLjQzMS0uNzk4LTIuMjY2LS43OTEtMi4wMjgtLjc2NS0xLjk2NC0uNzc3LTEuNjg3LS43LTEuMzk5LS41NDlDLTEuMzk5LS41NDktMS41NzYtLjc5OC0xLjc2LTEuMDgxLTEuODgtMS4yNjYtMi4wMjItMS40ODQtMi4wNDctMS41MTRMLTIuMTc1LTEuNTIxLTIuMjg2LTEuNDc0LTIuMzI4LTEuNDc5LTIuMzQyLTEuNTU4LTIuMjYxLTEuNjY5LTIuMjExLTEuNzQ4LTIuMTcxLTEuOTQxLTEuOTEzLTIuMDQ0LTEuNjAxLTEuOTAxLTEuNTAxLTEuNzY1LTEuMzIyLTEuNzE4LTEuMjEyLTEuNy0uODQ0LTEuNTg1LS44MS0xLjM0My0uOTIyLTEuMjY4Qy0xLjAwNy0xLjI0NS0xLjExNC0xLjI3OC0xLjIyNC0xLjI4TC0xLjIyOS0xLjI0MUMtMS4yMjktMS4yNDEtLjk3Ny0uOTAxLS44NTgtLjczNi0uNzM4LS41Ny0uNTAyLS4yOTQtLjM4Ni0uMjI5TC0uMTg1LS4xMzYtLjA4OS0uMTI4WiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDIyNS4wNzEyMywxMi4xNzM0NjIpIiBkPSJNMCAwLS4xNS0uMjA0LS4zMTctLjU5MS0uNDQ2LS44ODMtLjc3NC0xLjUzLTEuMDE3LTEuOTY3LTEuNDAzLTIuNTc0LTEuNTczLTIuNzc3LTEuNzE0LTIuODQzLTEuNzg4LTIuOTE3Vi0zLjE0OEwtMS44NDItMy4zNDktMS44NTQtMy41NDJWLTMuNzYzTC0xLjcxOC0zLjk0Ny0xLjUzNS00LjAzMUMtMS41MzUtNC4wMzEtMS4zODMtNC4wODMtMS4yNTMtMy45NTdMLS45OTYtMy41NTgtLjU0MS0zLjIzNC0uNDM1LTMuMTQ4LS4zNTQtMy4wNy0uMjItMi45MTctLjA5LTIuNzEtLjAzNy0yLjU0OCAuMDE1LTIuNDMxIC4xMTUtMi4yOTIgLjIwOC0yLjA2IC4xNjMtMS45NjIgLjA2NS0xLjkwMi0uMTIyLTIuMTQtLjM4My0yLjQ1Ny0uNTQxLTIuNTY2LS42MTktMi41NTgtLjQ5OC0yLjMwNEMtLjQ5OC0yLjMwNC0uMzA5LTEuOTI1LS4yMzgtMS43LS4xNjktMS40NzQtLjE1My0xLjM2NS0uMTM2LTEuMjkxTC0uMTA1LTEuMDgtLjA1MS0uODIyIC4wMjktLjQ2NyAwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyMjYuNzYyNjQsMTMuMjE4MjYyKSIgZD0iTTAgMCAuMjQyLS4xMjkgLjM4Ny0uMzIxIC40NDktLjQwNiAuNTgzLS4zMTkgLjczMS0uMjI0IC43ODgtLjEzOSAuNjc1LS4wMDQgLjYwMiAuMDMyIC42MzMgLjA2NSAuODcyIC4xMDcgMS4xNzMgLjAyMSAxLjI2OC0uMDU4IDEuMjc0LS4xMDQgMS4xOC0uMjMxQzEuMTgtLjIzMSAxLjExMS0uMzM2IDEuMDE0LS40MTkgLjkxNy0uNSAuNzY4LS42MzQgLjc0Mi0uNjM0TC42NTEtLjY3MiAuOTUxLTEuMTYzIDEuMTIzLTEuMzk5IDEuMjAyLTEuNDg4IDEuMjkzLTEuNjQ3IDEuODQ2LTIuMzE3QzEuODQ2LTIuMzE3IDEuODYtMS43NSAxLjg1OC0xLjU2MSAxLjg1NC0xLjE1NyAxLjc3Ni0uNjAyIDEuNzk4LS41NTNMMS44NC0uNjEgMS44Ni0uNzE3IDEuODg2LS44MDcgMS45Ni0uODcgMi0uOTY1IDIuMDg5LTEuMjQ4IDIuMTMyLTEuMjk1IDIuMTY3LTEuMzM3Vi0xLjQxNEwyLjE4NC0xLjU1NSAyLjE5OC0xLjczNyAyLjIxNC0xLjkyMiAyLjI4Mi0yLjUzOCAyLjM0Mi0yLjU4MyAyLjM5NC0yLjYyNyAyLjQ4My0yLjcxNyAyLjU0MS0yLjkwOSAyLjU0OC0zLjEyOSAyLjQ0NC0zLjI3OCAyLjI5OS0zLjM1MiAxLjk4NS0zLjM4MSAxLjg1OC0zLjMzMSAxLjY3MS0zLjE3NiAxLjQ5NC0yLjk2N0MxLjQ5NC0yLjk2NyAxLjMyNS0yLjcxNyAxLjI1My0yLjYxOCAxLjE4MS0yLjUxOCAxLjE3NS0yLjQ4MSAxLjEzNi0yLjQxN0wxLjAxNi0yLjE1M0MxLjAxNi0yLjE1MyAuOTY0LTIuMDU1IC45MDMtMS45NDggLjg0MS0xLjg0MiAuODYxLTEuODU4IC44NDUtMS44MjlMLjM5OS0uOTAxIC4zNTQtLjgwM0MuMzU0LS44MDMgLjE4MS0uODgxIC4wNzgtLjkxNi0uMDI0LS45NTEtLjE1OS0uOTkzLS4yMzktMS4wMzlMLS4zOTEtMS4xMjgtLjI2LS45NDMtLjA4LS43NDkgLjE0OS0uNjAyIC4yNTItLjUzIC4xMDQtLjI2NEguMTAzTC4xMTEtLjIyMyAuMDg1LS4xODUgLjA1My0uMTMgLjAyOS0uMDQgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjQ5LjAyOTI0LDExLjMwNjIxMykiIGQ9Ik0wIDAtLjAwNC0uMDExWiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI0OC4zNzY4MywxMi41NjQwMjYpIiBkPSJNMCAwVi0uMDAyWiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI0Ny4yMDYwNiw3LjUyODgwODgpIiBkPSJNMCAwIC4yMDMgLjAwMyAuNDYxIC4wMzMgLjcxOSAuMDYyQy43MzEgLjAyOCAuNjA5LS42MjggLjU1LS44NTIgLjQ5OS0xLjA0MSAuNDI5LTEuMjU0IC4zOTMtMS4zODMgLjM2LTEuNTEzIC4yODQtMS43OTcgLjI2Ni0xLjg3NEwuMjY5LTEuOTM2Qy4yOTYtMS45MTkgLjQ3MS0xLjM5NiAuNjYzLTEuMDgzTC43Ny0uODk2IC44MTgtLjgxOSAuODk1LS43MTIgMS4wNzUtLjQ3OSAxLjE2Mi0uMzU3IDEuMjk2LS4yMTYgMS40MDctLjA1MiAxLjUzMSAuMTg2QzEuNTc0IC4zMDcgMS41OTggLjQyNCAxLjU5OCAuNDI0TDEuNjQ3IC40NyAxLjc3NCAuNTYgMS45MTQgLjY2NCAyLjAyOSAuODAxIDEuOTY0IC45OTMgMS44NTYgMS4wODEgMS43NTcgMS4xMDcgMS42NzQgMS4xMDggMS42ODggMS4wNDEgMS42ODUgLjkwOSAxLjU5NCAuODMyQzEuNTg4IC44MzYgMS42MTcgMS4wODcgMS4zNjggMS4zOTEgMS4yMjEgMS41NjkgMS4wNjMgMS42NTggMS4wNjMgMS42NThMLjk0OCAxLjczNCAuODA3IDEuNzk1IC42ODggMS44MDUgLjY3MSAxLjc1MyAuNjgzIDEuNjUzIC43MiAxLjQ4MyAuNzM1IDEuMzkyIC43NjggMS4xODQgLjgwNCAuOTAyIC44MSAuNjVDLjgwOCAuNjAyIC44MjEgLjUxNSAuNzk2IC4zNzVMLjYwOCAuMjY0Qy42MDggLjI2NCAuNTE0IC4yMjUgLjM3IC4xNzQgLjE1OSAuMDk5LS4wNDkgLjA0MS0uMDgzIC4wMjFMMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjQ5LjAzNDA2LDE5LjUxMjIwNykiIGQ9Ik0wIDBDLS4wMDMtLjA5Ni0uMTQzLS4zMjgtLjE5OS0uNC0uMjk1LS41MTgtLjQyNi0uNTU1LS42NTktLjU3LS44ODktLjU4NC0uODcyLS41NTctLjg5Ny0uNTQ5TC0uOTM2LS40NjctLjc4MS0uMTg5LS42MTctLjAwOC0uMjYyIC4zNTRDLS4yNjIgLjM1NCAuMDA3IC4xNTggMCAwTS0yLjM4My0uMjdDLTIuNTk3LS41NDEtMi45MTgtLjgzMi0yLjk2Ni0uNzQ4LTMuMDM4LS42MTctMS45NDkgLjM5Ni0xLjk0OSAuMzk2LTEuOTQ5IC4zOTYtMi4xODYtLjAyMS0yLjM4My0uMjdNMS4wNTggNC44NDRDMS4yMDYgNS4xMTggMS4zOTYgNS40MjQgMS4zOTYgNS40MjRMMS41NTMgNS42MTJDMS42MjEgNS42MTYgMS43NDUgNS40ODkgMS44ODIgNS4zNiAyLjAyIDUuMjMxIDIuMTM1IDUuMTQ5IDIuMTQzIDUuMDQ4TDEuOTY4IDQuODNDMS45MTEgNC43NzggMS42NTEgNC41NDkgMS4zNzYgNC4zNzUgMS4xMDEgNC4yMDQgLjY4OCAzLjk1MiAuNjYxIDMuOTQyTC4zMDUgMy43MDhDLjMwNSAzLjcwOCAuODIgNC40MDMgMS4wNTggNC44NDRNLTEuNzYyIC43MzYtMS44MDMgLjY1Ni0xLjg0NSAuNTc0Qy0xLjg0NSAuNTc0LTIuMjI3IC4yMjktMi40MjggLjA0MS0zLjAwMy0uNTA2LTMuMzY2LS45My0zLjI4NC0xLjA0My0zLjItMS4xNi0yLjY2My0uODQtMi4xNzEtLjI2OC0xLjgyMyAuMTMzLTEuNDIyIC43ODktMS40MDIgLjc5OS0xLjM2IC44MjQtMS4wNTkgMS4wNzItLjU3MyAxLjM2My0uMDg2IDEuNjUzIC4wOTkgMS43NDkgLjEzNCAxLjcwOCAuMTc0IDEuNjYzLS4wMyAxLjQzOS0uMjMgMS4xMzctLjUxIC43MTktLjM3OCAuNS0uMzc4IC41LS4zNzggLjUtLjc4NCAuMTk5LTEuMTI4LS4xOTktMS4yNjgtLjM1OS0xLjQyOS0uNjExLTEuNDI0LS42NTgtMS40MTktLjcwNS0xLjMxNC0uODg3LS43MzctLjg0Ni0uMjM0LS44MTEtLjEwNC0uNjgyIC4wMDMtLjU2NiAuMTEtLjQ1MSAuMjY5IC4xMjMgLjIxOSAuMjMyIC4xNTUgLjM2OSAuMTE0IC4zODUtLjAzNiAuNTgyLS4wMzYgLjU4MiAuMDc3IC42OTEgLjE4MiAuODI0IC4yODggLjk1NSAuNDUzIDEuMTc2IC40MzMgMS4xODRMLjEyMSAuODk2LS4wOTUgLjczNkMtLjA5NSAuNzM2LS4yMyAuOTE0IC4wMTcgMS4yMTkgLjIwMiAxLjQ0OSAuNTI0IDEuNzUyIC40NTYgMS44OTMgLjM4OSAyLjAzNSAuMDQzIDEuODU2LS4wNzEgMS44MDMtLjE4MyAxLjc1LS40OTkgMS41NjEtLjgxOCAxLjMyNC0xLjEyNCAxLjA5Ni0xLjIzMiAuOTk2LTEuMzMyIC45MTgtMS4zMzIgLjkxOC0xLjAyNyAxLjM2OS0uNzM1IDEuODc1LS40NDQgMi4zNzggLjE1MiAzLjQzNyAuMTUyIDMuNDM3IC4xNTIgMy40MzcgLjk2IDMuOTM3IDEuMzUyIDQuMTggMS43NDUgNC40MjIgMS45ODkgNC41NTggMi40MTggNC44NDQgMi41NSA0LjkzMSAyLjU5NCA1LjAxNSAyLjU5OSA1LjA5NSAyLjYyIDUuMzUyIDIuMjU3IDUuNDY0IDIuMTg1IDUuNDk0IDEuOTI4IDUuNTk5IDEuOCA1LjU5OSAxLjY0MSA1Ljc4MkwxLjcwNiA1Ljg0OCAxLjcwNSA1Ljk2IDEuNjA4IDYuMUMxLjUwOCA2LjE1OCAxLjMwMiA2LjE4NCAxLjI2IDYuMTZMMS4wMzQgNS45NjQgLjc2MiA1LjU0NSAuNjc1IDUuMzkxIC40OTEgNS4wMTUgLjMwNyA0LjY4MiAuMjI0IDQuNTEzIC4xMTMgNC4zMDItLjA2NiAzLjk4Mi0uMTk2IDMuNzUzLS4yNTQgMy42NS0uMzkxIDMuNDExLS40NjggMy4yNjQtLjU3NyAzLjE5N0MtLjU3NyAzLjE5Ny0xLjAzOSAyLjk1OS0xLjIxNyAyLjg3M0wtMS40MTEgMi43NjUtMS43NjQgMi41NzFDLTEuNzY0IDIuNTcxLTMuODIyIDEuMzczLTQuNDQ5IDEuMDcyLTQuNzM4IC45MzQtNS4wNzkgLjgwMy01LjE0OSAuNzkzLTUuMjIgLjc4My01LjMwNyAuNzUtNS40NTQgLjgxNC01LjYwMiAuODc3LTUuNTkzIC44NzktNS42MzcgLjg4OUwtNS43MjcgLjg5My01LjggLjg2OS01Ljc5NSAuODUtNS42NjIgLjY5OS01LjY0MiAuNTM5LTUuNTYgLjQxNC01LjQwMiAuMjgxLTUuMjg3IC4yMTUtNS4wNjggLjE2NkgtNC44OTlMLTQuNjU5IC4yMDUtNC40NDkgLjI1OC00LjIwOCAuMzY3LTQuMDAyIC41MDItMy44NTQgLjYwMi0zLjYwNSAuNzkxLTMuNDczIC44ODctMy4xNjMgMS4xNjgtMi45NjkgMS4zMzgtMi43NTggMS41MTItMi4zNiAxLjgzM0MtMi4zMDMgMS44NjYtMS43MzMgMi4zMTItMS41OTQgMi40MDktMS40NTYgMi41MDMtMS4yNDIgMi42NTQtMS4xODUgMi42ODlMLS42NzIgMi45NzYtLjYxNSAyLjk3My0uNjcyIDIuODU5LS44MDQgMi42MDUtMS4xMDIgMi4wNTMtMS4yMzYgMS43NTItMS40MTYgMS40MjZaIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjU1Ljg2OTA4LDE0LjA1NjIxMykiIGQ9Ik0wIDBDLS40OTUtLjA1OC0xLjI3My0uMjg4LTEuNDA4LS4zMjQtMS41NDItLjM2MS0xLjUxOS0uMzA3LTEuNTE5LS4zMDctMS40NjEgLjA0Ny0xLjAwNCAuNTI3LS44ODYgLjY1NC0uNzcgLjc4Mi0uNjcyIC44OTMtLjY1MiAuOTQ4TC0uNjYgMS4wNzktLjcyOSAxLjE1Ni0uNzc2IDEuMTc2LS44NDggMS4xOTctLjk5MSAxLjE3OS0xLjA2MyAxLjE1LTEuMTcyIDEuMDktMS4xNTggMS4wNzUtMSAxLjA2N0MtLjk2NCAxLjAzOS0xLjAxNyAuOTQtMS4xOTYgLjY5Mi0xLjQzMSAuMzY4LTEuNzIxLS4xNzQtMS43OTctLjQwMS0xLjgzNy0uNTE3LTEuNzgzLS42MDEtMS42NjgtLjYyNC0xLjUyMS0uNjUzLTEuMjg2LS40ODYtLjg4MS0uMzQ1LS40NzYtLjIwMS0uMTQzLS4xNTQgLjA0Mi0uMTQ5IC4yMjgtLjE0NiAuNDItLjE0NCAuNDcxLS4yMjkgLjU2Ny0uMzg2IC4xNTYtLjg2NC0uMTcxLTEuMTczLS41MDktMS40OTItLjgxNy0xLjY2NC0uODE3LTEuNjY0TC0uOTIyLTEuNTE3LTEuMDE3LTEuMzg2LTEuMTItMS4yNTMtMS4yNDQtMS4xNDQtMS4zMTQtMS4xMTMtMS4yODgtMS4xNjlDLTEuMjg4LTEuMTY5LTEuMjUtMS4yNjUtMS4yMS0xLjM2Ny0xLjE3My0xLjQ2OC0xLjA3NS0xLjgxNi0xLjA3NS0xLjgxNi0xLjE1OS0xLjg2MS0xLjg0OS0yLjE2Ny0yLjE0LTEuODE2LTIuMjg5LTEuNjM0LTIuMTItMS4xNzktMi4wOTEtMS4xMzhMLTIuMTAzLTEuMTA1Qy0yLjUzLTEuNTkzLTIuMzU2LTEuOTc4LTIuMTg5LTIuMTExLTIuMDExLTIuMjUzLTEuODEyLTIuMjczLTEuNTgtMi4yNjEtMS4zMTEtMi4yNDgtMS4wMjgtMi4xMjUtMS4wMTctMi4xMjVMLS45NjctMi4zMDRDLS45NjItMi4zMi0uOTU3LTIuMzkyLS45NzgtMi40ODYtLjk5OS0yLjU4LTEuMTEyLTIuNjQ2LTEuMDkyLTIuNjkxTC0uOTYyLTIuNzY3LS43NTItMi44NTMtLjcwOC0yLjkwNC0uNjE3LTIuOTIxLS4zNDYtMi44MDZDLS4yOTgtMi43NzUtLjMxNy0yLjcxNC0uMzE1LTIuNTY2LS4zMS0yLjMyNi0uNTU0LTEuOTc0LS42MzEtMS44OTYtLjM2NC0xLjcxNi0uMTc4LTEuNTUgLjA4LTEuMjg5IC42MjktLjcyOSAuNzQ4LS40NCAuNzc3LS4yMjMgLjgwMS0uMDQgLjUzNSAuMDYyIDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI2OC4yNDUwNyw2LjAwOTE1NTUpIiBkPSJNMCAwLS4wODEtLjAyNyAuMDQ4LS4yMzMgLjI1NC0uNTIzIC4zNjMtLjY0NiAuMzk1LS43NyAuMTY0LTEuMDEzIC4yNDgtMS4wMDYgLjI4Ni0uOTggLjMxMi0xLjAxNCAuNDQ5LS45NTEgLjczMi0uODRDLjc4Mi0uODE5IC45OTQtLjc2MiAuOTg4LS42NjUgLjk4Mi0uNTY4IC45ODItLjQ5MSAuODg1LS40MkwuNzg4LS4yODUgLjY4Ni0uMjEzIC41NDYtLjE1OCAuNDE2LS4xMSAuMjI5LS4wNzIgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjY3Ljg1MDQ3LDguNDk5NDUxKSIgZD0iTTAgMCAuMDM5LS4wMzkgLjEzNy0uMDc4IC4zMzQtLjE4IC40MjMtLjIxNiAuNTU3LS4yNzQgLjY0OC0uMzE2IC42Ny0uMzU5IC4zMTYtLjg2NSAuMDc2LTEuMTI4LS4xNy0xLjM2Ny0uODA1LTEuODU4LS45ODItMS44OC0xLjIzNi0yLjA3NS0xLjMzNS0yLjIwNy0xLjMyNi0yLjM5My0xLjM3My0yLjUzNi0xLjI1Ny0yLjY5OC0uOTQzLTIuNjU0LS44MjctMi42MTEtLjczNi0yLjUzLS41NTctMi4zNjctLjM3MS0yLjI0NkMtLjM3MS0yLjI0NiAuMjA5LTEuODQ2IC40NDctMS41ODkgLjY4Ny0xLjMzMyAuNzI5LTEuMzAxIC43MjktMS4zMDFMLjc3My0xLjIyOSAuODQ0LTEuMTQgLjg5MS0xLjA0MSAuOTAyLS45OSAuODU1LS45NjYgLjgyNC0uOTcgLjc2Mi0xLjAxMyAuNjYxLTEuMTMgLjU4Ny0xLjIzMyAuNTAxLTEuMzEyIC40MTQtMS4zOTMgLjI4My0xLjQ4NSAuMTg0LTEuNTU0IC4xNDYtMS41NzYgLjM0OC0xLjM5MyAuNDY0LTEuMjYxIC41NDctMS4xNzkgLjYyMi0xLjA5MiAuNzk4LS45MzIgMS4wMTYtLjczMiAxLjE5MS0uNTgzIDEuMjU4LS41MjcgMS4zNzItLjQ3NiAxLjQ3OS0uMzYzIDEuNDczLS4yMTEgMS4zOTEtLjExNSAxLjI0OC0uMDQ2IC45OTMgLjAwMyAuODg5LS4wMTQgLjgwOS0uMDU5IC40MzQtLjAzMiAwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyNzAuMTE2MDQsMTAuMDczNjA4KSIgZD0iTTAgMC0uMDA4LS4wMzlDLS4wMDgtLjA3MSAuMDExLS4xNzctLjE3OC0uNDA5LS40MTQtLjY5OC0uNjMzLS44ODItLjcxOS0uOTcxTC0xLjEzNS0xLjM4OS0xLjI1Mi0xLjU1Ny0xLjMyNi0xLjU5Ny0yLjA2NC0xLjk2Ni0yLjI0NC0yLjA1OS0yLjQzNy0yLjE2OS0yLjM3My0yLjE3OS0yLjMwOC0yLjE0Ni0yLjIyMS0yLjEyOC0yLjEwNS0yLjEzNS0yLjA4OC0yLjEyNC0xLjgwOS0yLjA1LTEuMDMxLTEuNzQxLS45My0xLjY1OC0uODk4LTEuNjQzLS40MzktMS40MS0uNjI3LTEuOTk4LS43OC0yLjY2LS44MjYtMi45OEMtLjgyNi0yLjk4LS44NTEtMy4xNTUtLjg1OC0zLjQzNi0uODY3LTMuNzgyLS44NTUtNC4yNjgtLjkzNi00LjMyN0wtMS4xODYtNC4zNjItMS41NTctNC4zNC0xLjY2OC00LjMyN1YtNC4zNzdMLTEuNjA1LTQuNDE4LTEuMzM2LTQuNTE2LTEuMDQ3LTQuNTQ1LS43NjUtNC44NjQtLjU4NC00LjgxOS0uNDk0LTQuNzhDLS4zMDEtNC43Ni0uMjMzLTQuODQ0LS4xNTItNC44MDlMLS4wNjItNC42MTItLjA2OC00LjQ1Mi0uMDg4LTQuMTMxLS4wOTQtMy45NDRDLS4wOTQtMy45NDQtLjEwMy0zLjY0OS0uMDkyLTMuMjMxLS4wODItMi44MzQgLjA3Mi0yLjM4OCAuMDcyLTIuMzg4TC4xOTQtMi4xMDUgLjI2Ni0xLjk2NiAuMzk1LTEuNzc0IC40MzUtMS42M0MuNDA0LTEuNTY3IC4yNzYtMS4zNjIgLjA5LTEuMjI5LS4xMDQtMS4wODktLjIxNy0xLjAxOS0uMjcyLTEuMDQxTC0uMzkzLTEuMTY4LS42MDQtMS4yNDgtLjgyNi0xLjM0NC0uOTQzLTEuNC0xLjA5LTEuNDgyLTEuMTU0LTEuNTA5LTEuMDgyLTEuNDMxLS42OTQtMS4xMjZDLS42OTQtMS4xMjYtLjM2NS0uODc4LS4yNDQtLjgyNC0uMTQ0LS43OCAuMDctLjcyOSAuMTA1LS43MkwuMjc4LS42NDZDLjI5My0uNjMyIC4zNS0uNTg0IC4zNDQtLjQ3OCAuMzI2LS4yMzcgLjIzNS0uMDk1IC4xNDItLjAyMUwwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyNjYuMjk1ODUsMTQuNDg1ODQpIiBkPSJNMCAwSC4wODZMLjEyNSAuMDM3IC4yMTUgLjA3MiAuMjY1IC4wNjZDLjI2NSAuMDY2IC42ODUtLjAyNyAuODAxLS4wODkgLjkyNi0uMTUzIDEuMDQ5LS4yMzQgLjk3OC0uMzUgLjkwNi0uNDY0IC43OTUtLjYyNCAuNjUzLS42MjQgLjUxMy0uNjI0IC40NDktLjQ5MyAuMzU4LS40NzggLjI2MS0uNDY0IC4yMjYtLjQ3OSAuMjAzLS40OTRMLjA2OC0uNjM0IC4xMzMtLjc5NiAuMzEyLS44ODZDLjIwNS0uODYzIC40NjEtLjkyMSAuNTU5LS45NDUgLjY4My0uOTc0IC45MjYtLjk4OCAuOTEtMS4xMTkgLjg5NC0xLjI1IC44NzMtMS4yNCAuODQ4LTEuMjg5TC43MzctMS4zOCAuNjExLTEuMzk0IC40OTItMS4zNjUgLjM3MS0xLjMzNyAuMzM2LTEuMjc5IC4zOTMtMS4yMjJDLjM5My0xLjIyMiAuMjExLTEuMDcgLjA2OC0uOTE2TC0uMDA4LS43MTFDLjAwNi0uNTQxIC4xNzktLjMzOSAuMTgxLS4yMjhMMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjY2LjE0NzQ3LDE0Ljk0ODYwOCkiIGQ9Ik0wIDBDLS4wNjItLjA2Mi0uMzE5LS42ODgtLjQ1MS0xLjA2Ny0uNTU3LTEuMzc5LS44ODUtMi4yOTktLjk0Ni0yLjI5LTEuMDUzLTIuMjY4LTEuMTY2LTEuODU4LTEuMTk3LTEuODctMS4yMzEtMS44NzktMS4xNzYtMi4xMDgtMS4yNC0yLjMyMS0xLjI4My0yLjQ1OC0xLjI4Ny0yLjQ2My0xLjI4Ny0yLjQ5OUwtMS4zMjItMi43NzYtMS4zMTYtMi45MTFDLTEuMzEzLTIuOTI2LTEuMzA0LTIuOTgzLTEuMTk3LTIuOTczLTEuMDk3LTIuOTY1LTEuMDc2LTIuOTczLTEuMDY0LTIuOTY1TC0uODc5LTIuOTAxLS43MjEtMi43NTRDLS43MjEtMi43NTQtLjUwNC0yLjUxOC0uNDA0LTIuMDMyLS4zMDUtMS41NDItLjI5MS0xLjQ0OC0uMjg3LTEuMzgzTC0uMjE3LS44OTFDLS4yMDMtLjgyMS0uMTQ1LS4zNTMgLjAwNi0uMDU4TDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI4My4yNjI2NCwxNC4xMjQ0NTEpIiBkPSJNMCAwLS4zNjItLjI2LS4zNTgtLjA1NSAuMTM4IC4yNTcgLjM3NSAuMzk2Qy4zMDEgLjI5IC4wNDUgLjAzNSAwIDBNMS4xNjQgLjY0NkMxLjEwOCAuNzQ3IDEuMDE1IC43NzcgMS4wMDEgLjc3N0wuODI5IC44NCAuNjc0IC44MjQgLjU2OSAuNzM4IC40OTcgLjY1OC0uMzY3IC4wNDRDLS4zNjcgLjA0NC0uMzY3IC4zNTctLjM5IC40NjktLjQzMSAuNjU4LS43NjcgLjg3MS0uODI0IDEuMDFMLS44NTggMS4wMTlDLS44ODQgLjk3Ni0uNjg4IC42ODUtLjY4NSAuNDEzLS42ODMgLjE3My0uNzM5LS4yMTEtLjczOS0uMjExLS43MzktLjIxMS0xLjc5Mi0uOTg5LTEuOTY0LTEuMDc5TC0xLjg2OS0uNTI1LTEuOTgxLS4yNjctMi4wNjMtLjMzMy0yLjA3NC0uMzk5LTIuMTYtLjYyNEMtMi4xNi0uNjI0LTIuMzUzLTEuMTI0LTIuNDQyLTEuMjQ5LTIuNTMyLTEuMzctMi41NTQtMS4zOTMtMi41NjMtMS40MjZMLTIuNTg3LTEuODI1LTIuMzg4LTEuOTU0LTIuMDA3LTEuNTM2LTEuOTY0LTEuNDExLS43NzgtLjM2Ny0uODEtLjY0Mi0uODUzLS45Mi0uOTQ0LS45MTMtMS4wMjEtLjkzM0MtMS4wMjEtLjkzMy0uODk0LTEuMDQ1LS44OTctMS4xOThMLS45NDQtMS40ODUtLjkzOC0xLjU2My0uOTA1LTEuNjM1LS44MTUtMS42NzYtLjkzNy0xLjc3OEMtLjk4Ny0xLjgxNy0xLjA4MS0xLjkwMy0xLjI1NS0yLjAyMkwtMS41MTEtMi4xNzItMS41NTEtMi4xNTNDLTEuNTUxLTIuMTUzLTEuNTAxLTEuNzcyLTEuNDgxLTEuNjMxLTEuNDU4LTEuNDYzLTEuNDMxLTEuMjY0LTEuNDY0LTEuMjY0LTEuNDk4LTEuMjY0LTEuNTc1LTEuNTItMS42MTgtMS42MzMtMS42NTUtMS43MzEtMS43MjYtMS44ODUtMS43MzMtMS44OTlMLTEuODc0LTIuMTYzLTIuMDI2LTIuMzc3LTIuMDMtMi41MjgtMi4wMTctMi45MzhDLTEuODQ5LTMuMDI0LTEuNTczLTIuODQ4LTEuNTI2LTIuNzExTC0xLjM3NS0yLjYxOC0xLjE0NC0yLjQ2NUMtMS4xNDQtMi40NjUtLjgzLTIuMjIzLS43MzEtMi4xMkwtLjYyNS0yLjAwNC0uNTIxLTEuODc3LS4zMjQtMS42NTMtLjA1Mi0xLjMxNyAuMTE2LTEuMDg4IC4xODUtLjkyMyAuMDkzLS45MjYgLjAxNy0xLjA0Mi0uMjg1LTEuMzAxLS4zNDUtMS4xNDctLjM4MS0uOTU5Qy0uMzgxLS45NTktLjM4Ni0uNTU4LS4zNjItLjM1My0uMzYyLS4zNTMtLjA1LS4xOTcgLjE3Ni0uMDY3IC4zNyAuMDQ1IC43NjMgLjI5MyAuNzc4IC4zTC44ODIgLjM1NiAxLjA3NyAuNDQ5QzEuMDc3IC40NDkgMS4yMiAuNTQyIDEuMTY0IC42NDYiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwyODMuNzc0MjQsMTUuOTk3NjIpIiBkPSJNMCAwIC4wMDQtLjA1NSAuMDczLS4xMjEgLjEyNC0uMjczIC4xMzUtLjM4MiAuMTM4LS41MTkgLjEyNC0uNjM2LS4wMTktLjc1LS4wMDItLjg1MyAuMTE0LS45MzMgLjE1NS0xLjA4MiAuMzc2LTEuMjA4IC42NjQtMS4xOTVDLjY2NC0xLjE5NSAuODMxLTEuMTE3IC44NTQtMS4wMjcgLjg5NC0uODg2IC44NDUtLjc1MSAuODM2LS43M0wuNzUtLjU5N0MuNzUtLjU5NyAuMzA2LS4wOTEgLjIxMS0uMDQ5TDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDI5Ni4yMzUyNCw5LjIwNjY2NSkiIGQ9Ik0wIDBDLS4wMTktLjAyNiAuMjU4LS4yNiAuMjI2LS41MDkgLjIwMS0uNjg4IC4wMy0xLjM4NS0uODk5LTIuMjY4TC0uOTI2LTIuMzI5Qy0uOTAzLTIuMzM5LS4yNDgtMS43OS0uMDM2LTEuNTcgLjE3Ni0xLjM1IC42NDktMS4wMDUgLjY4My0uNjc2IC42OTgtLjUyOCAuNjgzLS4xOTggLjA2LS4wMDRMMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMjk0LjMxNzI3LDEzLjg4NDIxNikiIGQ9Ik0wIDAtLjA4Ny0uMTEtLjI2My0uMjU2LS4yNDgtLjM0NEMtLjI0OC0uMzQ0IC4yNi0uMDUyIC40MzggLjA1NSAuOTg3IC4zODMgMS40ODcgLjgwOCAxLjc1NyAuOTYzIDIuMDE1IDEuMTExIDIuMTUxIDEuMTQ0IDIuMTkyIDEuMTQ5TDIuMzgzIDEuMTM3IDIuMzUxIDEuMDA0IDIuMjk1IC45MjJDMi4yOTUgLjkyMiAyLjIxMiAuNzgzIDEuOTg5IC42ODEgMS45NjYgLjY2OCAxLjI4NCAuMzU4IDEuMDIxIC4yMSAuNzQ4IC4wNTUgLjcyNCAuMDM1IC42NyAuMDA5TDAtLjM4OS0uMTAxLS40NTctLjE0OS0uNDkzLS4yMTYtLjUzOUMtLjIxNi0uNTM5LS4wNTgtMS44ODItLjI5Ny0yLjQxMi0uNDA3LTIuNjU2LS40MjctMi42NjctLjQ4NS0yLjc1OUwtLjY2Ny0yLjk4LS45OTMtMy4xNTgtMS4yOTctMy4yMzQtMS4zNy0zLjIyLTEuNDQ0LTMuMjUtMS42MTctMy4yNzUtMS42OTQtMy4yNDYtMS43NjctMy4xNzMtMS44MjMtMy4xODMtMS45MjQtMy4xMzItMi4wMDItMi45OTQtMi4wMDEtMi45MzUtMS44MTktMy4wMDlDLTEuNzI4LTMuMDIzLTEuMzc0LTMuMTExLTEuMDc0LTIuNTc2LS43MzEtMS45NjQtLjUyNi0xLjAwNS0uNTIxLS41NDlMLS41NjItLjQ3OS0uNTMxLS40MTFDLS41MzEtLjQxMS0uNDk1IC4xODQtLjUzOSAxLjAwNC0uNTQzIDEuMDc2LS41MDMgMS4wOTYtLjQ4NSAxLS40NjcgLjkwMy0uMjk0LS4xNDItLjI3NC0uMjAxTC0uMTA2LS4wODIgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMzAwLjczMTQ2LDEyLjIxNDQxNjkpIiBkPSJNMCAwLS4wOTQtLjAzMy0uMTU1LS4wNjYtLjI3Mi0uMDA2LS41NTYtLjEyN0MtLjgzNi0uMzQ5LTEuMjU3LS43NTYtMS41NzYtLjk1NS0xLjkxOC0xLjE3Mi0yLjAyMi0xLjIzOC0yLjQ2OS0xLjQwMkwtMi40NC0xLjQzNkMtMi4zOTktMS40MjYtMS43NTUtMS4yMjQtMS40NDgtMS4xMTUtMS4xNDQtMS4wMDgtMS4xMDEtLjk4My0xLjEwMS0uOTgzLTEuMTAxLS45ODMtMS4xODctMi0xLjQyNi0yLjIzNS0xLjQ3NC0yLjI4Mi0xLjU4OS0yLjMxOS0xLjY4MS0yLjMxNUwtMS43NzgtMi4zMDUtMS43MzktMi4zNzItMS42OTItMi4zNzUtMS42NjktMi40NTItMS41ODEtMi41MjItMS40NzItMi41NjktMS40MzUtMi42Mi0xLjQyMS0yLjY2Ny0xLjM3OS0yLjcxNS0xLjI3NC0yLjc0Ny0xLjE0Ny0yLjc2Mi0uODk3LTIuNzE1Qy0uODk3LTIuNzE1LTEuODI3LTMuOTMtMS45MTMtMy44MDUtMS45NzgtMy43MDgtMS42MzItMy4wODYtMS42NTUtMy4wNzctMS42ODMtMy4wNjctMS45ODEtMy41MS0yLjEzNC0zLjg0OC0yLjE4MS0zLjk1NC0yLjE5Ni00LjE3OC0xLjk1Ni00LjAwOC0xLjU4OC0zLjc0NS0uNTY1LTIuNjIyLS4xOTQtMi4wNzEgLjAxNy0xLjc2NCAuNzUxLS44MDYgLjc1MS0uODA2IC43NTEtLjgwNiAxLjQ0NC0uNDMzIDEuNzYzLS4yOTEgMi4xNDQtLjEyNiAyLjY0NCAuMDA5IDIuNjktLjEwNCAyLjczOS0uMjE4IDIuNjk0LS41NjQgMi41NDQtLjg3IDIuMzk2LTEuMTY2IDIuMDU2LTEuNjUxIDEuOTcyLTEuNjk0TDEuMjY1LTEuMTUzIDEuMzYyLTEuMjg5QzEuNTU4LTEuNTgxIDEuNzE4LTEuODIxIDEuNzQxLTEuOTM0IDEuNzQxLTEuOTM0IDEuNTU4LTIuMTI0IDEuMTA0LTIuMTg4IC41MjItMi4yNzIgLjM1My0yLjA2MSAuMzMtMi4wNzlMLjM5Ni0yLjE0NyAuNTAzLTIuMjE3IC41NDEtMi4yMzUgLjU2OS0yLjI2OCAuNjc3LTIuMzAxIC43MjktMi4zMzggLjc3OC0yLjM2NEguODgxTC45NzktMi4zODVDLjk3OS0yLjM4NSAxLjI5MS0yLjQxOCAxLjgyMS0yLjE2OEwxLjkyNS0yLjQxMyAxLjk4NS0yLjYwNiAyLjA0My0yLjgxOSAyLjA4OS0yLjk5NyAyLjEyMi0zLjEgMi4xNjgtMy4yMjlDMi4yMS0zLjQ0OCAyLjMyOS0zLjU4MSAyLjM5OS0zLjYxNEwyLjU4My0zLjY3NCAyLjgwNC0zLjYyNCAyLjkyNi0zLjYwOCAzLjE1Ny0zLjU5IDMuMjU1LTMuNDAxQzMuMjU1LTMuNDAxIDMuMzIxLTMuMDkgMi44NzgtMi41NzMgMi42NzUtMi4zMzQgMi4zNDMtMS45NzkgMi4yNC0xLjg3IDIuMjQtMS44NyAzLjEzOC0uNjkyIDMuMDM0LS4wNjYgMi45OTIgLjE5MSAyLjQ1OSAuMTExIDIuMjcyIC4wNjIgMS41NzYtLjEyNyAuOTUxLS41MjcgLjk1MS0uNTI3IC45NTEtLjUyNyAxLjYzOCAuNjY4IDEuOTM4IDEuMTcxIDIuMjQgMS42NzUgMi41OTUgMS45ODQgMi4zNDkgMi4yNTggMi4xMDQgMi41MjggMS4yMTUgMS44NDMgLjk1NSAxLjY5IC43MTIgMS41NDgtLjEwMSAxLjE0My0uMTUzIDEuMTM5TC0uMTUxIDEuMDc2Qy0uMTA4IDEuMDc2IC42MDYgMS4xMDQgLjcyIDEuMTQzTC45NTEgMS4wODIgMS4wMyAxLjA3NiAxLjIxNSAxLjEyOSAxLjMwOCAxLjE3MSAxLjQ0OSAxLjM1MUMxLjQ2MSAxLjM2NyAxLjg3MyAxLjk4NSAxLjk2NyAxLjk2MUwxLjgwMSAxLjYwOEMxLjI4IC43NjIgLjI4NS0uOTQgLjI4NS0uOTRMLS40MzgtMS41MDctLjQxLTEuNTI0IC4xNTctMS4xNDRDLjE1Ny0xLjE0NC0uNTExLTIuMjE5LS43MjgtMi40NjctLjcyOC0yLjQ2Ny0uNjQtMS44NTgtLjY4My0xLjc0Ni0uNzI0LTEuNjMzLTEuMDk3LTEuMjE5LTEuMDM5LS45NzQtMS4wMzktLjk3NC0uMTA4LS42NDEtLjAyNC0uMjczTC0uMDM4LS4yMTQtLjAwNC0uMTEzIDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDMxOC4yMDc5LDguMDI2ODU1KSIgZD0iTTAgMEMwIDAgMS4zNzktLjE3OSAxLjQ5MS0uMjI5IDEuNjE4LS4yOSAxLjkwOS0uNDYxIDEuOTE0LS42NTcgMS45MTgtLjg1NCAxLjg2Ni0xLjAwNSAxLjgxOS0xLjAyMkwxLjYwMS0xLjA3NCAxLjI0Ny0xLjA4NSAxLjE3OC0xLjA1MUMxLjE1OS0xLjA1NiAuODE5LTEuMTE4IC42MTItMS4yNTggLjQ5Ny0xLjMzOCAuMjgyLTEuMzk3IC4yNzItMS4zOEwuNTA3LTEuMTg3Qy42MjItMS4xMDcgLjg1NC0uODU0IC44MjEtLjcxNCAuNzc4LS41MyAuNTM5LS40MSAuMzktLjI4NyAuMjI2LS4xNSAuMDI0LS4wMjMgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDIsMCwwLC0yLjAwMDAwNDYsMzIyLjY0MTQ5LDEwLjU5MTI0OCkiIGQ9Ik0wIDBDLS4wOCAuMDQ3LS4xODUgLjA3Ny0uMzE5IC4wNzEtLjQwOSAuMDY2LS41MTEgLjAxNC0uNjQyLS4yMDYtLjY0Mi0uMjA2LTEuNjYzLS43NjItMi4xMy0xLjEzNS0yLjUwMi0xLjQzMy0zLjI0Ni0yLjEyLTMuNTIyLTIuMTk5LTMuNzk3LTIuMjc4LTMuOTE3LTIuMjc2LTMuOTM4LTIuMjczLTQuMDM1LTIuMjYyLTQuMDQxLTIuMzIxLTQuMDQxLTIuMzIxTC0zLjk4NS0yLjM4NkMtMy45MjMtMi40MTQtMy44MDgtMi40NjctMy42ODEtMi40NzktMy41NTQtMi40OTMtMy4zMTMtMi41NTktMi44NzMtMi4zNDktMi40OS0yLjE2Ny0yLjMwNC0yLjAzMS0yLjE0OS0xLjg4Mi0xLjk5NC0xLjczMi0xLjYxLTEuMjE0LTEuNTc1LTEuMTc4LTEuNDUtMS4wNTEtMS4yNTYtLjg2NC0xLjI1Ni0uODY0TC0uNzUzLS41MUMtLjcxNi0uNTY5LTEuNjQ0LTIuMDM3LTEuODk5LTIuMzY1LTIuMTU0LTIuNjkzLTMuNTQ1LTQuNjIzLTQuMjkzLTQuOTk2TC00LjQxMi00Ljg1My00LjQ3Ni00LjkzNy00LjQ5Ny01LjE2LTQuMzA4LTUuMjJDLTMuNzY5LTQuODgtMi40MTctMy41MzMtMi4yNDctMy4zNDlWLTMuNDI5TC0yLjI3OC0zLjYzMi0yLjMxNy0zLjY3N0MtMi4zMjUtMy43MjQtMi4zMjUtNC4zNDctMi40NDgtNC4zODgtMi41NzMtNC40MjUtMi42NzQtNC4yNjEtMi43MDYtNC4yNDItMi43MzgtNC4yMjQtMi44MjQtNC43MDUtMi44MDQtNC44MjYtMi43NjUtNS4wNjItMi41NjUtNS4yMTQtMi4zNzEtNS4xOTMtMi4yNTMtNS4xODEtMi4xODgtNS4xMzgtMi4xNi01LjExOUwtMi4wNDktNC45NzYtMi4wMDYtNC44MDhDLTIuMDA2LTQuODA4LTEuOTgzLTQuNjMtMS45ODMtNC4zOTgtMS45ODMtNC4xNjktMi4wNjktMy41OTktMi4wNjMtMy41MjdMLTIuMDg5LTMuNDg4LTIuMDk3LTMuNDQxLTIuMTE2LTMuMzQ5LTIuMTA4LTMuMjkxLTIuMTQ3LTMuMzEtMi4xNTQtMy4zNDktMi4xNjgtMy40MDItMi4xODUtMy4zNjktMi4xODEtMy4zMUMtMi4xODEtMy4zMS0xLjY3Ny0yLjg1Ny0xLjQyNS0yLjU4MS0xLjE3NS0yLjMwNy0uNDQtMS40OTktLjAyMi0uNzQ0IC4wMjQtLjY2MiAuMjM5LS41OCAuMTgzLS4yMjcgLjE3MS0uMTU4IC4xMS0uMDY0IDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDMxOS41ODY4NiwxNi4yMTQ0MTcpIiBkPSJNMCAwIC4wMjEtLjU1NSAuMDUyLS43NDkgLjE3OS0uOTYxQy4yMDctMS4wMyAuMTUzLTEuMjA5IC4zMTMtMS4yNzYgLjQ3NC0xLjM0MiAuNTk1LTEuMzA5IC42NDctMS4zMDNMLjc4OS0xLjI1NiAuOTA4LTEuMTE2IC45NjktLjkyOEMuOTY5LS45MjggMS4wMDMtLjc4OCAuNzg5LS42MTYgLjU3NC0uNDQyIC4wNjUgLjAzMyAwIDAiIGZpbGw9IiMzMjc0NTUiLz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMiwwLDAsLTIuMDAwMDA0NiwzMjguMDc3MDQsMTIuMTgzMDQ0KSIgZD0iTTAgMCAuMTE3IC4zNDQgLjM5OCAuMzU4IDAgME0uOTg4IC41MDJDLjkzIC42MTMgLjY3NCAuNjczIC42MTUgLjY4TC4yMDUgLjU4MUMuMjA1IC41ODEgLjU0NyAxLjI2NCAuNTI4IDEuNDI0IC41MSAxLjYwMiAuNTA0IDEuNjYyIC40ODIgMS43MDFMLjM3NyAxLjgwNyAuMjM5IDEuOTM0IC4xNTggMi4wMDQgLjA2NiAyLjA2OS0uMDUxIDIuMTY2LS4xMzcgMi4yNDgtLjI0NiAyLjMxMi0uMzE5IDIuMzQ4LS40MTQgMi40MjEtLjQ1OSAyLjQ2NS0uNTMxIDIuNTE4LS42MTIgMi41NzctLjY2NCAyLjU5Qy0uNjY0IDIuNTktLjgyOCAyLjYzNy0uOTc0IDIuNTlMLS45NCAyLjQ4NC0uODg5IDIuMzA3LS44NDggMS45NzFWMS43MDFDLS44NDggMS40NTEtMS4wNTMtLjQzNS0xLjE2Ni0uNjA1LTEuMTY2LS42MDUtMS45NzctMS4yMTMtMi4zODUtMS4zOTEtMi43OTMtMS41NjgtMy4wODItMS42NDItMy4wNzYtMS42ODctMy4wNjktMS43MzMtMi41NjgtMS43MTItMi4zOTItMS42NzQtMi4yMTUtMS42MzQtMS4zNjktMS4xOTktMS4yNzEtMS4wOC0xLjI3MS0xLjA4LTEuMzItMS40ODgtMS4zMTEtMS42NTQtMS4yOTctMS44NzEtMS4yMTgtMS45NzEtMS4yMDUtMi4wMjktMS4xOTItMi4wODgtMS4xNDYtMi4yMDItLjk4Ny0yLjA5NC0uODI4LTEuOTktLjc3LTIuMDExLS43Ny0yLjAxMS0uNzctMi4wMTEtLjQ4NS0xLjY4Ny0uNDQ2LTEuNTg4LS40MDYtMS40ODktLjE0My0uNjQtLjExNy0uNDc1LS4xMTctLjQ3NSAuNTI4LS4wNiAuNjgxIC4wNCAuODMyIC4xMzkgMS4wODQgLjMyIC45ODggLjUwMiIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDMyMy4yNjA2OSwxNy41MjAwMikiIGQ9Ik0wIDBDLS4wNjYtLjA0MyAuMTI2LS4wNDUgLjI3LS4xNzIgLjM1OS0uMjQ4IC43MTQtLjUwMiAuOTY5LS41OTQgMS4zMDEtLjcxMyAyLjA1MS0uNTc2IDIuNDU5LS41NjYgMi45ODQtLjU1MyAzLjY5Ny0uNTU5IDMuODAyLS41MzMgMy45MDgtLjUwOCA0LS40MDggMy45Ni0uMzAzTDQuMjg0LS4xNDVDNC4zNDMtLjA4NiA0LjQxMyAuMTIxIDQuMjEyIC4yMTEgNC4wNzkgLjI3MSA0LjA1MyAuMjc3IDMuOTc1IC4zMTZMMy43NDkgLjQzNkMzLjY2MyAuNDQxIDMuNTY0IC40MzYgMy40MzkgLjQyMiAzLjMxNCAuNDEgMi4xNzQgLjI2NCAxLjg4NiAuMjMgMS41OTUgLjE5NyAxLjE5MyAuMTE5IC45NjkgLjEwNSAuNzQ0IC4wOTIgLjEyNiAuMDc4IDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDIwNy44NTQ0Myw1LjUyNjc5NDYpIiBkPSJNMCAwLS4xMjgtLjEzLS4xMDYtLjQ0NyAuMDMxLS43NSAuMDI0LS45NjlDLjAxNS0uOTg2LS4yMDMtMS40MjktLjUtMS43OTktMS40OTktMy4wNDYtMS44MDUtMy40NzgtMy4yNzktNC44Ny00LjAwMS01LjU1NS01LjY2Mi03LjA5LTYuOTQxLTcuODctNy45MTEtOC40NjEtOC43NzMtOC44MDUtOC43NzMtOC44MDVMLTguODE2LTguODUtOC41NzEtOC44MzRDLTguMzI1LTguODExLTguMDQ1LTguNzEzLTcuOTExLTguNjY3LTYuOTM4LTguMzMxLTYuMzk1LTcuOTQ0LTUuOTMxLTcuNjQxLTQuNzA4LTYuODQtNC40MzktNi41ODEtMy42LTUuODk5LTIuNzYtNS4yMi0xLjUzOS00LjA5NC0xLjUzOS00LjA5NEwtMS4wNjEtMy41ODUgLjA2OC0yLjIyMkMuMDY4LTIuMjIyIC44NTEtMS4zNTcgLjg4OS0xLjIzMiAuOTI3LTEuMTA3IC45MjQtMS4wMjkgLjg4My0uODQgLjg0Mi0uNjQ5IC42NTYtLjQ2MSAuNjU2LS40NjFMLjI3Mi0uMTEyIDAgMCIgZmlsbD0iIzMyNzQ1NSIvPgo8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgyLDAsMCwtMi4wMDAwMDQ2LDIwNy4xMjU4NiwxMi42MTg2NTIpIiBkPSJNMCAwIC4wNC0uMDM0IC4xNTgtLjE2NyAuMjctLjMyNCAuNTkyLS44MiAxLjA4OC0xLjQ4N0MxLjA4OC0xLjQ4NyAxLjUyOS0xLjk5MiAxLjY5Ni0yLjE1NCAyLjEyNi0yLjU3IDIuMzQtMi42NjkgMi41MjktMi43NTUgMi45NjYtMi45NTcgMy4zNy0zLjAwOSAzLjM3LTMuMDA5TDMuNTUyLTIuOTg0IDMuODIyLTMuMTE1IDMuODYyLTMuMjAxQzMuODc5LTMuMyAzLjc2NS0zLjMyMiAzLjc2NS0zLjMyMkwzLjQ5LTMuMzk0QzMuNDktMy4zOTQgMi44NzktMy40IDIuNjkzLTMuNDQ3IDIuNTQzLTMuNDg2IDIuMzEyLTMuNTUyIDIuMzEyLTMuNTUyIDIuMzEyLTMuNTUyIDIuMTU0LTMuNjA3IDEuOTc2LTMuNTk5IDEuNjYzLTMuNTg1IDEuNDg4LTMuNDY0IDEuNDg4LTMuNDY0TDEuMzE3LTMuMjc5QzEuMzE3LTMuMjc5IDEuMDg1LTIuODIgLjkyNi0yLjQ1NSAuNzY4LTIuMDg5IC4zNzQtMS40MDMgLjIwNy0uOTY3IC4xMDMtLjY5NyAuMDM0LS40MDUgLjAzNi0uMzk2TC4wMjQtLjMyMi0uMDA3LS4yMjktLjAwMi0uMjE0IC4wMzEtLjI0MyAuMDYtLjI4NSAuMDgyLS4zMDkgLjA3NS0uMjUzIC4xMTktLjI5NSAuMTM2LS4zMDQgLjE0NC0uMjkgLjA2Ny0uMTcxIC4wNTMtLjEwOSAuMDA3LS4wNDcgMCAwIiBmaWxsPSIjMzI3NDU1Ii8+CjwvZz4KPC9nPgo8L2c+CjwvZz4KPC9zdmc+Cg==');"></div>
+          <div class="text-layer">
+            <span id="p171_c0" class="pdf-char" style="left:29.96px;top:678.62px;width:6.66px;height:13.64px;font-size:12.00px;color:#231f20;">1</span>
+<span id="p171_c1" class="pdf-char" style="left:36.62px;top:678.62px;width:6.66px;height:13.64px;font-size:12.00px;color:#231f20;">6</span>
+<span id="p171_c2" class="pdf-char" style="left:43.28px;top:678.62px;width:6.66px;height:13.64px;font-size:12.00px;color:#231f20;">4</span>
+<span id="p171_c3" class="pdf-char" style="left:49.94px;top:678.62px;width:3.32px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p171_c4" class="pdf-char" style="left:53.26px;top:678.62px;width:8.67px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p171_c5" class="pdf-char" style="left:61.93px;top:678.62px;width:3.32px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p171_c6" class="pdf-char" style="left:65.25px;top:678.62px;width:8.67px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p171_c7" class="pdf-char" style="left:73.92px;top:678.62px;width:3.32px;height:13.64px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p171_c8" class="pdf-char" style="left:77.25px;top:680.19px;width:2.68px;height:11.54px;font-size:9.00px;color:#231f20;"> </span>
+<span id="p171_c9" class="pdf-char" style="left:79.93px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">日</span>
+<span id="p171_c10" class="pdf-char" style="left:88.93px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">语</span>
+<span id="p171_c11" class="pdf-char" style="left:97.93px;top:680.45px;width:4.50px;height:9.00px;font-size:9.00px;color:#231f20;"> </span>
+<span id="p171_c12" class="pdf-char" style="left:106.93px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">九</span>
+<span id="p171_c13" class="pdf-char" style="left:115.93px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">年</span>
+<span id="p171_c14" class="pdf-char" style="left:124.93px;top:680.19px;width:9.00px;height:10.58px;font-size:9.00px;color:#231f20;">级</span>
+<span id="p171_c15" class="pdf-char" style="left:14.86px;top:352.74px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">第</span>
+<span id="p171_c16" class="pdf-char" style="left:14.86px;top:362.74px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">四</span>
+<span id="p171_c17" class="pdf-char" style="left:14.86px;top:372.74px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">单</span>
+<span id="p171_c18" class="pdf-char" style="left:14.86px;top:382.73px;width:10.00px;height:10.00px;font-size:10.00px;color:#ffffff;">元</span>
+<span id="p171_c19" class="pdf-char" style="left:45.35px;top:56.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">1</span>
+<span id="p171_c20" class="pdf-char" style="left:50.60px;top:56.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">.</span>
+<span id="p171_c21" class="pdf-char" style="left:55.85px;top:56.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;"> </span>
+<span id="p171_c22" class="pdf-char" style="left:61.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">李</span>
+<span id="p171_c23" class="pdf-char" style="left:71.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">さ</span>
+<span id="p171_c24" class="pdf-char" style="left:82.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ん</span>
+<span id="p171_c25" class="pdf-char" style="left:92.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p171_c26" class="pdf-char" style="left:103.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">感</span>
+<span id="p171_c27" class="pdf-char" style="left:113.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">想</span>
+<span id="p171_c28" class="pdf-char" style="left:124.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">を</span>
+<span id="p171_c29" class="pdf-char" style="left:134.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p171_c30" class="pdf-char" style="left:145.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p171_c31" class="pdf-char" style="left:155.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">め</span>
+<span id="p171_c32" class="pdf-char" style="left:166.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p171_c33" class="pdf-char" style="left:176.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">書</span>
+<span id="p171_c34" class="pdf-char" style="left:187.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">き</span>
+<span id="p171_c35" class="pdf-char" style="left:197.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p171_c36" class="pdf-char" style="left:208.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p171_c37" class="pdf-char" style="left:218.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ょ</span>
+<span id="p171_c38" class="pdf-char" style="left:229.10px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">う</span>
+<span id="p171_c39" class="pdf-char" style="left:239.60px;top:56.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p171_c40" class="pdf-char" style="left:45.35px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">2</span>
+<span id="p171_c41" class="pdf-char" style="left:50.60px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;">.</span>
+<span id="p171_c42" class="pdf-char" style="left:55.85px;top:266.66px;width:5.25px;height:10.50px;font-size:10.50px;color:#231f20;"> </span>
+<span id="p171_c43" class="pdf-char" style="left:61.10px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">高</span>
+<span id="p171_c44" class="pdf-char" style="left:71.81px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">橋</span>
+<span id="p171_c45" class="pdf-char" style="left:82.52px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">さ</span>
+<span id="p171_c46" class="pdf-char" style="left:93.23px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ん</span>
+<span id="p171_c47" class="pdf-char" style="left:103.94px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p171_c48" class="pdf-char" style="left:114.65px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">な</span>
+<span id="p171_c49" class="pdf-char" style="left:125.36px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ぜ</span>
+<span id="p171_c50" class="pdf-char" style="left:136.07px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">袁</span>
+<span id="p171_c51" class="pdf-char" style="left:146.78px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">隆</span>
+<span id="p171_c52" class="pdf-char" style="left:157.49px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">平</span>
+<span id="p171_c53" class="pdf-char" style="left:168.20px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">は</span>
+<span id="p171_c54" class="pdf-char" style="left:178.91px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">世</span>
+<span id="p171_c55" class="pdf-char" style="left:189.62px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">界</span>
+<span id="p171_c56" class="pdf-char" style="left:200.33px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">の</span>
+<span id="p171_c57" class="pdf-char" style="left:211.04px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">英</span>
+<span id="p171_c58" class="pdf-char" style="left:221.75px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">雄</span>
+<span id="p171_c59" class="pdf-char" style="left:232.46px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">だ</span>
+<span id="p171_c60" class="pdf-char" style="left:243.17px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p171_c61" class="pdf-char" style="left:253.88px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">思</span>
+<span id="p171_c62" class="pdf-char" style="left:264.59px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">っ</span>
+<span id="p171_c63" class="pdf-char" style="left:275.30px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p171_c64" class="pdf-char" style="left:286.01px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">い</span>
+<span id="p171_c65" class="pdf-char" style="left:296.72px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p171_c66" class="pdf-char" style="left:307.43px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">す</span>
+<span id="p171_c67" class="pdf-char" style="left:318.14px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">か</span>
+<span id="p171_c68" class="pdf-char" style="left:328.85px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p171_c69" class="pdf-char" style="left:339.56px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p171_c70" class="pdf-char" style="left:350.27px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">と</span>
+<span id="p171_c71" class="pdf-char" style="left:360.98px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">め</span>
+<span id="p171_c72" class="pdf-char" style="left:371.69px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">て</span>
+<span id="p171_c73" class="pdf-char" style="left:382.40px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">書</span>
+<span id="p171_c74" class="pdf-char" style="left:393.11px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">き</span>
+<span id="p171_c75" class="pdf-char" style="left:403.82px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ま</span>
+<span id="p171_c76" class="pdf-char" style="left:414.53px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">し</span>
+<span id="p171_c77" class="pdf-char" style="left:425.24px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">ょ</span>
+<span id="p171_c78" class="pdf-char" style="left:435.74px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">う</span>
+<span id="p171_c79" class="pdf-char" style="left:446.03px;top:266.66px;width:10.50px;height:10.50px;font-size:10.50px;color:#231f20;">。</span>
+<span id="p171_c80" class="pdf-char" style="left:146.38px;top:133.75px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">感</span>
+<span id="p171_c81" class="pdf-char" style="left:157.38px;top:133.75px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">想</span>
+<span id="p171_c82" class="pdf-char" style="left:169.76px;top:133.75px;width:5.50px;height:11.00px;font-size:11.00px;color:#231f20;">1</span>
+<span id="p171_c83" class="pdf-char" style="left:342.00px;top:133.75px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">感</span>
+<span id="p171_c84" class="pdf-char" style="left:353.00px;top:133.75px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">想</span>
+<span id="p171_c85" class="pdf-char" style="left:365.37px;top:133.75px;width:5.50px;height:11.00px;font-size:11.00px;color:#231f20;">2</span>
+<span id="p171_c86" class="pdf-char" style="left:225.24px;top:97.17px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">李</span>
+<span id="p171_c87" class="pdf-char" style="left:236.24px;top:97.17px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">さ</span>
+<span id="p171_c88" class="pdf-char" style="left:247.24px;top:97.17px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">ん</span>
+<span id="p171_c89" class="pdf-char" style="left:258.24px;top:97.17px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">の</span>
+<span id="p171_c90" class="pdf-char" style="left:269.24px;top:97.17px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">感</span>
+<span id="p171_c91" class="pdf-char" style="left:280.24px;top:97.17px;width:11.00px;height:11.00px;font-size:11.00px;color:#231f20;">想</span>
+<span id="p171_c92" class="pdf-char" style="left:69.35px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">在</span>
+<span id="p171_c93" class="pdf-char" style="left:81.76px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">班</span>
+<span id="p171_c94" class="pdf-char" style="left:94.17px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">里</span>
+<span id="p171_c95" class="pdf-char" style="left:106.58px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">组</span>
+<span id="p171_c96" class="pdf-char" style="left:118.99px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">织</span>
+<span id="p171_c97" class="pdf-char" style="left:130.99px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">“</span>
+<span id="p171_c98" class="pdf-char" style="left:143.39px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">科</span>
+<span id="p171_c99" class="pdf-char" style="left:155.80px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">学</span>
+<span id="p171_c100" class="pdf-char" style="left:168.21px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">家</span>
+<span id="p171_c101" class="pdf-char" style="left:180.62px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">精</span>
+<span id="p171_c102" class="pdf-char" style="left:193.03px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">神</span>
+<span id="p171_c103" class="pdf-char" style="left:205.43px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">进</span>
+<span id="p171_c104" class="pdf-char" style="left:217.84px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">校</span>
+<span id="p171_c105" class="pdf-char" style="left:230.25px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">园</span>
+<span id="p171_c106" class="pdf-char" style="left:242.66px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">”</span>
+<span id="p171_c107" class="pdf-char" style="left:255.07px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">分</span>
+<span id="p171_c108" class="pdf-char" style="left:267.47px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">享</span>
+<span id="p171_c109" class="pdf-char" style="left:279.88px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">会</span>
+<span id="p171_c110" class="pdf-char" style="left:291.88px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">。</span>
+<span id="p171_c111" class="pdf-char" style="left:304.29px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">查</span>
+<span id="p171_c112" class="pdf-char" style="left:316.70px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">阅</span>
+<span id="p171_c113" class="pdf-char" style="left:329.11px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">自</span>
+<span id="p171_c114" class="pdf-char" style="left:341.51px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">己</span>
+<span id="p171_c115" class="pdf-char" style="left:353.92px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">最</span>
+<span id="p171_c116" class="pdf-char" style="left:366.33px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">崇</span>
+<span id="p171_c117" class="pdf-char" style="left:378.74px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">敬</span>
+<span id="p171_c118" class="pdf-char" style="left:391.15px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">的</span>
+<span id="p171_c119" class="pdf-char" style="left:403.55px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">科</span>
+<span id="p171_c120" class="pdf-char" style="left:415.96px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">学</span>
+<span id="p171_c121" class="pdf-char" style="left:428.37px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">家</span>
+<span id="p171_c122" class="pdf-char" style="left:440.78px;top:543.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">的</span>
+<span id="p171_c123" class="pdf-char" style="left:45.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">突</span>
+<span id="p171_c124" class="pdf-char" style="left:57.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">出</span>
+<span id="p171_c125" class="pdf-char" style="left:69.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">事</span>
+<span id="p171_c126" class="pdf-char" style="left:81.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">迹</span>
+<span id="p171_c127" class="pdf-char" style="left:93.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">，</span>
+<span id="p171_c128" class="pdf-char" style="left:105.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">写</span>
+<span id="p171_c129" class="pdf-char" style="left:117.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">一</span>
+<span id="p171_c130" class="pdf-char" style="left:129.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">篇</span>
+<span id="p171_c131" class="pdf-char" style="left:141.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">主</span>
+<span id="p171_c132" class="pdf-char" style="left:153.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">题</span>
+<span id="p171_c133" class="pdf-char" style="left:165.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">为</span>
+<span id="p171_c134" class="pdf-char" style="left:177.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">“</span>
+<span id="p171_c135" class="pdf-char" style="left:189.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">我</span>
+<span id="p171_c136" class="pdf-char" style="left:201.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">最</span>
+<span id="p171_c137" class="pdf-char" style="left:213.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">崇</span>
+<span id="p171_c138" class="pdf-char" style="left:225.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">敬</span>
+<span id="p171_c139" class="pdf-char" style="left:237.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">的</span>
+<span id="p171_c140" class="pdf-char" style="left:249.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">科</span>
+<span id="p171_c141" class="pdf-char" style="left:261.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">学</span>
+<span id="p171_c142" class="pdf-char" style="left:273.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">家</span>
+<span id="p171_c143" class="pdf-char" style="left:285.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">”</span>
+<span id="p171_c144" class="pdf-char" style="left:297.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">的</span>
+<span id="p171_c145" class="pdf-char" style="left:309.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">发</span>
+<span id="p171_c146" class="pdf-char" style="left:321.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">言</span>
+<span id="p171_c147" class="pdf-char" style="left:333.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">稿</span>
+<span id="p171_c148" class="pdf-char" style="left:345.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">并</span>
+<span id="p171_c149" class="pdf-char" style="left:357.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">在</span>
+<span id="p171_c150" class="pdf-char" style="left:369.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">班</span>
+<span id="p171_c151" class="pdf-char" style="left:381.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">内</span>
+<span id="p171_c152" class="pdf-char" style="left:393.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">汇</span>
+<span id="p171_c153" class="pdf-char" style="left:405.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">报</span>
+<span id="p171_c154" class="pdf-char" style="left:417.35px;top:564.31px;width:12.00px;height:13.08px;font-size:12.00px;color:#231f20;">。</span>
+<span id="p171_c155" class="pdf-char" style="left:45.35px;top:606.31px;width:6.00px;height:12.00px;font-size:12.00px;color:#231f20;">1</span>
+<span id="p171_c156" class="pdf-char" style="left:51.35px;top:606.31px;width:6.00px;height:12.00px;font-size:12.00px;color:#231f20;">.</span>
+<span id="p171_c157" class="pdf-char" style="left:57.35px;top:606.31px;width:6.00px;height:12.00px;font-size:12.00px;color:#231f20;"> </span>
+<span id="p171_c158" class="pdf-char" style="left:63.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">查</span>
+<span id="p171_c159" class="pdf-char" style="left:75.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">找</span>
+<span id="p171_c160" class="pdf-char" style="left:87.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">相</span>
+<span id="p171_c161" class="pdf-char" style="left:99.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">关</span>
+<span id="p171_c162" class="pdf-char" style="left:111.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">资</span>
+<span id="p171_c163" class="pdf-char" style="left:123.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">料</span>
+<span id="p171_c164" class="pdf-char" style="left:135.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">了</span>
+<span id="p171_c165" class="pdf-char" style="left:147.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">解</span>
+<span id="p171_c166" class="pdf-char" style="left:159.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">自</span>
+<span id="p171_c167" class="pdf-char" style="left:171.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">己</span>
+<span id="p171_c168" class="pdf-char" style="left:183.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">最</span>
+<span id="p171_c169" class="pdf-char" style="left:195.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">崇</span>
+<span id="p171_c170" class="pdf-char" style="left:207.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">敬</span>
+<span id="p171_c171" class="pdf-char" style="left:219.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">的</span>
+<span id="p171_c172" class="pdf-char" style="left:231.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">科</span>
+<span id="p171_c173" class="pdf-char" style="left:243.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">学</span>
+<span id="p171_c174" class="pdf-char" style="left:255.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">家</span>
+<span id="p171_c175" class="pdf-char" style="left:267.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">并</span>
+<span id="p171_c176" class="pdf-char" style="left:279.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">作</span>
+<span id="p171_c177" class="pdf-char" style="left:291.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">简</span>
+<span id="p171_c178" class="pdf-char" style="left:303.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">单</span>
+<span id="p171_c179" class="pdf-char" style="left:315.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">记</span>
+<span id="p171_c180" class="pdf-char" style="left:327.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">录</span>
+<span id="p171_c181" class="pdf-char" style="left:339.35px;top:605.97px;width:12.00px;height:14.11px;font-size:12.00px;color:#231f20;">。</span>
+<span id="p171_c182" class="pdf-char" style="left:79.65px;top:506.00px;width:14.00px;height:14.00px;font-size:14.00px;color:#48b969;">や</span>
+<span id="p171_c183" class="pdf-char" style="left:93.65px;top:506.00px;width:14.00px;height:14.00px;font-size:14.00px;color:#48b969;">り</span>
+<span id="p171_c184" class="pdf-char" style="left:107.65px;top:506.00px;width:14.00px;height:14.00px;font-size:14.00px;color:#48b969;">ま</span>
+<span id="p171_c185" class="pdf-char" style="left:121.65px;top:506.00px;width:14.00px;height:14.00px;font-size:14.00px;color:#48b969;">し</span>
+<span id="p171_c186" class="pdf-char" style="left:135.65px;top:506.00px;width:14.00px;height:14.00px;font-size:14.00px;color:#48b969;">ょ</span>
+<span id="p171_c187" class="pdf-char" style="left:149.65px;top:506.00px;width:14.00px;height:14.00px;font-size:14.00px;color:#48b969;">う</span>
+<span id="p171_c188" class="pdf-char" style="left:89.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">仅</span>
+<span id="p171_c189" class="pdf-char" style="left:107.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">供</span>
+<span id="p171_c190" class="pdf-char" style="left:125.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">个</span>
+<span id="p171_c191" class="pdf-char" style="left:143.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">人</span>
+<span id="p171_c192" class="pdf-char" style="left:161.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">学</span>
+<span id="p171_c193" class="pdf-char" style="left:179.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">习</span>
+<span id="p171_c194" class="pdf-char" style="left:197.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">使</span>
+<span id="p171_c195" class="pdf-char" style="left:215.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">用</span>
+<span id="p171_c196" class="pdf-char" style="left:233.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">，</span>
+<span id="p171_c197" class="pdf-char" style="left:251.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">未</span>
+<span id="p171_c198" class="pdf-char" style="left:269.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">经</span>
+<span id="p171_c199" class="pdf-char" style="left:287.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">授</span>
+<span id="p171_c200" class="pdf-char" style="left:305.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">权</span>
+<span id="p171_c201" class="pdf-char" style="left:323.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">不</span>
+<span id="p171_c202" class="pdf-char" style="left:341.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">得</span>
+<span id="p171_c203" class="pdf-char" style="left:359.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">另</span>
+<span id="p171_c204" class="pdf-char" style="left:377.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">做</span>
+<span id="p171_c205" class="pdf-char" style="left:395.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">他</span>
+<span id="p171_c206" class="pdf-char" style="left:413.79px;top:714.95px;width:18.00px;height:18.00px;font-size:18.00px;color:#000000;">用</span>
+          </div>
+          <div class="overlay">
+            <div class="point-hotspot sentence" data-id="hotspot_171_0"><div class="sentence-hit" style="left:61.10px;top:56.66px;width:189.00px;height:10.50px;" title="李さんの感想をまとめて書きましょう。"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="0" style="left:61.10px;top:56.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：李"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="1" style="left:71.60px;top:56.66px;width:31.50px;height:10.50px;" title="单击读整句，双击单独读词：さんの"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="2" style="left:103.10px;top:56.66px;width:21.00px;height:10.50px;" title="单击读整句，双击单独读词：感想"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="3" style="left:124.10px;top:56.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：を"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="4" style="left:134.60px;top:56.66px;width:42.00px;height:10.50px;" title="单击读整句，双击单独读词：まとめて"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="5" style="left:176.60px;top:56.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：書"></div><div class="word-hit" data-hid="hotspot_171_0" data-widx="6" style="left:187.10px;top:56.66px;width:52.50px;height:10.50px;" title="单击读整句，双击单独读词：きましょう"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_171_1"><div class="sentence-hit" style="left:61.10px;top:266.66px;width:278.25px;height:10.50px;" title="高橋さんはなぜ袁隆平は世界の英雄だと思っていますか。"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="0" style="left:61.10px;top:266.66px;width:21.21px;height:10.50px;" title="单击读整句，双击单独读词：高橋"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="1" style="left:82.52px;top:266.66px;width:53.34px;height:10.50px;" title="单击读整句，双击单独读词：さんはなぜ"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="2" style="left:136.07px;top:266.66px;width:31.92px;height:10.50px;" title="单击读整句，双击单独读词：袁隆平"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="3" style="left:168.20px;top:266.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：は"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="4" style="left:178.91px;top:266.66px;width:21.21px;height:10.50px;" title="单击读整句，双击单独读词：世界"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="5" style="left:200.33px;top:266.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：の"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="6" style="left:211.04px;top:266.66px;width:21.21px;height:10.50px;" title="单击读整句，双击单独读词：英雄"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="7" style="left:232.46px;top:266.66px;width:21.21px;height:10.50px;" title="单击读整句，双击单独读词：だと"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="8" style="left:253.88px;top:266.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：思"></div><div class="word-hit" data-hid="hotspot_171_1" data-widx="9" style="left:264.59px;top:266.66px;width:64.05px;height:10.50px;" title="单击读整句，双击单独读词：っていますか"></div></div>
+<div class="point-hotspot sentence" data-id="hotspot_171_2"><div class="sentence-hit" style="left:339.56px;top:266.66px;width:116.97px;height:10.50px;" title="まとめて書きましょう。"></div><div class="word-hit" data-hid="hotspot_171_2" data-widx="0" style="left:339.56px;top:266.66px;width:42.63px;height:10.50px;" title="单击读整句，双击单独读词：まとめて"></div><div class="word-hit" data-hid="hotspot_171_2" data-widx="1" style="left:382.40px;top:266.66px;width:10.50px;height:10.50px;" title="单击读整句，双击单独读词：書"></div><div class="word-hit" data-hid="hotspot_171_2" data-widx="2" style="left:393.11px;top:266.66px;width:53.13px;height:10.50px;" title="单击读整句，双击单独读词：きましょう"></div></div>
+<div class="point-hotspot vocab" data-id="hotspot_171_3"><div class="sentence-hit" style="left:146.38px;top:133.75px;width:28.88px;height:11.00px;" title="感想1"></div><div class="word-hit" data-hid="hotspot_171_3" data-widx="0" style="left:146.38px;top:133.75px;width:28.88px;height:11.00px;" title="单击读整句，双击单独读词：感想1"></div></div>
+<div class="point-hotspot vocab" data-id="hotspot_171_4"><div class="sentence-hit" style="left:342.00px;top:133.75px;width:28.87px;height:11.00px;" title="感想2"></div><div class="word-hit" data-hid="hotspot_171_4" data-widx="0" style="left:342.00px;top:133.75px;width:28.87px;height:11.00px;" title="单击读整句，双击单独读词：感想2"></div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside id="pointPanel">
+      <button class="panel-toggle" id="panelToggleBtn" type="button" aria-expanded="false" aria-controls="pointPanelContent">点读列表</button>
+      <div class="panel-toggle-wrapper">
+        <h2 class="panel-toggle-title">点读列表</h2>
+        <button type="button" class="panel-close-btn" id="panelCloseBtn">✕ 关闭</button>
+      </div>
+      <div id="pointPanelContent" class="panel-content">
+        <div class="sidebar-header">
+          <p style="margin-bottom:6px;">单击读整句（逐词高亮）；双击单词单独发音。</p>
+          <div style="font-size:12px;display:flex;align-items:center;gap:6px;color:#475569;">
+            <span class="audio-badge source">原声</span>教材原声切片
+            <span class="audio-badge synth" style="margin-left:6px;">合成</span>AI语音合成
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <ul class="point-list">
+            <li class="point-item sentence" data-id="hotspot_171_0"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">李さんの感想をまとめて書きましょう。</span></li>
+<li class="point-item sentence" data-id="hotspot_171_1"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">高橋さんはなぜ袁隆平は世界の英雄だと思っていますか。</span></li>
+<li class="point-item sentence" data-id="hotspot_171_2"><span class="badge badge-sentence">整句</span><span class="audio-badge synth">合成</span><span class="item-text">まとめて書きましょう。</span></li>
+<li class="point-item vocab" data-id="hotspot_171_3"><span class="badge badge-vocab">词汇</span><span class="audio-badge synth">合成</span><span class="item-text">感想1</span></li>
+<li class="point-item vocab" data-id="hotspot_171_4"><span class="badge badge-vocab">词汇</span><span class="audio-badge synth">合成</span><span class="item-text">感想2</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const hotspots = [{"id": "hotspot_171_0", "text": "李さんの感想をまとめて書きましょう。", "kind": "sentence", "bbox": [61.1, 56.66, 250.1, 67.16], "rects": [[61.1, 56.66, 250.1, 67.16]], "char_ids": ["p171_c22", "p171_c23", "p171_c24", "p171_c25", "p171_c26", "p171_c27", "p171_c28", "p171_c29", "p171_c30", "p171_c31", "p171_c32", "p171_c33", "p171_c34", "p171_c35", "p171_c36", "p171_c37", "p171_c38", "p171_c39"], "audioSrc": "audio/fb16792e4173a97c.mp3", "words": [{"word": "李", "char_ids": ["p171_c22"], "is_punct": false, "audioSrc": "audio/cdd2c6d477a0d6e7.mp3", "rect": [61.1, 56.66, 71.6, 67.16], "rects": [[61.1, 56.66, 71.6, 67.16]], "start": 0.0, "end": 0.2}, {"word": "さんの", "char_ids": ["p171_c23", "p171_c24", "p171_c25"], "is_punct": false, "audioSrc": "audio/d1e780a689bb40da.mp3", "rect": [71.6, 56.66, 103.1, 67.16], "rects": [[71.6, 56.66, 103.1, 67.16]], "start": 0.2, "end": 0.72}, {"word": "感想", "char_ids": ["p171_c26", "p171_c27"], "is_punct": false, "audioSrc": "audio/91db79f12ef40236.mp3", "rect": [103.1, 56.66, 124.1, 67.16], "rects": [[103.1, 56.66, 124.1, 67.16]], "start": 0.72, "end": 1.2}, {"word": "を", "char_ids": ["p171_c28"], "is_punct": false, "audioSrc": "audio/eba95ba0c66639b9.mp3", "rect": [124.1, 56.66, 134.6, 67.16], "rects": [[124.1, 56.66, 134.6, 67.16]], "start": 1.2, "end": 1.36}, {"word": "まとめて", "char_ids": ["p171_c29", "p171_c30", "p171_c31", "p171_c32"], "is_punct": false, "audioSrc": "audio/ca89703dd585a5dc.mp3", "rect": [134.6, 56.66, 176.6, 67.16], "rects": [[134.6, 56.66, 176.6, 67.16]], "start": 1.36, "end": 1.88}, {"word": "書", "char_ids": ["p171_c33"], "is_punct": false, "audioSrc": "audio/a29f6f0625dc2cd1.mp3", "rect": [176.6, 56.66, 187.1, 67.16], "rects": [[176.6, 56.66, 187.1, 67.16]], "start": 1.88, "end": 2.04}, {"word": "きましょう", "char_ids": ["p171_c34", "p171_c35", "p171_c36", "p171_c37", "p171_c38"], "is_punct": false, "audioSrc": "audio/24206ed4324b3b14.mp3", "rect": [187.1, 56.66, 239.6, 67.16], "rects": [[187.1, 56.66, 239.6, 67.16]], "start": 2.04, "end": 2.48}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_171_1", "text": "高橋さんはなぜ袁隆平は世界の英雄だと思っていますか。", "kind": "sentence", "bbox": [61.1, 266.66, 339.35, 277.16], "rects": [[61.1, 266.66, 339.35, 277.16]], "char_ids": ["p171_c43", "p171_c44", "p171_c45", "p171_c46", "p171_c47", "p171_c48", "p171_c49", "p171_c50", "p171_c51", "p171_c52", "p171_c53", "p171_c54", "p171_c55", "p171_c56", "p171_c57", "p171_c58", "p171_c59", "p171_c60", "p171_c61", "p171_c62", "p171_c63", "p171_c64", "p171_c65", "p171_c66", "p171_c67", "p171_c68"], "audioSrc": "audio/bf55da77a35b4787.mp3", "words": [{"word": "高橋", "char_ids": ["p171_c43", "p171_c44"], "is_punct": false, "audioSrc": "audio/a47b98de6ee9f9be.mp3", "rect": [61.1, 266.66, 82.31, 277.16], "rects": [[61.1, 266.66, 82.31, 277.16]], "start": 0.0, "end": 0.05, "audioType": "tts"}, {"word": "さんはなぜ", "char_ids": ["p171_c45", "p171_c46", "p171_c47", "p171_c48", "p171_c49"], "is_punct": false, "audioSrc": "audio/c146f84b96e8220b.mp3", "rect": [82.52, 266.66, 135.86, 277.16], "rects": [[82.52, 266.66, 135.86, 277.16]], "start": 0.0, "end": 0.05, "audioType": "tts"}, {"word": "袁隆平", "char_ids": ["p171_c50", "p171_c51", "p171_c52"], "is_punct": false, "audioSrc": "audio/8c9ba856bcc71f74.mp3", "rect": [136.07, 266.66, 167.99, 277.16], "rects": [[136.07, 266.66, 167.99, 277.16]], "start": 0.0, "end": 0.05, "audioType": "tts"}, {"word": "は", "char_ids": ["p171_c53"], "is_punct": false, "audioSrc": "audio/1fa0519cfd095c24.mp3", "rect": [168.2, 266.66, 178.7, 277.16], "rects": [[168.2, 266.66, 178.7, 277.16]], "start": 0.0, "end": 0.05, "audioType": "tts"}, {"word": "世界", "char_ids": ["p171_c54", "p171_c55"], "is_punct": false, "audioSrc": "audio/cf1656101ed511a0.mp3", "rect": [178.91, 266.66, 200.12, 277.16], "rects": [[178.91, 266.66, 200.12, 277.16]], "start": 0.0, "end": 1.0, "audioType": "tts"}, {"word": "の", "char_ids": ["p171_c56"], "is_punct": false, "audioSrc": "audio/56377d14d4ef532a.mp3", "rect": [200.33, 266.66, 210.83, 277.16], "rects": [[200.33, 266.66, 210.83, 277.16]], "start": 1.0, "end": 1.07, "audioType": "tts"}, {"word": "英雄", "char_ids": ["p171_c57", "p171_c58"], "is_punct": false, "audioSrc": "audio/d4aba4491d5b4485.mp3", "rect": [211.04, 266.66, 232.25, 277.16], "rects": [[211.04, 266.66, 232.25, 277.16]], "start": 1.07, "end": 1.22, "audioType": "tts"}, {"word": "だと", "char_ids": ["p171_c59", "p171_c60"], "is_punct": false, "audioSrc": "audio/ec0664bad577309e.mp3", "rect": [232.46, 266.66, 253.67, 277.16], "rects": [[232.46, 266.66, 253.67, 277.16]], "start": 1.22, "end": 1.36, "audioType": "tts"}, {"word": "思", "char_ids": ["p171_c61"], "is_punct": false, "audioSrc": "audio/faf279e73f14bd60.mp3", "rect": [253.88, 266.66, 264.38, 277.16], "rects": [[253.88, 266.66, 264.38, 277.16]], "start": 1.36, "end": 1.43, "audioType": "tts"}, {"word": "っていますか", "char_ids": ["p171_c62", "p171_c63", "p171_c64", "p171_c65", "p171_c66", "p171_c67"], "is_punct": false, "audioSrc": "audio/569dc478cc847d89.mp3", "rect": [264.59, 266.66, 328.64, 277.16], "rects": [[264.59, 266.66, 328.64, 277.16]], "start": 1.43, "end": 1.86, "audioType": "tts"}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_171_2", "text": "まとめて書きましょう。", "kind": "sentence", "bbox": [339.56, 266.66, 456.53, 277.16], "rects": [[339.56, 266.66, 456.53, 277.16]], "char_ids": ["p171_c69", "p171_c70", "p171_c71", "p171_c72", "p171_c73", "p171_c74", "p171_c75", "p171_c76", "p171_c77", "p171_c78", "p171_c79"], "audioSrc": "audio/7d710a23e7d8e0e5.mp3", "words": [{"word": "まとめて", "char_ids": ["p171_c69", "p171_c70", "p171_c71", "p171_c72"], "is_punct": false, "audioSrc": "audio/ca89703dd585a5dc.mp3", "rect": [339.56, 266.66, 382.19, 277.16], "rects": [[339.56, 266.66, 382.19, 277.16]], "start": 0.0, "end": 0.35}, {"word": "書", "char_ids": ["p171_c73"], "is_punct": false, "audioSrc": "audio/a29f6f0625dc2cd1.mp3", "rect": [382.4, 266.66, 392.9, 277.16], "rects": [[382.4, 266.66, 392.9, 277.16]], "start": 0.35, "end": 0.46}, {"word": "きましょう", "char_ids": ["p171_c74", "p171_c75", "p171_c76", "p171_c77", "p171_c78"], "is_punct": false, "audioSrc": "audio/24206ed4324b3b14.mp3", "rect": [393.11, 266.66, 446.24, 277.16], "rects": [[393.11, 266.66, 446.24, 277.16]], "start": 0.46, "end": 0.8}, {"word": "。", "char_ids": [], "is_punct": true, "audioSrc": "", "rect": null, "rects": []}], "audioType": "tts"}, {"id": "hotspot_171_3", "text": "感想1", "kind": "vocab", "bbox": [146.38, 133.75, 175.26, 144.75], "rects": [[146.38, 133.75, 175.26, 144.75]], "char_ids": ["p171_c80", "p171_c81", "p171_c82"], "audioSrc": "audio/cee4fe1592c88bf3.mp3", "words": [{"word": "感想1", "char_ids": ["p171_c80", "p171_c81", "p171_c82"], "is_punct": false, "audioSrc": "audio/cee4fe1592c88bf3.mp3", "rect": [146.38, 133.75, 175.26, 144.75], "rects": [[146.38, 133.75, 175.26, 144.75]]}], "audioType": "tts"}, {"id": "hotspot_171_4", "text": "感想2", "kind": "vocab", "bbox": [342.0, 133.75, 370.87, 144.75], "rects": [[342.0, 133.75, 370.87, 144.75]], "char_ids": ["p171_c83", "p171_c84", "p171_c85"], "audioSrc": "audio/c2098f51acb03b49.mp3", "words": [{"word": "感想2", "char_ids": ["p171_c83", "p171_c84", "p171_c85"], "is_punct": false, "audioSrc": "audio/c2098f51acb03b49.mp3", "rect": [342.0, 133.75, 370.87, 144.75], "rects": [[342.0, 133.75, 370.87, 144.75]]}], "audioType": "tts"}];
+    const pageScale = document.querySelector('.page-scale');
+    const pageNative = document.querySelector('#pageNative');
+    
+    // Panel Toggle Logic
+    const pointPanel = document.querySelector('#pointPanel');
+    const panelToggleBtn = document.querySelector('#panelToggleBtn');
+    const panelCloseBtn = document.querySelector('#panelCloseBtn');
+
+    function togglePanel(open) {
+      const shouldOpen = open !== undefined ? open : !pointPanel.classList.contains('open');
+      pointPanel.classList.toggle('open', shouldOpen);
+      panelToggleBtn.setAttribute('aria-expanded', String(shouldOpen));
+    }
+
+    panelToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePanel(true);
+    });
+
+    panelCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePanel(false);
+    });
+
+    document.addEventListener('pointerdown', (e) => {
+      if (pointPanel.classList.contains('open') && !pointPanel.contains(e.target)) {
+        togglePanel(false);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && pointPanel.classList.contains('open')) {
+        togglePanel(false);
+      }
+    });
+
+    // Audio Player & Speed State
+    const audioPlayer = new Audio();
+    let currentSpeed = 1.0;
+    let activeAnimationTimeout = null;
+    let wordClickTimer = null;
+    let lastClickedKey = null;
+
+    // Speed Control Elements
+    const speedSlider = document.getElementById('speedSlider');
+    const speedVal = document.getElementById('speedVal');
+    const speedDec = document.getElementById('speedDec');
+    const speedInc = document.getElementById('speedInc');
+
+    function updateSpeed(newSpeed) {
+      currentSpeed = Math.round(Math.min(2.0, Math.max(0.5, newSpeed)) * 10) / 10;
+      speedSlider.value = currentSpeed.toFixed(1);
+      speedVal.textContent = currentSpeed.toFixed(1) + 'x';
+      audioPlayer.playbackRate = currentSpeed;
+    }
+
+    speedSlider.addEventListener('input', (e) => updateSpeed(parseFloat(e.target.value)));
+    speedDec.addEventListener('click', () => updateSpeed(currentSpeed - 0.1));
+    speedInc.addEventListener('click', () => updateSpeed(currentSpeed + 0.1));
+
+    function resizeScale() {
+      const scale = pageScale.clientWidth / 521.575;
+      pageNative.style.transform = `scale(${scale})`;
+    }
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(() => resizeScale()).observe(pageScale);
+    } else {
+      window.addEventListener('resize', resizeScale);
+    }
+    window.addEventListener('orientationchange', resizeScale);
+    resizeScale();
+
+    let wordStopTimer = null;
+    let activeSyncSentenceId = null;
+
+    function clearHighlights() {
+      activeSyncSentenceId = null;
+      if (activeAnimationTimeout) {
+        cancelAnimationFrame(activeAnimationTimeout);
+        clearTimeout(activeAnimationTimeout);
+        activeAnimationTimeout = null;
+      }
+      if (wordStopTimer) {
+        clearTimeout(wordStopTimer);
+        wordStopTimer = null;
+      }
+      document.querySelectorAll('.pdf-char.active').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.pdf-char.word-highlight').forEach(el => el.classList.remove('word-highlight'));
+      document.querySelectorAll('.point-item.active').forEach(el => el.classList.remove('active'));
+    }
+
+    function stopAudio() {
+      if (wordStopTimer) {
+        clearTimeout(wordStopTimer);
+        wordStopTimer = null;
+      }
+      try {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+      } catch (e) {}
+    }
+
+    audioPlayer.addEventListener('ended', () => {
+      if (activeAnimationTimeout) {
+        cancelAnimationFrame(activeAnimationTimeout);
+        clearTimeout(activeAnimationTimeout);
+        activeAnimationTimeout = null;
+      }
+      if (wordStopTimer) {
+        clearTimeout(wordStopTimer);
+        wordStopTimer = null;
+      }
+      document.querySelectorAll('.pdf-char.word-highlight').forEach(el => el.classList.remove('word-highlight'));
+    });
+
+    audioPlayer.addEventListener('pause', () => {
+      if (activeAnimationTimeout) {
+        cancelAnimationFrame(activeAnimationTimeout);
+        clearTimeout(activeAnimationTimeout);
+        activeAnimationTimeout = null;
+      }
+      if (wordStopTimer) {
+        clearTimeout(wordStopTimer);
+        wordStopTimer = null;
+      }
+      document.querySelectorAll('.pdf-char.word-highlight').forEach(el => el.classList.remove('word-highlight'));
+    });
+
+    // Play entire sentence
+    function triggerSentence(hid) {
+      const hotspot = hotspots.find(h => h.id === hid);
+      if (!hotspot) return;
+
+      clearHighlights();
+      stopAudio();
+      activeSyncSentenceId = hid;
+
+      // Highlight in sidebar
+      const listItem = document.querySelector(`.point-item[data-id="${hid}"]`);
+      if (listItem) {
+        listItem.classList.add('active');
+        listItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Turn whole sentence red (including punctuation)
+      hotspot.char_ids.forEach(cid => {
+        const el = document.getElementById(cid);
+        if (el) el.classList.add('active');
+      });
+
+      // Play sentence audio at current speed
+      if (hotspot.audioSrc) {
+        audioPlayer.src = hotspot.audioSrc;
+        audioPlayer.playbackRate = currentSpeed;
+        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+      }
+
+      // Real-time audio-aligned word highlight (EXCLUDING punctuation!)
+      const validWords = (hotspot.words || []).filter(w => !w.is_punct && w.char_ids && w.char_ids.length > 0);
+      if (validWords.length > 0) {
+        let currentActiveWord = null;
+
+        function syncLoop() {
+          if (activeSyncSentenceId !== hid || !audioPlayer) return;
+          if (audioPlayer.ended) {
+            document.querySelectorAll('.pdf-char.word-highlight').forEach(el => el.classList.remove('word-highlight'));
+            return;
+          }
+
+          if (!audioPlayer.paused && audioPlayer.currentTime >= 0) {
+            const t = audioPlayer.currentTime;
+            let currentWord = null;
+            for (const w of validWords) {
+              if (w.start !== undefined && w.end !== undefined) {
+                if (t >= w.start && t < w.end) {
+                  currentWord = w;
+                  break;
+                }
+              }
+            }
+
+            if (currentActiveWord !== currentWord) {
+              currentActiveWord = currentWord;
+              document.querySelectorAll('.pdf-char.word-highlight').forEach(el => el.classList.remove('word-highlight'));
+              if (currentWord && currentWord.char_ids) {
+                currentWord.char_ids.forEach(cid => {
+                  const el = document.getElementById(cid);
+                  if (el) el.classList.add('word-highlight');
+                });
+              }
+            }
+          }
+
+          if (activeSyncSentenceId === hid && !audioPlayer.ended) {
+            activeAnimationTimeout = requestAnimationFrame(syncLoop);
+          }
+        }
+
+        activeAnimationTimeout = requestAnimationFrame(syncLoop);
+      }
+    }
+
+    // Play word alone (on double-click) - Prioritize authentic native speaker recording
+    function triggerWordOnly(hid, widx) {
+      const hotspot = hotspots.find(h => h.id === hid);
+      if (!hotspot || !hotspot.words || !hotspot.words[widx]) return;
+      const word = hotspot.words[widx];
+
+      clearHighlights();
+      stopAudio();
+
+      // Highlight in sidebar
+      const listItem = document.querySelector(`.point-item[data-id="${hid}"]`);
+      if (listItem) {
+        listItem.classList.add('active');
+      }
+
+      // Turn ONLY this word red and give it word-highlight
+      if (word.char_ids) {
+        word.char_ids.forEach(cid => {
+          const el = document.getElementById(cid);
+          if (el) {
+            el.classList.add('active');
+            el.classList.add('word-highlight');
+          }
+        });
+      }
+
+      // If parent sentence has authentic original audio and word has exact timestamps:
+      // Play directly from parent authentic recording range [word.start, word.end]
+      if (hotspot.audioType === 'source' && hotspot.audioSrc && word.start !== undefined && word.end !== undefined) {
+        audioPlayer.src = hotspot.audioSrc;
+        audioPlayer.playbackRate = currentSpeed;
+        const st = Math.max(0, word.start - 0.02);
+        const et = word.end + 0.04;
+        const durMs = Math.max(220, ((et - st) / currentSpeed) * 1000);
+
+        audioPlayer.currentTime = st;
+        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+
+        if (wordStopTimer) clearTimeout(wordStopTimer);
+        wordStopTimer = setTimeout(() => {
+          audioPlayer.pause();
+          wordStopTimer = null;
+        }, durMs);
+      } else if (word.audioSrc) {
+        audioPlayer.src = word.audioSrc;
+        audioPlayer.playbackRate = currentSpeed;
+        audioPlayer.play().catch(e => console.log('Audio playback error:', e));
+      }
+    }
+
+    // Word hit events: single click -> sentence (260ms delay), double click -> single word
+    document.querySelectorAll('.word-hit').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const hid = el.dataset.hid;
+        const widx = parseInt(el.dataset.widx, 10);
+        const key = `${hid}_${widx}`;
+
+        if (wordClickTimer && lastClickedKey === key) {
+          // Double click detected!
+          clearTimeout(wordClickTimer);
+          wordClickTimer = null;
+          lastClickedKey = null;
+          triggerWordOnly(hid, widx);
+        } else {
+          if (wordClickTimer) clearTimeout(wordClickTimer);
+          lastClickedKey = key;
+          wordClickTimer = setTimeout(() => {
+            wordClickTimer = null;
+            lastClickedKey = null;
+            triggerSentence(hid);
+          }, 260);
+        }
+      });
+    });
+
+    // Sentence hit events (clicks on sentence padding / background) -> trigger immediately
+    document.querySelectorAll('.sentence-hit').forEach(el => {
+      el.addEventListener('click', (e) => {
+        if (wordClickTimer) {
+          clearTimeout(wordClickTimer);
+          wordClickTimer = null;
+        }
+        const hotspotDiv = e.target.closest('.point-hotspot');
+        if (hotspotDiv) {
+          triggerSentence(hotspotDiv.dataset.id);
+        }
+      });
+    });
+
+    // Sidebar list item clicks -> trigger immediately
+    document.querySelectorAll('.point-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (wordClickTimer) {
+          clearTimeout(wordClickTimer);
+          wordClickTimer = null;
+        }
+        triggerSentence(item.dataset.id);
+      });
+    });
+  </script>
+</body>
+</html>
